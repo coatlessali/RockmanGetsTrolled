@@ -26,16 +26,6 @@ func state_process(_delta, direction):
 	else:
 		timer -= 1
 		# check if we're pressing anything and transition into running
-		if timer <= 0:
-			if slidecast.is_colliding():
-				return
-			elif sign(direction.x)*slide_dir == 1:
-				next_state = running_state
-			else:
-				next_state = ground_state
-				playback.travel("idle")
-		# checking if pressing opposite direction
-		#print_debug(sign(direction.x)*sign(character.last_faced))
 		if sign(direction.x)*slide_dir == -1:
 			if slidecast.is_colliding():
 				slide()
@@ -46,6 +36,15 @@ func state_process(_delta, direction):
 				playback.travel("idle")
 		else:
 			character.local_velocity.x = character.slide_velocity*sign(character.last_faced)
+		if timer <= 0:
+			if slidecast.is_colliding():
+				return
+			elif sign(direction.x)*slide_dir == 1:
+				next_state = running_state
+			else:
+				next_state = ground_state
+				playback.travel("idle")
+		
 	shoot_anim_timer("slide")
 
 func state_input(event : InputEvent):

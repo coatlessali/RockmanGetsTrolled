@@ -18,11 +18,15 @@ var environmental_velocity : Vector2 = Vector2.ZERO
 var moving_direction : int = DDirection.RIGHT
 var last_faced : int = DDirection.RIGHT
 var owie : bool = false
+var shader_intensity = 0.0
+var shader_speed = 0.0
 
 func _ready():
 	print_debug("i was never book smart, im money smart")
 	animation_tree.active = true
 	sprite.flip_h = true
+	sprite.material.set("shader_parameter/intensity", 0.0)
+	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
 	# print_debug("player.gd: ", last_faced)
@@ -33,6 +37,17 @@ func _physics_process(_delta):
 		last_faced = x_direction
 		if !is_on_floor():
 			pass
+	
+	if Input.is_action_pressed("fire"):
+		if shader_intensity < 0.5:
+			shader_intensity += 0.005
+		print(shader_intensity)
+		if shader_speed < 10:
+			shader_speed += 0.075
+		print(shader_speed)
+	else:
+		shader_intensity = 0.0
+		shader_speed = 0.0
 
 	if is_on_floor():
 		pass
@@ -44,6 +59,8 @@ func _physics_process(_delta):
 	move_and_slide()
 	update_animation(input_direction)
 	update_facing_direction(x_direction)
+	sprite.material.set("shader_parameter/intensity", shader_intensity)
+	sprite.material.set("shader_parameter/speed", shader_speed)
 
 func update_animation(direction):
 	animation_tree.set("parameters/Move/blend_position", direction.x)
