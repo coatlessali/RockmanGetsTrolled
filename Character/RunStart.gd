@@ -27,7 +27,8 @@ func state_process(_delta, direction):
 			# apply velocity
 			#else:
 			#character.local_velocity.x = move_toward(character.local_velocity.x, character.local_velocity_cap*sign(direction.x), character.speed*2)
-			character.local_velocity.x = character.speed/2*sign(direction.x)
+			#character.local_velocity.x = character.speed/2*sign(direction.x)
+			character.local_velocity.x = 0
 			if pause_frames <= 0:
 				next_state = running_state
 		# if we're not pressing anything, go into idle if we're not doing anything, or go into braking if we are

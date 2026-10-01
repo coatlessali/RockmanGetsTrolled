@@ -22,7 +22,7 @@ func state_process(delta, direction):
 		#if Input.is_action_pressed("slide"):
 			#next_state = sliding_state
 		if direction.x != DDirection.NONE:
-			next_state = running_start_state
+			next_state = running_state
 		else:
 			next_state = ground_state
 		playback.travel("idle")
@@ -56,7 +56,7 @@ func state_input(event : InputEvent):
 func on_enter():
 	if !Input.is_action_pressed("jump"):
 		character.local_velocity.y = 0
-	sprite.offset.y = 2
+	sprite.offset.y = 5
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
 	if(character.last_state == sliding_state):
