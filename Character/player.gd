@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var camera : Camera2D
-@export var speed : float = 100
+@export var speed : float = 90
 @export var slide_velocity : float = 150
 @export var friction : float = 5
 @export var local_velocity_cap : float = 250
