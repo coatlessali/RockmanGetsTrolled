@@ -1,15 +1,16 @@
-[gd_scene load_steps=54 format=3 uid="uid://xxaoff7gwbrm"]
+[gd_scene format=3 uid="uid://xxaoff7gwbrm"]
 
-[ext_resource type="Script" path="res://Character/player.gd" id="1_flj5s"]
-[ext_resource type="Script" path="res://Character/AnimationTree.gd" id="3_j16up"]
-[ext_resource type="Script" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
-[ext_resource type="Script" path="res://Character/GroundState.gd" id="5_kqs0o"]
-[ext_resource type="Script" path="res://Character/AirState.gd" id="6_stw0j"]
+[ext_resource type="Script" uid="uid://urxaxji1h1mo" path="res://Character/player.gd" id="1_flj5s"]
+[ext_resource type="Script" uid="uid://bky2hgeh3dn6p" path="res://Character/AnimationTree.gd" id="3_j16up"]
+[ext_resource type="Script" uid="uid://ds3q68t8hit3n" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
+[ext_resource type="Texture2D" uid="uid://bk1k348acm4u7" path="res://Art/reference.png" id="4_ur0x2"]
+[ext_resource type="Script" uid="uid://d0j2vegtcwwry" path="res://Character/GroundState.gd" id="5_kqs0o"]
+[ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
 [ext_resource type="Texture2D" uid="uid://bisly8lylcysm" path="res://Art/mega_man_sprite_sheet_centered_slide.png" id="7_ro07m"]
-[ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
-[ext_resource type="Script" path="res://Character/RunningState.gd" id="11_22h3l"]
-[ext_resource type="Script" path="res://Character/RunStart.gd" id="12_pw0rc"]
-[ext_resource type="Script" path="res://Character/SlidingState.gd" id="12_skwc6"]
+[ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
+[ext_resource type="Script" uid="uid://cyv8hvm133val" path="res://Character/RunningState.gd" id="11_22h3l"]
+[ext_resource type="Script" uid="uid://65ecekq76r8r" path="res://Character/RunStart.gd" id="12_pw0rc"]
+[ext_resource type="Script" uid="uid://c8een82vrijbn" path="res://Character/SlidingState.gd" id="12_skwc6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c7sad"]
 
@@ -19,6 +20,94 @@ height = 46.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(22.2222, 41)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr43w"]
+animation = &"idle_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ltyc1"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_450od"]
+animation = &"jump_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l8vw5"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_io0ry"]
+animation = &"run_shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3f4i"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4l1u"]
+animation = &"slide_shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xwo66"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acw4l"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5kly"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exrv1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxv6e"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjexb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npek4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xhp1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wvsll"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8v40"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4niyd"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_edhtl"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o206e"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mpybc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ful86"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x64yq"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sxc8j"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_upcn3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_if6a0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjb3i"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bchtj"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
+states/Start/position = Vector2(199, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
+states/idle/position = Vector2(363, 100)
+states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
+states/idle_shoot/position = Vector2(363, -31.0911)
+states/jump/node = SubResource("AnimationNodeAnimation_ltyc1")
+states/jump/position = Vector2(488, 21.9089)
+states/jump_shoot/node = SubResource("AnimationNodeAnimation_450od")
+states/jump_shoot/position = Vector2(488, -60.0911)
+states/run/node = SubResource("AnimationNodeAnimation_l8vw5")
+states/run/position = Vector2(608, 100)
+states/run_shoot/node = SubResource("AnimationNodeAnimation_io0ry")
+states/run_shoot/position = Vector2(608, -31.0911)
+states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
+states/slide/position = Vector2(488, 175.909)
+states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
+states/slide_shoot/position = Vector2(488, 268.909)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj")]
+graph_offset = Vector2(15, -78.0993)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -165,140 +254,47 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvj6t"]
 _data = {
-"RESET": SubResource("Animation_hdldd"),
-"idle": SubResource("Animation_vbvgc"),
-"idle_shoot": SubResource("Animation_tpvpa"),
-"jump": SubResource("Animation_17kp6"),
-"jump_shoot": SubResource("Animation_vsl18"),
-"run": SubResource("Animation_rjb5r"),
-"run_shoot": SubResource("Animation_v10w4"),
-"slide": SubResource("Animation_k7ea8"),
-"slide_shoot": SubResource("Animation_pml56")
+&"RESET": SubResource("Animation_hdldd"),
+&"idle": SubResource("Animation_vbvgc"),
+&"idle_shoot": SubResource("Animation_tpvpa"),
+&"jump": SubResource("Animation_17kp6"),
+&"jump_shoot": SubResource("Animation_vsl18"),
+&"run": SubResource("Animation_rjb5r"),
+&"run_shoot": SubResource("Animation_v10w4"),
+&"slide": SubResource("Animation_k7ea8"),
+&"slide_shoot": SubResource("Animation_pml56")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
-animation = &"idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kr43w"]
-animation = &"idle_shoot"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ltyc1"]
-animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_450od"]
-animation = &"jump_shoot"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l8vw5"]
-animation = &"run"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_io0ry"]
-animation = &"run_shoot"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3f4i"]
-animation = &"slide"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o4l1u"]
-animation = &"slide_shoot"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xwo66"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_acw4l"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5kly"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_exrv1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lxv6e"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xjexb"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_npek4"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3xhp1"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wvsll"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d8v40"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4niyd"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_edhtl"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o206e"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mpybc"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ful86"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x64yq"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sxc8j"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_upcn3"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_if6a0"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fjb3i"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bchtj"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
-states/Start/position = Vector2(199, 100)
-states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
-states/idle/position = Vector2(363, 100)
-states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
-states/idle_shoot/position = Vector2(363, -31.0911)
-states/jump/node = SubResource("AnimationNodeAnimation_ltyc1")
-states/jump/position = Vector2(488, 21.9089)
-states/jump_shoot/node = SubResource("AnimationNodeAnimation_450od")
-states/jump_shoot/position = Vector2(488, -60.0911)
-states/run/node = SubResource("AnimationNodeAnimation_l8vw5")
-states/run/position = Vector2(608, 100)
-states/run_shoot/node = SubResource("AnimationNodeAnimation_io0ry")
-states/run_shoot/position = Vector2(608, -31.0911)
-states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
-states/slide/position = Vector2(488, 175.909)
-states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
-states/slide_shoot/position = Vector2(488, 268.909)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj")]
-graph_offset = Vector2(15, -78.0993)
-
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" unique_id=1414423542 groups=["Player"]]
 script = ExtResource("1_flj5s")
 
-[node name="SlideCast" type="ShapeCast2D" parent="."]
+[node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_c7sad")
 target_position = Vector2(0, -14)
 
-[node name="SlideHurtbox" type="CollisionShape2D" parent="."]
+[node name="SlideHurtbox" type="CollisionShape2D" parent="." unique_id=1053324761]
 position = Vector2(0, 16)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ta1mu")
 disabled = true
 
-[node name="StandingHurtbox" type="CollisionShape2D" parent="."]
+[node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
 position = Vector2(0, 2.5)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
 
-[node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("state_machine", "player")]
-libraries = {
-"": SubResource("AnimationLibrary_dvj6t")
-}
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1135087494 node_paths=PackedStringArray("state_machine", "player")]
 tree_root = SubResource("AnimationNodeStateMachine_l4wj4")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_j16up")
 state_machine = NodePath("../CharacterStateMachine")
 player = NodePath("..")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_dvj6t")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1405731024]
+libraries/ = SubResource("AnimationLibrary_dvj6t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060974059]
 position = Vector2(-29, -22)
 texture = ExtResource("7_ro07m")
 centered = false
@@ -306,33 +302,37 @@ offset = Vector2(5, 0)
 hframes = 2
 vframes = 4
 
-[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "hurtbox", "current_state", "animation_tree")]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1928649173]
+position = Vector2(36, 11)
+texture = ExtResource("4_ur0x2")
+
+[node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "current_state", "animation_tree")]
 script = ExtResource("4_i4vv3")
 character = NodePath("..")
 hurtbox = NodePath("../StandingHurtbox")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state")]
 script = ExtResource("5_kqs0o")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 runstart_state = NodePath("../RunStart")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("ground_state", "running_state", "sliding_state")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "sliding_state")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
 sliding_state = NodePath("../Sliding")
 
-[node name="Running" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "ground_state", "slide_state")]
+[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state")]
 script = ExtResource("11_22h3l")
 air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../Sliding")
 
-[node name="Sliding" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "hurtbox", "slide_hurtbox", "slidecast")]
+[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "hurtbox", "slide_hurtbox", "slidecast")]
 script = ExtResource("12_skwc6")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
@@ -343,14 +343,14 @@ hurtbox = NodePath("../../StandingHurtbox")
 slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 
-[node name="RunStart" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state")]
+[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state")]
 script = ExtResource("12_pw0rc")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 ground_state = NodePath("../Ground")
 
-[node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine", "character")]
+[node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
 modulate = Color(0, 0, 0, 1)
 offset_left = -53.0
 offset_top = -49.0

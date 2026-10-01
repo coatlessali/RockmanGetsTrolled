@@ -78,6 +78,9 @@ func _on_area_2d_body_entered(body):
 		else:
 			print_debug("right")
 			facing = DDirection.RIGHT
+		inactive_timer = 60
+		active_timer = 20
+		delay_timer = 30
 		state = DStates.ACTIVE
 		sound.play(0)
 
