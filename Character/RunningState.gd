@@ -65,4 +65,4 @@ func fire(angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	get_parent().add_child(bullet)
-	bullet.position = character.position + Vector2(character.last_faced*23, -0)
+	bullet.position = character.position + Vector2(character.last_faced*16, 10)
