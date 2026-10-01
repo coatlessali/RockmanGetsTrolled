@@ -5,16 +5,6 @@ var hurt_timer = 90
 @export var air_state : State
 @export var slide_state : State
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-func _physics_process(delta: float) -> void:
-	print("still going")
 
 func on_enter():
 	character.local_velocity.y = 0
