@@ -23,7 +23,7 @@ scale = Vector2(1.6, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1930311012]
 stream = ExtResource("3_7281b")
-volume_db = -6.0
+volume_db = -12.0
 autoplay = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

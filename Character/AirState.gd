@@ -63,7 +63,7 @@ func on_enter():
 		air_velocity = character.speed
 
 func on_exit():
-	sprite.offset.y = 0
+	sprite.offset.y = 1
 	air_velocity = character.speed
 	if(next_state == ground_state):
 		#has_double_jumped = false

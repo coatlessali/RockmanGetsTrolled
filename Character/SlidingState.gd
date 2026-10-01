@@ -77,7 +77,7 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
-	sprite.offset.y = 0
+	sprite.offset.y = 1
 	slide_hurtbox.disabled = true
 	hurtbox.disabled = false
 	#hurtbox.scale.y = 1

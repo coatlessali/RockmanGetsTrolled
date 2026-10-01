@@ -303,7 +303,7 @@ libraries/ = SubResource("AnimationLibrary_dvj6t")
 position = Vector2(-21, -9)
 texture = ExtResource("3_ur0x2")
 centered = false
-offset = Vector2(5, 0)
+offset = Vector2(5, 1)
 hframes = 4
 vframes = 6
 
@@ -372,4 +372,4 @@ character = NodePath("..")
 
 [node name="Land" type="AudioStreamPlayer" parent="." unique_id=1294129492]
 stream = ExtResource("12_xaqyh")
-volume_db = -5.0
+volume_db = -12.0
