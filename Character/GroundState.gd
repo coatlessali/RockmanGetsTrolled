@@ -9,6 +9,7 @@ class_name GroundState
 @export var running_state : State
 @export var slide_state : State
 @export var runstart_state : State
+@export var sprite : Sprite2D
 
 func state_process(_delta, direction):
 	# you shouldn't be in the air!
@@ -28,9 +29,12 @@ func state_process(_delta, direction):
 	shoot_anim_timer("idle") # State.gd
 
 func state_input(event : InputEvent):
+	if event.is_action_pressed("debug_owie"):
+		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_pressed("slide"):
+		#owie()
 		slide()
 	if event.is_action_pressed("fire"):
 		var fire_funne = 69
@@ -42,6 +46,11 @@ func state_input(event : InputEvent):
 
 		shoot_anim("idle_shoot") # State.gd
 
+
+func on_enter():
+	sprite.offset.y = 1
+	slide_hurtbox.disabled = true
+	hurtbox.disabled = false
 
 func jump():
 	character.local_velocity.y = character.jump_velocity

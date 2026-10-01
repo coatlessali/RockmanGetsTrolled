@@ -49,6 +49,9 @@ func state_process(_delta, direction):
 	shoot_anim_timer("slide")
 
 func state_input(event : InputEvent):
+	if event.is_action_pressed("debug_owie"):
+		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
+		return
 	if event.is_action_pressed("jump"):
 		if slidecast.is_colliding():
 			return
@@ -77,9 +80,12 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
-	sprite.offset.y = 1
-	slide_hurtbox.disabled = true
-	hurtbox.disabled = false
+	if !slidecast.is_colliding():
+		print("colliding")
+		sprite.offset.y = 1
+		slide_hurtbox.disabled = true
+		hurtbox.disabled = false
+	print("kek")
 	#hurtbox.scale.y = 1
 	#hurtbox.position.y -= 21
 	pass

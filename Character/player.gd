@@ -29,7 +29,7 @@ func _physics_process(_delta):
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	# unused, might be useful later
 	var x_direction = sign(input_direction.x)
-	if x_direction != DDirection.NONE && state_machine.check_if_can_move():
+	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
 		if !is_on_floor():
 			pass
@@ -49,6 +49,8 @@ func update_animation(direction):
 	animation_tree.set("parameters/Move/blend_position", direction.x)
 
 func update_facing_direction(x_direction):
+	if owie:
+		return
 	if x_direction == DDirection.RIGHT:
 		sprite.flip_h = true
 	elif x_direction == DDirection.LEFT:

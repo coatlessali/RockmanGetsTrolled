@@ -41,6 +41,8 @@ func state_input(event : InputEvent):
 		#double_jump()
 	#elif (event.is_action_pressed("boost")) and character.boost_guage >= 3:
 		#boost()
+	if event.is_action_pressed("debug_owie"):
+		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
@@ -57,6 +59,8 @@ func on_enter():
 	if !Input.is_action_pressed("jump"):
 		character.local_velocity.y = 0
 	sprite.offset.y = 5
+	#slide_hurtbox.disabled = true
+	#hurtbox.disabled = false
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
 	if(character.last_state == sliding_state):

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
 [ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
 [ext_resource type="Script" uid="uid://cyv8hvm133val" path="res://Character/RunningState.gd" id="11_22h3l"]
+[ext_resource type="Script" uid="uid://cba7wo0pkrnnv" path="res://Character/hurt.gd" id="11_13163"]
 [ext_resource type="Script" uid="uid://65ecekq76r8r" path="res://Character/RunStart.gd" id="12_pw0rc"]
 [ext_resource type="Script" uid="uid://c8een82vrijbn" path="res://Character/SlidingState.gd" id="12_skwc6"]
 [ext_resource type="AudioStream" uid="uid://bxekxtmn65103" path="res://Sounds/MM_Land.wav" id="12_xaqyh"]
@@ -21,6 +22,9 @@ height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(14.444445, 22)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13163"]
+animation = &"hurt"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
 animation = &"idle"
@@ -100,8 +104,34 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xj0yq"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6y5aw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bmb57"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o003e"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fnfro"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kxppi"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m6avg"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wl30t"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3j4vf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8i4rx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ls1st"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jxqse"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy7km"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
 states/Start/position = Vector2(199, 100)
+states/hurt/node = SubResource("AnimationNodeAnimation_13163")
+states/hurt/position = Vector2(1166.8867, -31.091103)
 states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
 states/idle/position = Vector2(363, 100)
 states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
@@ -120,8 +150,8 @@ states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
 states/slide/position = Vector2(488, 175.909)
 states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
 states/slide_shoot/position = Vector2(488, 268.909)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq")]
-graph_offset = Vector2(-22.230469, -8.517563)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km")]
+graph_offset = Vector2(160.63672, -49.083984)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -136,6 +166,24 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m6p0u"]
+resource_name = "hurt"
+length = 0.033333335
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.016666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [7, 4]
 }
 
 [sub_resource type="Animation" id="Animation_vbvgc"]
@@ -288,6 +336,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvj6t"]
 _data = {
 &"RESET": SubResource("Animation_hdldd"),
+&"hurt": SubResource("Animation_m6p0u"),
 &"idle": SubResource("Animation_vbvgc"),
 &"idle_shoot": SubResource("Animation_tpvpa"),
 &"jump": SubResource("Animation_17kp6"),
@@ -349,14 +398,21 @@ hurtbox = NodePath("../StandingHurtbox")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state", "sprite", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
 script = ExtResource("5_kqs0o")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 runstart_state = NodePath("../RunStart")
+sprite = NodePath("../../Sprite2D")
+character = NodePath("../..")
+hurtbox = NodePath("../../StandingHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
@@ -364,14 +420,26 @@ running_start_state = NodePath("../RunStart")
 sliding_state = NodePath("../Sliding")
 sprite = NodePath("../../Sprite2D")
 land_sound = NodePath("../../Land")
+character = NodePath("../..")
+hurtbox = NodePath("../../SlideHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
 
-[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state")]
+[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
 script = ExtResource("11_22h3l")
 air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../Sliding")
+character = NodePath("../..")
+hurtbox = NodePath("../../SlideHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
 
-[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "hurtbox", "slide_hurtbox", "slidecast")]
+[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
 script = ExtResource("12_skwc6")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
@@ -379,21 +447,38 @@ slide_state = NodePath(".")
 ground_state = NodePath("../Ground")
 runstart_state = NodePath("../RunStart")
 sprite = NodePath("../../Sprite2D")
-hurtbox = NodePath("../../StandingHurtbox")
-slide_hurtbox = NodePath("../../SlideHurtbox")
-slidecast = NodePath("../../SlideCast")
-
-[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast")]
-script = ExtResource("12_pw0rc")
-air_state = NodePath("../Air")
-running_state = NodePath("../Running")
-slide_state = NodePath("../Sliding")
-ground_state = NodePath("../Ground")
 character = NodePath("../..")
 hurtbox = NodePath("../../StandingHurtbox")
 hurtbox_sprite = NodePath("../../Sprite2D")
 slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
+
+[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "sprite", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+script = ExtResource("12_pw0rc")
+air_state = NodePath("../Air")
+running_state = NodePath("../Running")
+slide_state = NodePath("../Sliding")
+ground_state = NodePath("../Ground")
+sprite = NodePath("../../Sprite2D")
+character = NodePath("../..")
+hurtbox = NodePath("../../StandingHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
+
+[node name="Hurt" type="Node" parent="CharacterStateMachine" unique_id=2020621819 node_paths=PackedStringArray("ground_state", "air_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+script = ExtResource("11_13163")
+ground_state = NodePath("../Ground")
+air_state = NodePath("../Air")
+slide_state = NodePath("../Sliding")
+character = NodePath("../..")
+hurtbox = NodePath("../../StandingHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath(".")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
 modulate = Color(0, 0, 0, 1)

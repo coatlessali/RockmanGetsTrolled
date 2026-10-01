@@ -8,14 +8,23 @@ class_name RunStart
 @export var slide_state : State
 @export var ground_state : State
 @export var default_pause_frames : int = 6
+@export var sprite : Sprite2D
 var pause_frames : int = 30
 
 func on_enter():
 	pause_frames = default_pause_frames
 	playback.travel("run_start")
+	sprite.offset.x = 5
+
+func on_exit():
+	sprite.offset.x = 5
 
 func state_process(_delta, direction):
 	# you air be in the shouldn't!
+	if sprite.flip_h == true:
+		sprite.offset.x = 4
+	else:
+		sprite.offset.x = 6
 	if(!character.is_on_floor()):
 		next_state = air_state
 	else:
@@ -41,6 +50,8 @@ func state_process(_delta, direction):
 				#playback.travel("idle")
 
 func state_input(event : InputEvent):
+	if event.is_action_pressed("debug_owie"):
+		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_pressed("slide"):
