@@ -768,10 +768,10 @@ size = Vector2(449, 549)
 [node name="TestLevel" type="Node2D" unique_id=118663351]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=657372652]
-offset_left = -1996.0
-offset_top = -104.0
-offset_right = 3477.0
-offset_bottom = 168.0
+offset_left = -2029.0
+offset_top = -101.0
+offset_right = 3444.0
+offset_bottom = 171.0
 texture = ExtResource("1_uo41u")
 stretch_mode = 1
 
