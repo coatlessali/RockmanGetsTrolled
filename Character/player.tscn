@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://urxaxji1h1mo" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Script" uid="uid://bky2hgeh3dn6p" path="res://Character/AnimationTree.gd" id="3_j16up"]
+[ext_resource type="Texture2D" uid="uid://dxib4a7nc1yd2" path="res://Art/rock/spritesheet.png" id="3_ur0x2"]
 [ext_resource type="Script" uid="uid://ds3q68t8hit3n" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
 [ext_resource type="Texture2D" uid="uid://bk1k348acm4u7" path="res://Art/reference.png" id="4_ur0x2"]
 [ext_resource type="Script" uid="uid://d0j2vegtcwwry" path="res://Character/GroundState.gd" id="5_kqs0o"]
 [ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
-[ext_resource type="Texture2D" uid="uid://bisly8lylcysm" path="res://Art/mega_man_sprite_sheet_centered_slide.png" id="7_ro07m"]
 [ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
 [ext_resource type="Script" uid="uid://cyv8hvm133val" path="res://Character/RunningState.gd" id="11_22h3l"]
 [ext_resource type="Script" uid="uid://65ecekq76r8r" path="res://Character/RunStart.gd" id="12_pw0rc"]
@@ -16,10 +16,10 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta1mu"]
 radius = 7.0
-height = 46.0
+height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
-size = Vector2(22.2222, 41)
+size = Vector2(22.222212, 24)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
 animation = &"idle"
@@ -126,9 +126,25 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vbvgc"]
 resource_name = "idle"
-length = 0.4
+length = 2.65
 loop_mode = 1
 step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.55, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [5, 6, 5]
+}
+
+[sub_resource type="Animation" id="Animation_tpvpa"]
+resource_name = "idle_shoot"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -139,23 +155,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_tpvpa"]
-resource_name = "idle_shoot"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [1, 1]
+"values": [8]
 }
 
 [sub_resource type="Animation" id="Animation_17kp6"]
@@ -171,7 +171,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [9]
 }
 
 [sub_resource type="Animation" id="Animation_vsl18"]
@@ -186,12 +186,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [7]
+"values": [10]
 }
 
 [sub_resource type="Animation" id="Animation_rjb5r"]
 resource_name = "run"
-length = 0.8
+length = 0.53333336
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -200,14 +200,16 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [2]
+"values": [18, 20, 18, 16]
 }
 
 [sub_resource type="Animation" id="Animation_v10w4"]
 resource_name = "run_shoot"
+length = 0.53333336
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -215,14 +217,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [3]
+"values": [17, 19, 17, 15]
 }
 
 [sub_resource type="Animation" id="Animation_k7ea8"]
 resource_name = "slide"
+length = 0.06666667
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -234,11 +237,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [11]
 }
 
 [sub_resource type="Animation" id="Animation_pml56"]
 resource_name = "slide_shoot"
+length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -249,7 +253,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [13]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvj6t"]
@@ -271,7 +275,7 @@ script = ExtResource("1_flj5s")
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_c7sad")
-target_position = Vector2(0, -14)
+target_position = Vector2(0, -10)
 
 [node name="SlideHurtbox" type="CollisionShape2D" parent="." unique_id=1053324761]
 position = Vector2(0, 16)
@@ -280,7 +284,7 @@ shape = SubResource("CapsuleShape2D_ta1mu")
 disabled = true
 
 [node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
-position = Vector2(0, 2.5)
+position = Vector2(-5.149841e-06, 11)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
 
@@ -295,14 +299,15 @@ player = NodePath("..")
 libraries/ = SubResource("AnimationLibrary_dvj6t")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060974059]
-position = Vector2(-29, -22)
-texture = ExtResource("7_ro07m")
+position = Vector2(-21, -9)
+texture = ExtResource("3_ur0x2")
 centered = false
 offset = Vector2(5, 0)
-hframes = 2
-vframes = 4
+hframes = 4
+vframes = 6
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1928649173]
+visible = false
 position = Vector2(36, 11)
 texture = ExtResource("4_ur0x2")
 
@@ -332,13 +337,14 @@ air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../Sliding")
 
-[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "hurtbox", "slide_hurtbox", "slidecast")]
+[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "hurtbox", "slide_hurtbox", "slidecast")]
 script = ExtResource("12_skwc6")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath(".")
 ground_state = NodePath("../Ground")
 runstart_state = NodePath("../RunStart")
+sprite = NodePath("../../Sprite2D")
 hurtbox = NodePath("../../StandingHurtbox")
 slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")

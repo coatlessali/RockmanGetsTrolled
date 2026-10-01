@@ -12,6 +12,7 @@ class_name SlideState
 @export var runstart_state : State
 @export var timer : int = 69
 @export var slide_dir : int = 1
+@export var sprite : Sprite2D
 
 func state_process(_delta, direction):
 	# you shouldn't be in the air!
@@ -66,7 +67,8 @@ func state_input(event : InputEvent):
 		shoot_anim("slide_shoot")
 	
 func on_enter():
-	timer = 30
+	sprite.offset.y = 2
+	timer = 35
 	slide_dir = character.last_faced
 	slide_hurtbox.disabled = false
 	hurtbox.disabled = true
@@ -75,6 +77,7 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
+	sprite.offset.y = 0
 	slide_hurtbox.disabled = true
 	hurtbox.disabled = false
 	#hurtbox.scale.y = 1

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 @export var camera : Camera2D
-@export var speed : float = 120
-@export var slide_velocity : float = 200
+@export var speed : float = 100
+@export var slide_velocity : float = 150
 @export var friction : float = 5
 @export var local_velocity_cap : float = 250
 @onready var sprite : Sprite2D = $Sprite2D
@@ -22,6 +22,7 @@ var owie : bool = false
 func _ready():
 	print_debug("i was never book smart, im money smart")
 	animation_tree.active = true
+	sprite.flip_h = true
 
 func _physics_process(_delta):
 	# print_debug("player.gd: ", last_faced)
@@ -49,9 +50,9 @@ func update_animation(direction):
 
 func update_facing_direction(x_direction):
 	if x_direction == DDirection.RIGHT:
-		sprite.flip_h = false
-	elif x_direction == DDirection.LEFT:
 		sprite.flip_h = true
+	elif x_direction == DDirection.LEFT:
+		sprite.flip_h = false
 
 func _on_death_box_of_doom_body_entered(body):
 	print_debug("Entered!")
