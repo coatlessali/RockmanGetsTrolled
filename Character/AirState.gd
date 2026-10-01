@@ -15,9 +15,9 @@ var has_double_jumped = false
 func state_process(delta, direction):
 	if(character.is_on_floor()):
 		character.local_velocity.y = 0
-		if Input.is_action_pressed("slide"):
-			next_state = sliding_state
-		elif direction.x != DDirection.NONE:
+		#if Input.is_action_pressed("slide"):
+			#next_state = sliding_state
+		if direction.x != DDirection.NONE:
 			next_state = running_state
 		else:
 			next_state = ground_state
