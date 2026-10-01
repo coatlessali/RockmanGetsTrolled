@@ -20,7 +20,7 @@ radius = 7.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
-size = Vector2(17.777779, 22)
+size = Vector2(14.444445, 22)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
 animation = &"idle"
@@ -303,6 +303,7 @@ _data = {
 script = ExtResource("1_flj5s")
 
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
+visible = false
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_c7sad")
 target_position = Vector2(0, -10)
@@ -314,7 +315,7 @@ shape = SubResource("CapsuleShape2D_ta1mu")
 disabled = true
 
 [node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
-position = Vector2(-1.7881393e-07, 12)
+position = Vector2(0.5, 12)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
 
