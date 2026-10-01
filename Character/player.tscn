@@ -40,6 +40,9 @@ animation = &"run"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_io0ry"]
 animation = &"run_shoot"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xaqyh"]
+animation = &"run_start"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3f4i"]
 animation = &"slide"
 
@@ -89,6 +92,14 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bchtj"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xaqyh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_13163"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m6p0u"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xj0yq"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
 states/Start/position = Vector2(199, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
@@ -103,12 +114,14 @@ states/run/node = SubResource("AnimationNodeAnimation_l8vw5")
 states/run/position = Vector2(608, 100)
 states/run_shoot/node = SubResource("AnimationNodeAnimation_io0ry")
 states/run_shoot/position = Vector2(608, -31.0911)
+states/run_start/node = SubResource("AnimationNodeAnimation_xaqyh")
+states/run_start/position = Vector2(681.85547, 209.22922)
 states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
 states/slide/position = Vector2(488, 175.909)
 states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
 states/slide_shoot/position = Vector2(488, 268.909)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj")]
-graph_offset = Vector2(15, -78.0993)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq")]
+graph_offset = Vector2(-22.230469, -8.517563)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -224,6 +237,21 @@ tracks/0/keys = {
 "values": [17, 19, 17, 15]
 }
 
+[sub_resource type="Animation" id="Animation_xaqyh"]
+resource_name = "run_start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [14]
+}
+
 [sub_resource type="Animation" id="Animation_k7ea8"]
 resource_name = "slide"
 length = 0.06666667
@@ -266,6 +294,7 @@ _data = {
 &"jump_shoot": SubResource("Animation_vsl18"),
 &"run": SubResource("Animation_rjb5r"),
 &"run_shoot": SubResource("Animation_v10w4"),
+&"run_start": SubResource("Animation_xaqyh"),
 &"slide": SubResource("Animation_k7ea8"),
 &"slide_shoot": SubResource("Animation_pml56")
 }
@@ -326,10 +355,11 @@ running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 runstart_state = NodePath("../RunStart")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "sliding_state", "sprite", "land_sound")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
+running_start_state = NodePath("../RunStart")
 sliding_state = NodePath("../Sliding")
 sprite = NodePath("../../Sprite2D")
 land_sound = NodePath("../../Land")
@@ -352,12 +382,17 @@ hurtbox = NodePath("../../StandingHurtbox")
 slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 
-[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state")]
+[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast")]
 script = ExtResource("12_pw0rc")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 ground_state = NodePath("../Ground")
+character = NodePath("../..")
+hurtbox = NodePath("../../StandingHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
 modulate = Color(0, 0, 0, 1)

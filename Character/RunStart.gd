@@ -7,11 +7,12 @@ class_name RunStart
 @export var running_state : State
 @export var slide_state : State
 @export var ground_state : State
-@export var default_pause_frames : int = 3
+@export var default_pause_frames : int = 6
 var pause_frames : int = 30
 
 func on_enter():
 	pause_frames = default_pause_frames
+	playback.travel("run_start")
 
 func state_process(_delta, direction):
 	# you air be in the shouldn't!
@@ -64,4 +65,4 @@ func fire(angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	get_parent().add_child(bullet)
-	bullet.position = character.position + Vector2(character.last_faced*20, -10)
+	bullet.position = character.position + Vector2(character.last_faced*16, 10)
