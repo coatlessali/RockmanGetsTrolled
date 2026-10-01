@@ -8,12 +8,15 @@ class_name AirState
 @export var ground_state : State
 @export var running_state : State
 @export var sliding_state : State
+@export var sprite : Sprite2D
+@export var land_sound : AudioStreamPlayer
 
 var air_velocity : float = 120
 var has_double_jumped = false
 
 func state_process(delta, direction):
 	if(character.is_on_floor()):
+		land_sound.play()
 		character.local_velocity.y = 0
 		#if Input.is_action_pressed("slide"):
 			#next_state = sliding_state
@@ -50,6 +53,7 @@ func state_input(event : InputEvent):
 		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
+	sprite.offset.y = 2
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
 	if(character.last_state == sliding_state):
@@ -59,6 +63,7 @@ func on_enter():
 		air_velocity = character.speed
 
 func on_exit():
+	sprite.offset.y = 0
 	air_velocity = character.speed
 	if(next_state == ground_state):
 		#has_double_jumped = false

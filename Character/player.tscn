@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://cyv8hvm133val" path="res://Character/RunningState.gd" id="11_22h3l"]
 [ext_resource type="Script" uid="uid://65ecekq76r8r" path="res://Character/RunStart.gd" id="12_pw0rc"]
 [ext_resource type="Script" uid="uid://c8een82vrijbn" path="res://Character/SlidingState.gd" id="12_skwc6"]
+[ext_resource type="AudioStream" uid="uid://bxekxtmn65103" path="res://Sounds/MM_Land.wav" id="12_xaqyh"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c7sad"]
 
@@ -19,7 +20,7 @@ radius = 7.0
 height = 26.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
-size = Vector2(22.222212, 24)
+size = Vector2(15.555557, 22)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q8tj8"]
 animation = &"idle"
@@ -284,7 +285,7 @@ shape = SubResource("CapsuleShape2D_ta1mu")
 disabled = true
 
 [node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
-position = Vector2(-5.149841e-06, 11)
+position = Vector2(-1.7881393e-07, 12)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
 
@@ -325,11 +326,13 @@ running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 runstart_state = NodePath("../RunStart")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "sliding_state")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "sliding_state", "sprite", "land_sound")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
 sliding_state = NodePath("../Sliding")
+sprite = NodePath("../../Sprite2D")
+land_sound = NodePath("../../Land")
 
 [node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state")]
 script = ExtResource("11_22h3l")
@@ -366,3 +369,7 @@ scale = Vector2(0.75394, 0.820863)
 script = ExtResource("8_viysk")
 state_machine = NodePath("../CharacterStateMachine")
 character = NodePath("..")
+
+[node name="Land" type="AudioStreamPlayer" parent="." unique_id=1294129492]
+stream = ExtResource("12_xaqyh")
+volume_db = -5.0
