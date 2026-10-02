@@ -59,12 +59,9 @@ func on_enter():
 	if !Input.is_action_pressed("jump"):
 		character.local_velocity.y = 0
 	sprite.offset.y = 5
-	#slide_hurtbox.disabled = true
-	#hurtbox.disabled = false
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
 	if(character.last_state == sliding_state):
-		print_debug("Slidehop")
 		air_velocity = character.slide_velocity
 	else:
 		air_velocity = character.speed

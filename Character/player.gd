@@ -10,7 +10,6 @@ extends CharacterBody2D
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @export var jump_velocity : float = -285
 var last_state : State
-# Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var input_direction : Vector2
 var local_velocity : Vector2 = Vector2.ZERO
@@ -22,7 +21,6 @@ var shader_intensity = 0.0
 var shader_speed = 0.0
 
 func _ready():
-	print_debug("i was never book smart, im money smart")
 	animation_tree.active = true
 	sprite.flip_h = true
 	sprite.material.set("shader_parameter/intensity", 0.0)
@@ -73,15 +71,12 @@ func update_facing_direction(x_direction):
 	elif x_direction == DDirection.LEFT:
 		sprite.flip_h = false
 
-func _on_death_box_of_doom_body_entered(body):
-	print_debug("Entered!")
+func _on_death_box_of_doom_body_entered(_body):
 	position.x = 0
 	position.y = 0
 
-func _on_camera_y_trigger_body_entered(body):
-	print_debug("Entered!")
+func _on_camera_y_trigger_body_entered(_body):
 	camera.follow_y = true
 
-
-func _on_camera_y_trigger_body_exited(body):
+func _on_camera_y_trigger_body_exited(_body):
 	camera.follow_y = false

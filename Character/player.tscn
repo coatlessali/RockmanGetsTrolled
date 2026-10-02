@@ -398,10 +398,12 @@ visible = false
 position = Vector2(36, 11)
 texture = ExtResource("4_ur0x2")
 
-[node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "current_state", "animation_tree")]
+[node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "hurtbox_sprite", "slidecast", "current_state", "animation_tree")]
 script = ExtResource("4_i4vv3")
 character = NodePath("..")
 hurtbox = NodePath("../StandingHurtbox")
+hurtbox_sprite = NodePath("../Sprite2D")
+slidecast = NodePath("../SlideCast")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 

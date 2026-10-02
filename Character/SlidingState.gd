@@ -80,11 +80,11 @@ func on_enter():
 
 func on_exit():
 	if !slidecast.is_colliding():
-		print("colliding")
+		#print("colliding")
 		sprite.offset.y = 1
 		slide_hurtbox.disabled = true
 		hurtbox.disabled = false
-	print("kek")
+	#print("kek")
 	#hurtbox.scale.y = 1
 	#hurtbox.position.y -= 21
 	pass
@@ -103,4 +103,4 @@ func fire(angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = direction
 	get_parent().add_child(bullet)
-	bullet.position = character.position + Vector2(character.last_faced*10, 8)
+	bullet.position = character.position + Vector2(character.last_faced*10, 14)

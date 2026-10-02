@@ -8,7 +8,7 @@ func _ready():
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# Checks to see if the room allows following the y axis.
 	if follow_y || air_buffer:
 		position.y = character.position.y

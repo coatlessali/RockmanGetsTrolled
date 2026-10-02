@@ -768,6 +768,7 @@ size = Vector2(449, 549)
 [node name="TestLevel" type="Node2D" unique_id=118663351]
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=657372652]
+z_index = -10
 offset_left = -2029.0
 offset_top = -101.0
 offset_right = 3444.0

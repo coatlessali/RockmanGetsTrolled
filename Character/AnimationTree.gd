@@ -9,11 +9,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#print_debug(state_machine.current_state)
 	pass
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("fire"):
 		shoot = 60
 	if shoot > 0:
