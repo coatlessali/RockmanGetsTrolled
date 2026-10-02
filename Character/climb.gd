@@ -2,41 +2,38 @@ extends State
 @export var climb_hurt : State
 @export var ground_state : State
 @export var air_state : State
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var animplayer : AnimationPlayer
+@export var tree : AnimationTree
 
 func on_enter():
-	#playback.travel("climbing")
+	playback.travel("climbing")
 	character.local_velocity.y = 0
+	tree.set("parameters/TimeScale/scale", 0)
 	can_move = false
+	character.global_position.x = character.ladderpos
 	
 func on_exit():
 	can_move = true
 
 func state_process(_delta, direction):
 	character.local_velocity.x = 0
-	#if Input.is_action_just_pressed("debug_owie"):
-		#next_state = climb_hurt
 	if Input.is_action_just_pressed("jump"):
 		playback.travel("jump")
 		next_state = air_state
 	else:
-		#print_debug(direction.x)
-		# check if we're pressing anything and transition into running
 		if direction.y != 0:
-			#character.local_velocity.x = move_toward(character.local_velocity.x, character.local_velocity_cap*sign(direction.x), character.speed)
+			playback.travel("climbing")
 			character.local_velocity.y = character.speed*sign(direction.y)
-			#next_state = runstart_state
-			playback.travel("run")
 		else:
+			playback.travel("climbing_pause")
 			character.local_velocity.x = 0
 			character.local_velocity.y = 0
+	
+	if Input.is_action_pressed("down") && character.is_on_floor():
+		playback.travel("idle")
+		next_state = ground_state
+	if !character.ladder:
+		playback.travel("jump")
+		next_state = air_state
 
-	shoot_anim_timer("idle") # State.gd
+	#shoot_anim_timer("climbing_pause") # State.gd

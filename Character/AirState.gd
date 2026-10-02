@@ -17,6 +17,11 @@ var air_velocity : float = 120
 var has_double_jumped = false
 
 func state_process(delta, direction):
+	if Input.is_action_pressed("up"):
+		if character.ladder:
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	if(character.is_on_floor()):
 		land_sound.play()
 		character.local_velocity.y = 0
@@ -39,10 +44,7 @@ func state_process(delta, direction):
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("debug_owie"):
-		playback.travel("climbing")
-		#owie() # test hurting for the time being, comment out this line and the one above it to turn it off
-		next_state = climb_state
-		print("climb")
+		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
 		
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0

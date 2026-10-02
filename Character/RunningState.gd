@@ -9,8 +9,14 @@ class_name RunningState
 @export var air_state : State
 @export var ground_state : State
 @export var slide_state : State
+@export var climb_state : State
 
 func state_process(_delta, direction):
+	if Input.is_action_pressed("up"):
+		if character.ladder:
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	# you air be in the shouldn't!
 	if(!character.is_on_floor()):
 		next_state = air_state

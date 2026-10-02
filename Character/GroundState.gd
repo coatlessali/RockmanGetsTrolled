@@ -10,8 +10,14 @@ class_name GroundState
 @export var slide_state : State
 @export var runstart_state : State
 @export var sprite : Sprite2D
+@export var climb_state : State
 
 func state_process(_delta, direction):
+	if Input.is_action_pressed("up"):
+		if character.ladder:
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	# you shouldn't be in the air!
 	if(!character.is_on_floor()):
 		next_state = air_state

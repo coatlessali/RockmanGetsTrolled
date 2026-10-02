@@ -20,6 +20,8 @@ var owie : bool = false
 var shader_intensity = 0.0
 var shader_speed = 0.0
 var climbing : bool = false
+var ladder : bool = false
+var ladderpos : float = 0.0
 
 func _ready():
 	animation_tree.active = true
@@ -81,3 +83,11 @@ func _on_camera_y_trigger_body_entered(_body):
 
 func _on_camera_y_trigger_body_exited(_body):
 	camera.follow_y = false
+
+func _on_ladder_detection_area_entered(area: Area2D) -> void:
+	ladder = true
+	if area.is_in_group("ladders"):
+		ladderpos = area.global_position.x
+
+func _on_ladder_detection_area_exited(area: Area2D) -> void:
+	ladder = false

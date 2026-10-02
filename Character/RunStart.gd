@@ -9,6 +9,7 @@ class_name RunStart
 @export var ground_state : State
 @export var default_pause_frames : int = 6
 @export var sprite : Sprite2D
+@export var climb_state : State
 var pause_frames : int = 30
 
 func on_enter():
@@ -20,6 +21,11 @@ func on_exit():
 	sprite.offset.x = 5
 
 func state_process(_delta, direction):
+	if Input.is_action_pressed("up"):
+		if character.ladder:
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	# you air be in the shouldn't!
 	if sprite.flip_h == true:
 		sprite.offset.x = 4

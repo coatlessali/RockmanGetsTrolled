@@ -13,12 +13,18 @@ class_name SlideState
 @export var timer : int = 69
 @export var slide_dir : int = 1
 @export var sprite : Sprite2D
+@export var climb_state : State
 var slide_buffer : int = 2
 
 func state_process(_delta, direction):
 	# you shouldn't be in the air!
 	#if last_state != null:
 		#print_debug(last_state)
+	if Input.is_action_pressed("up"):
+		if character.ladder:
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	if slide_buffer > 0:
 		slide_buffer -= 1
 	if(character.is_on_wall() && slide_buffer == 0):
