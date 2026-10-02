@@ -1,36 +1,23 @@
-# Darkest Saturn
-Darkest Saturn is the working title for an upcoming Rockman fan game.
-
-`my lawyers have advised me to clarify that any references to NSFW behavior contained within this source code is strictly extreme hyperbole` 
+# Rockman Gets Trolled
+Rockman Gets Trolled (formerly Darkest Saturn) is the working title for an upcoming Rockman fan game.
 
 ### Todo:
 #### Done:
-* move all of that stupid bullshit in player.gd to the state machine and clean it up
-* add running state
-* add jumping state
-* pray that someone is willing to compose the music
-* finish reverting the movement back to rm4 style movement
-* add buster
-* make buster despawn
-* make buster only provide 3 projectiles at a time
-* make buster work in all states
-* slide jump momentum
-* fix the stupid fucking animationtree not doing the god damned thing it's supposed to
+* general locomotion (jumping, running, sliding, slidehopping)
+* hurt state (just the knockback)
+* sliding collision
+* buster (3 projectile limit, despawns after 120 frames)
 #### Near future:
-* make buster collide with enemies
-* add an enemy to fight
+* add a proper enemy
 * add an attack for that enemy
+* add damage for the enemy
+* add damage for the player
+* first tileset
+* environmental hazards (spikes)
+* ladder states added to state machine
+* health bar for player
+* player death
 #### Later:
+* design first level
+* add more enemies
 * add a robot master
-#### Even LATER:
-* finish a complete level with enemies to fight, decent level design, demonstrations of core gameplay mechanics, and an end goal
-* make a tutorial level
-#### When I get to it:
-* Support for 16:9, 4:3, and 16:10
-* Support for 240p (for use with CRT displays)
-* Support for 240p super resolutions (for use with CRT displays via HDMI adapters)
-#### I was never book smart, I'm money smart
-* write the story
-* create art for all needed contexts
-* create sound design
-* learn the basics of sound design
