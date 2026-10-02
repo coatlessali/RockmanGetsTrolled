@@ -19,6 +19,7 @@ var last_faced : int = DDirection.RIGHT
 var owie : bool = false
 var shader_intensity = 0.0
 var shader_speed = 0.0
+var climbing : bool = false
 
 func _ready():
 	animation_tree.active = true

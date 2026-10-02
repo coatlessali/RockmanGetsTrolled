@@ -11,6 +11,7 @@ class_name AirState
 @export var sliding_state : State
 @export var sprite : Sprite2D
 @export var land_sound : AudioStreamPlayer
+@export var climb_state : State
 
 var air_velocity : float = 120
 var has_double_jumped = false
@@ -37,12 +38,12 @@ func state_process(delta, direction):
 	shoot_anim_timer("jump") # State.gd
 
 func state_input(event : InputEvent):
-	#if (event.is_action_pressed("jump") && !has_double_jumped):
-		#double_jump()
-	#elif (event.is_action_pressed("boost")) and character.boost_guage >= 3:
-		#boost()
 	if event.is_action_pressed("debug_owie"):
-		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
+		playback.travel("climbing")
+		#owie() # test hurting for the time being, comment out this line and the one above it to turn it off
+		next_state = climb_state
+		print("climb")
+		
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):

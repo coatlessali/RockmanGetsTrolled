@@ -5,7 +5,6 @@
 [ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="3_m6p0u"]
 [ext_resource type="Texture2D" uid="uid://dxib4a7nc1yd2" path="res://Art/rock/spritesheet.png" id="3_ur0x2"]
 [ext_resource type="Script" uid="uid://ds3q68t8hit3n" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
-[ext_resource type="Texture2D" uid="uid://bk1k348acm4u7" path="res://Art/reference.png" id="4_ur0x2"]
 [ext_resource type="Script" uid="uid://d0j2vegtcwwry" path="res://Character/GroundState.gd" id="5_kqs0o"]
 [ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
 [ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
@@ -14,15 +13,23 @@
 [ext_resource type="Script" uid="uid://65ecekq76r8r" path="res://Character/RunStart.gd" id="12_pw0rc"]
 [ext_resource type="Script" uid="uid://c8een82vrijbn" path="res://Character/SlidingState.gd" id="12_skwc6"]
 [ext_resource type="AudioStream" uid="uid://bxekxtmn65103" path="res://Sounds/MM_Land.wav" id="12_xaqyh"]
+[ext_resource type="Script" uid="uid://bp3yyk6s6h0fb" path="res://Character/climb.gd" id="12_xj0yq"]
+[ext_resource type="Script" uid="uid://dbaxsnedyd0gc" path="res://Character/climb_hurt.gd" id="13_6y5aw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c7sad"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p0u"]
+size = Vector2(14, 20)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ta1mu"]
-radius = 7.0
-height = 26.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13163"]
+size = Vector2(14.999996, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(14.444445, 22)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m6p0u"]
+animation = &"climb_hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xj0yq"]
+animation = &"climbing"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13163"]
 animation = &"hurt"
@@ -129,12 +136,35 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gy7km"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4t32h"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4myw8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cjk1a"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_76d41"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m40if"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q81ek"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mwdr7"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4kk4v"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iaers"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
+states/End/position = Vector2(1166.8867, 217.85156)
 states/Start/position = Vector2(199, 100)
+states/climb_hurt/node = SubResource("AnimationNodeAnimation_m6p0u")
+states/climb_hurt/position = Vector2(1113.9531, 118.865234)
+states/climbing/node = SubResource("AnimationNodeAnimation_xj0yq")
+states/climbing/position = Vector2(1393.2578, 63.783905)
 states/hurt/node = SubResource("AnimationNodeAnimation_13163")
 states/hurt/position = Vector2(1166.8867, -31.091103)
 states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
-states/idle/position = Vector2(363, 100)
+states/idle/position = Vector2(316.47266, 190.25)
 states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
 states/idle_shoot/position = Vector2(363, -31.0911)
 states/jump/node = SubResource("AnimationNodeAnimation_ltyc1")
@@ -146,13 +176,13 @@ states/run/position = Vector2(608, 100)
 states/run_shoot/node = SubResource("AnimationNodeAnimation_io0ry")
 states/run_shoot/position = Vector2(608, -31.0911)
 states/run_start/node = SubResource("AnimationNodeAnimation_xaqyh")
-states/run_start/position = Vector2(681.85547, 209.22922)
+states/run_start/position = Vector2(696.2617, 256.06125)
 states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
 states/slide/position = Vector2(488, 175.909)
 states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
 states/slide_shoot/position = Vector2(488, 268.909)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km")]
-graph_offset = Vector2(160.63672, -49.083984)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km"), "run", "climbing", SubResource("AnimationNodeStateMachineTransition_4t32h"), "idle", "climbing", SubResource("AnimationNodeStateMachineTransition_4myw8"), "climbing", "jump", SubResource("AnimationNodeStateMachineTransition_cjk1a"), "jump", "climbing", SubResource("AnimationNodeStateMachineTransition_76d41"), "climbing", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_m40if"), "jump_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_q81ek"), "climbing", "run", SubResource("AnimationNodeStateMachineTransition_mwdr7"), "climb_hurt", "climbing", SubResource("AnimationNodeStateMachineTransition_4kk4v"), "climbing", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_iaers")]
+graph_offset = Vector2(203.20313, -77.615234)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -166,7 +196,43 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_2kngs"]
+resource_name = "climb_hurt"
+length = 0.033333335
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.016666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 4]
+}
+
+[sub_resource type="Animation" id="Animation_u3msb"]
+resource_name = "climbing"
+length = 0.5
+loop_mode = 1
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="Animation" id="Animation_m6p0u"]
@@ -337,6 +403,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvj6t"]
 _data = {
 &"RESET": SubResource("Animation_hdldd"),
+&"climb_hurt": SubResource("Animation_2kngs"),
+&"climbing": SubResource("Animation_u3msb"),
 &"hurt": SubResource("Animation_m6p0u"),
 &"idle": SubResource("Animation_vbvgc"),
 &"idle_shoot": SubResource("Animation_tpvpa"),
@@ -358,15 +426,14 @@ shader_parameter/intensity = 0.0
 script = ExtResource("1_flj5s")
 
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
-visible = false
 position = Vector2(0, 8)
-shape = SubResource("CapsuleShape2D_c7sad")
-target_position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_m6p0u")
+target_position = Vector2(0, -7)
 
 [node name="SlideHurtbox" type="CollisionShape2D" parent="." unique_id=1053324761]
-position = Vector2(0, 16)
+position = Vector2(0.49999824, 15.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_ta1mu")
+shape = SubResource("RectangleShape2D_13163")
 disabled = true
 
 [node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
@@ -392,11 +459,7 @@ centered = false
 offset = Vector2(5, 1)
 hframes = 4
 vframes = 6
-
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1928649173]
-visible = false
-position = Vector2(36, 11)
-texture = ExtResource("4_ur0x2")
+frame = 5
 
 [node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "hurtbox_sprite", "slidecast", "current_state", "animation_tree")]
 script = ExtResource("4_i4vv3")
@@ -421,7 +484,7 @@ slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
@@ -429,6 +492,7 @@ running_start_state = NodePath("../RunStart")
 sliding_state = NodePath("../Sliding")
 sprite = NodePath("../../Sprite2D")
 land_sound = NodePath("../../Land")
+climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../SlideHurtbox")
 hurtbox_sprite = NodePath("../../Sprite2D")
@@ -488,6 +552,28 @@ hurtbox_sprite = NodePath("../../Sprite2D")
 slide_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath(".")
+
+[node name="Climb" type="Node" parent="CharacterStateMachine" unique_id=1317221277 node_paths=PackedStringArray("climb_hurt", "ground_state", "air_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+script = ExtResource("12_xj0yq")
+climb_hurt = NodePath("../ClimbHurt")
+ground_state = NodePath("../Ground")
+air_state = NodePath("../Air")
+character = NodePath("../..")
+hurtbox = NodePath("../../SlideHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
+
+[node name="ClimbHurt" type="Node" parent="CharacterStateMachine" unique_id=747968695 node_paths=PackedStringArray("climb", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+script = ExtResource("13_6y5aw")
+climb = NodePath("../Climb")
+character = NodePath("../..")
+hurtbox = NodePath("../../SlideHurtbox")
+hurtbox_sprite = NodePath("../../Sprite2D")
+slide_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
 modulate = Color(0, 0, 0, 1)

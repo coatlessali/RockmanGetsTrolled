@@ -13,11 +13,23 @@ class_name SlideState
 @export var timer : int = 69
 @export var slide_dir : int = 1
 @export var sprite : Sprite2D
+var slide_buffer : int = 2
 
 func state_process(_delta, direction):
 	# you shouldn't be in the air!
 	#if last_state != null:
 		#print_debug(last_state)
+	if slide_buffer > 0:
+		slide_buffer -= 1
+	if(character.is_on_wall() && slide_buffer == 0):
+		if character.is_on_floor():
+			next_state = ground_state
+		else:
+			next_state = air_state
+			if character.is_on_ceiling_only():
+				# janky workaround for getting stuck in the ceiling after sliding off an edge while under a ceiling
+				character.position.y += 14
+	
 	if(!character.is_on_floor()):
 		next_state = air_state
 		if slidecast.is_colliding():
@@ -69,6 +81,7 @@ func state_input(event : InputEvent):
 		shoot_anim("slide_shoot")
 	
 func on_enter():
+	slide_buffer = 2
 	sprite.offset.y = 2
 	timer = 35
 	slide_dir = character.last_faced
