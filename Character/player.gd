@@ -39,8 +39,8 @@ func _physics_process(_delta):
 			pass
 	
 	if Input.is_action_pressed("fire"):
-		if shader_intensity < 0.5:
-			shader_intensity += 0.005
+		if shader_intensity < 0.75:
+			shader_intensity += 0.0075
 		print(shader_intensity)
 		if shader_speed < 10:
 			shader_speed += 0.075
