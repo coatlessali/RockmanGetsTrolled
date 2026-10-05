@@ -1,5 +1,3 @@
-# TODO: Walljump??? and buster
-
 extends State
 
 class_name AirState

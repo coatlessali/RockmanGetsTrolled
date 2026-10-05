@@ -15,7 +15,6 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
-
 # vars used for character state etc, do not touch
 var last_state : State
 var input_direction : Vector2
@@ -31,11 +30,6 @@ var climbing : bool = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var shader_intensity = 0.0
 var shader_speed = 0.0
-
-
-
-
-
 
 func _ready():
 	animation_tree.active = true
@@ -98,11 +92,11 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	ladder = true
 	if area.is_in_group("ladders"):
 		ladderpos = area.global_position.x
-func _on_ladder_detection_area_exited(area: Area2D) -> void:
+func _on_ladder_detection_area_exited(_area: Area2D) -> void:
 	ladder = false
 func _on_ladder_detection_down_area_entered(area: Area2D) -> void:
 	ladderdown = true
 	if area.is_in_group("ladders"):
 		ladderpos = area.global_position.x
-func _on_ladder_detection_down_area_exited(area: Area2D) -> void:
+func _on_ladder_detection_down_area_exited(_area: Area2D) -> void:
 	ladderdown = false
