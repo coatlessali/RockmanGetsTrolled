@@ -7,16 +7,16 @@ Rockman Gets Trolled (formerly Darkest Saturn) is the working title for an upcom
 * hurt state (just the knockback)
 * sliding collision
 * buster (3 projectile limit, despawns after 120 frames)
+* player damage and hurt state
+* player death
+* enemy attack
+* spikes
+* completed ladder impl
+* health bar
+* placeholder song
 #### Near future:
 * add a proper enemy
-* add an attack for that enemy
-* add damage for the enemy
-* add damage for the player
 * first tileset
-* environmental hazards (spikes)
-* ladder states added to state machine
-* health bar for player
-* player death
 #### Later:
 * design first level
 * add more enemies
