@@ -16,6 +16,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
 # vars used for character state etc, do not touch
+var hp = 26
 var last_state : State
 var input_direction : Vector2
 var moving_direction : int = DDirection.RIGHT
