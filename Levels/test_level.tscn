@@ -835,7 +835,7 @@ shape = SubResource("RectangleShape2D_4xa2w")
 [node name="CameraYTrigger" type="Area2D" parent="." unique_id=491850617]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraYTrigger" unique_id=1553655698]
-position = Vector2(558, 43)
+position = Vector2(833, 43)
 shape = SubResource("RectangleShape2D_xtx5y")
 
 [node name="Met" parent="." unique_id=948294079 instance=ExtResource("5_63cyo")]
