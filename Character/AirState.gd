@@ -17,6 +17,10 @@ var air_velocity : float = 120
 var has_double_jumped = false
 
 func state_process(delta, direction):
+	if character.ceilinghit:
+		if character.is_on_ceiling():
+			if character.local_velocity.y < 0:
+				character.local_velocity.y = 0
 	if Input.is_action_pressed("up"):
 		if character.ladder:
 			playback.travel("climbing")

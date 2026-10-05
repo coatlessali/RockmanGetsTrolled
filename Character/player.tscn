@@ -649,6 +649,7 @@ slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
+visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = -53.0
 offset_top = -49.0

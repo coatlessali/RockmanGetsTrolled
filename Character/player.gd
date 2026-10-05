@@ -7,6 +7,7 @@ var friction : float = 5
 var local_velocity_cap : float = 250
 var jump_velocity : float = -285
 var ladderjump : bool = true # enables ladder jumping
+var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose momentum
 
 # export vars for other nodes
 @export var camera : Camera2D
