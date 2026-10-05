@@ -4,6 +4,7 @@ extends State
 @export var air_state : State
 @export var animplayer : AnimationPlayer
 @export var tree : AnimationTree
+var xdir = -1
 
 func on_enter():
 	playback.travel("climbing")
@@ -25,6 +26,12 @@ func state_process(_delta, direction):
 		playback.travel("climbing_pause")
 		character.local_velocity.x = 0
 		character.local_velocity.y = 0
+		
+	if Input.is_action_pressed("left"):
+		xdir = -1
+	if Input.is_action_pressed("right"):
+		xdir = 1
+	
 	if Input.is_action_just_pressed("jump"):
 		playback.travel("jump")
 		if character.ladderjump:
@@ -39,5 +46,20 @@ func state_process(_delta, direction):
 	if !character.ladder:
 		playback.travel("jump")
 		next_state = air_state
+	if Input.is_action_just_pressed("fire"):
+		var fire_funne = 69
+		if xdir == 1:
+			fire_funne = 0
+		elif xdir == -1:
+			fire_funne = deg_to_rad(180)
+		fire(fire_funne)
+
+		shoot_anim("climb_shoot") # State.gd
 
 	#shoot_anim_timer("climbing_pause") # State.gd
+	
+func fire(angle):
+	var bullet = load("Bullet.tscn").instantiate()
+	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+	get_parent().add_child(bullet)
+	bullet.position = character.position + Vector2(xdir*16, 4)
