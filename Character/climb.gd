@@ -9,7 +9,7 @@ var xdir = -1
 func on_enter():
 	playback.travel("climbing")
 	character.local_velocity.y = 0
-	tree.set("parameters/TimeScale/scale", 0)
+	# tree.set("parameters/TimeScale/scale", 0)
 	can_move = false
 	character.global_position.x = character.ladderpos
 	
@@ -26,11 +26,17 @@ func state_process(_delta, direction):
 		playback.travel("climbing_pause")
 		character.local_velocity.x = 0
 		character.local_velocity.y = 0
-		
-	if Input.is_action_pressed("left"):
-		xdir = -1
-	if Input.is_action_pressed("right"):
+	
+	# check which direction to schuut
+	if character.sprite.flip_h == true:
 		xdir = 1
+	else:
+		xdir = -1	
+	
+	#if Input.is_action_pressed("left"):
+		#xdir = -1
+	#if Input.is_action_pressed("right"):
+		#xdir = 1
 	
 	if Input.is_action_just_pressed("jump"):
 		playback.travel("jump")
