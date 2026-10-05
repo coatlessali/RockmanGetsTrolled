@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crqp5awdqgkxg"]
 
 [ext_resource type="Script" uid="uid://b5jc4kc387br" path="res://Bullet.gd" id="1_soppk"]
-[ext_resource type="Texture2D" uid="uid://c0xqtlsrcqly1" path="res://Art/mega_bullet.png" id="2_j7mcj"]
+[ext_resource type="Texture2D" uid="uid://c0xqtlsrcqly1" path="res://Art/rock/mega_bullet.png" id="2_j7mcj"]
 [ext_resource type="AudioStream" uid="uid://d3qvqq64wae8f" path="res://Sounds/MM_Shoot.wav" id="3_7281b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7cksh"]

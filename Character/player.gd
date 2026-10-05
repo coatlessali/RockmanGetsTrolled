@@ -47,8 +47,8 @@ func _physics_process(_delta):
 	var x_direction = sign(input_direction.x)
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
-		if !is_on_floor():
-			pass
+		#if !is_on_floor():
+			#pass
 	
 	if Input.is_action_pressed("fire"):
 		# charge shot shader
@@ -60,8 +60,8 @@ func _physics_process(_delta):
 		shader_intensity = 0.0
 		shader_speed = 0.0
 
-	if is_on_floor():
-		pass
+	#if is_on_floor():
+		#pass
 
 	# environmental velocity is controlled by objects in the environment, such as speed boosters, and naturally slows down
 	environmental_velocity.x = move_toward(environmental_velocity.x, 0, friction)

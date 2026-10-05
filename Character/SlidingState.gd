@@ -4,7 +4,7 @@ extends State
 class_name SlideState
 
 # CHECK RUNNING STATE JUMP VELOCITY
-@export var jump_velocity : float = -200.0
+#@export var jump_velocity : float = -200.0
 @export var air_state : State
 @export var running_state : State
 @export var slide_state : State

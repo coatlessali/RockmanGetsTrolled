@@ -1,8 +1,8 @@
 extends State
 
 class_name RunStart
-@export var jump_velocity : float = -225.0
-@export var slide_velocity : float = 200
+#@export var jump_velocity : float = -225.0
+#@export var slide_velocity : float = 200
 @export var air_state : State
 @export var running_state : State
 @export var slide_state : State
@@ -86,7 +86,7 @@ func jump():
 	playback.travel("jump")
 
 func slide():
-	character.local_velocity.x = slide_velocity*sign(character.last_faced)
+	character.local_velocity.x = character.slide_velocity*sign(character.last_faced)
 	next_state = slide_state
 
 func fire(angle):

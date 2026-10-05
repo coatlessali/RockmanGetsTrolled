@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://83k3ncnoakgw"]
+[gd_scene format=3 uid="uid://83k3ncnoakgw"]
 
-[ext_resource type="Texture2D" uid="uid://b0imsp6qffm0i" path="res://Art/dust.png" id="1_2nhhd"]
+[ext_resource type="Texture2D" uid="uid://b0imsp6qffm0i" path="res://Art/rock/dust.png" id="1_2nhhd"]
 
 [node name="DustCloud" type="Sprite2D"]
 texture_repeat = 1

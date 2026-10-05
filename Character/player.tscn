@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bky2hgeh3dn6p" path="res://Character/AnimationTree.gd" id="3_j16up"]
 [ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="3_m6p0u"]
 [ext_resource type="Script" uid="uid://ds3q68t8hit3n" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
-[ext_resource type="Texture2D" uid="uid://bntwh16bghakx" path="res://Art/rockman_spritesheet.png" id="4_xj0yq"]
+[ext_resource type="Texture2D" uid="uid://bntwh16bghakx" path="res://Art/rock/rockman_spritesheet.png" id="4_xj0yq"]
 [ext_resource type="Script" uid="uid://d0j2vegtcwwry" path="res://Character/GroundState.gd" id="5_kqs0o"]
 [ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
 [ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]

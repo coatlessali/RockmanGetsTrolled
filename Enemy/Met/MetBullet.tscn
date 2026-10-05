@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctf3ctcqd2h4i"]
 
 [ext_resource type="Script" uid="uid://cd4w7hphnhoem" path="res://Enemy/Met/Scripts/metbullet.gd" id="1_i47o8"]
-[ext_resource type="Texture2D" uid="uid://c0xqtlsrcqly1" path="res://Art/mega_bullet.png" id="2_d46c8"]
+[ext_resource type="Texture2D" uid="uid://c0xqtlsrcqly1" path="res://Art/rock/mega_bullet.png" id="2_d46c8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qo3j"]
 size = Vector2(8, 6)
