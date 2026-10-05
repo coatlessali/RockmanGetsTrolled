@@ -11,6 +11,7 @@ class_name State
 @export var slidecast : ShapeCast2D
 @export var hurt : State
 @export var climb_hurt : State
+@export var dead_state : State
 var next_state : State
 var last_state : State
 @export var can_move : bool = true

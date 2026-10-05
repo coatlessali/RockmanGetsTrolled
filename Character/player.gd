@@ -12,7 +12,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 # export vars for other nodes
 @export var camera : Camera2D
 @export var healthbar : TextureProgressBar
-@onready var sprite : Sprite2D = $Sprite2D
+@onready var sprite : Sprite2D = $CharacterSprite
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
@@ -34,6 +34,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var shader_intensity = 0.0
 var shader_speed = 0.0
 var hurt : bool = false
+var dead : bool = false
 
 func _ready():
 	animation_tree.active = true
@@ -42,6 +43,8 @@ func _ready():
 	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
+	if hp <= 0:
+		dead = true
 	healthbar.value = hp
 	input_direction = Input.get_vector("left", "right", "up", "down")
 	var x_direction = sign(input_direction.x)

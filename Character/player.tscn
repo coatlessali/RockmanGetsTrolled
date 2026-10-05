@@ -15,6 +15,25 @@
 [ext_resource type="AudioStream" uid="uid://bxekxtmn65103" path="res://Sounds/MM_Land.wav" id="12_xaqyh"]
 [ext_resource type="Script" uid="uid://bp3yyk6s6h0fb" path="res://Character/climb.gd" id="12_xj0yq"]
 [ext_resource type="Script" uid="uid://dbaxsnedyd0gc" path="res://Character/climb_hurt.gd" id="13_6y5aw"]
+[ext_resource type="Script" uid="uid://2k8bgdkne4sg" path="res://Character/dead_state.gd" id="14_6y5aw"]
+[ext_resource type="Texture2D" uid="uid://dwmvkiyktnvft" path="res://Art/explotano/explotano08.png" id="17_m40if"]
+[ext_resource type="AudioStream" uid="uid://cldg8fkfovfc2" path="res://Sounds/explotano.ogg" id="17_q81ek"]
+[ext_resource type="Texture2D" uid="uid://caab5im6xbu1m" path="res://Art/explotano/explotano09.png" id="18_q81ek"]
+[ext_resource type="Texture2D" uid="uid://dxw2gjnjsn3kk" path="res://Art/explotano/explotano10.png" id="19_mwdr7"]
+[ext_resource type="Texture2D" uid="uid://cdjgj5ub4n8ta" path="res://Art/explotano/explotano11.png" id="20_4kk4v"]
+[ext_resource type="Texture2D" uid="uid://bpjkc4ybr40g8" path="res://Art/explotano/explotano12.png" id="21_iaers"]
+[ext_resource type="Texture2D" uid="uid://c5f3cdl1y14pg" path="res://Art/explotano/explotano13.png" id="22_2kngs"]
+[ext_resource type="Texture2D" uid="uid://cwstr4tnqscph" path="res://Art/explotano/explotano14.png" id="23_u3msb"]
+[ext_resource type="Texture2D" uid="uid://8p1kix6ddhks" path="res://Art/explotano/explotano15.png" id="24_5xm0m"]
+[ext_resource type="Texture2D" uid="uid://bngkboxeb3n3g" path="res://Art/explotano/explotano16.png" id="25_0qjmq"]
+[ext_resource type="Texture2D" uid="uid://6xtcwqktfams" path="res://Art/explotano/explotano00.png" id="26_wtchp"]
+[ext_resource type="Texture2D" uid="uid://x4ugymkgdojg" path="res://Art/explotano/explotano01.png" id="27_2wj3k"]
+[ext_resource type="Texture2D" uid="uid://vq8q0bi7r8gp" path="res://Art/explotano/explotano02.png" id="28_5empq"]
+[ext_resource type="Texture2D" uid="uid://btyr3ah81udoq" path="res://Art/explotano/explotano03.png" id="29_p038j"]
+[ext_resource type="Texture2D" uid="uid://duwywld4vp4bi" path="res://Art/explotano/explotano04.png" id="30_trg66"]
+[ext_resource type="Texture2D" uid="uid://cgors0gnmli82" path="res://Art/explotano/explotano05.png" id="31_cw8fd"]
+[ext_resource type="Texture2D" uid="uid://bil4r8s58dipx" path="res://Art/explotano/explotano06.png" id="32_2vv0w"]
+[ext_resource type="Texture2D" uid="uid://bj5cwia2q07ly" path="res://Art/explotano/explotano07.png" id="33_eryot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p0u"]
 size = Vector2(14, 20)
@@ -216,7 +235,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -234,7 +253,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -251,7 +270,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -269,7 +288,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -285,7 +304,7 @@ length = 0.033333335
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -303,7 +322,7 @@ step = 0.016666668
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -321,7 +340,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -337,7 +356,7 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -353,7 +372,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -368,7 +387,7 @@ resource_name = "jump_shoot"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -385,7 +404,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -402,7 +421,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -417,7 +436,7 @@ resource_name = "run_start"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -434,7 +453,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -450,7 +469,7 @@ length = 0.33333334
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("CharacterSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -493,6 +512,65 @@ size = Vector2(1, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gxle8"]
 size = Vector2(16, 22)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_44c3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_m40if")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_q81ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mwdr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4kk4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_iaers")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_2kngs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_u3msb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_5xm0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_0qjmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_wtchp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_2wj3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_5empq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_p038j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_trg66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_cw8fd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_2vv0w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_eryot")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 20.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=1414423542 groups=["Player"]]
 script = ExtResource("1_flj5s")
 
@@ -523,7 +601,7 @@ player = NodePath("..")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1405731024]
 libraries/ = SubResource("AnimationLibrary_dvj6t")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060974059]
+[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1060974059]
 material = SubResource("ShaderMaterial_13163")
 position = Vector2(-21, -9)
 texture = ExtResource("4_xj0yq")
@@ -537,49 +615,51 @@ frame = 5
 script = ExtResource("4_i4vv3")
 character = NodePath("..")
 hurtbox = NodePath("../StandingCollision")
-hurtbox_sprite = NodePath("../Sprite2D")
+hurtbox_sprite = NodePath("../CharacterSprite")
 slidecast = NodePath("../SlideCast")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("5_kqs0o")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 runstart_state = NodePath("../RunStart")
-sprite = NodePath("../../Sprite2D")
+sprite = NodePath("../../CharacterSprite")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../StandingCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
 running_start_state = NodePath("../RunStart")
 sliding_state = NodePath("../Sliding")
-sprite = NodePath("../../Sprite2D")
+sprite = NodePath("../../CharacterSprite")
 land_sound = NodePath("../../Land")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../SlideCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("11_22h3l")
 air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
@@ -587,67 +667,71 @@ slide_state = NodePath("../Sliding")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../SlideCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("12_skwc6")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath(".")
 ground_state = NodePath("../Ground")
 runstart_state = NodePath("../RunStart")
-sprite = NodePath("../../Sprite2D")
+sprite = NodePath("../../CharacterSprite")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../StandingCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("12_pw0rc")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
 slide_state = NodePath("../Sliding")
 ground_state = NodePath("../Ground")
-sprite = NodePath("../../Sprite2D")
+sprite = NodePath("../../CharacterSprite")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../StandingCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="Hurt" type="Node" parent="CharacterStateMachine" unique_id=2020621819 node_paths=PackedStringArray("ground_state", "air_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Hurt" type="Node" parent="CharacterStateMachine" unique_id=2020621819 node_paths=PackedStringArray("ground_state", "air_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("11_13163")
 ground_state = NodePath("../Ground")
 air_state = NodePath("../Air")
 slide_state = NodePath("../Sliding")
 character = NodePath("../..")
 hurtbox = NodePath("../../StandingCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath(".")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="Climb" type="Node" parent="CharacterStateMachine" unique_id=1317221277 node_paths=PackedStringArray("ground_state", "air_state", "animplayer", "tree", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="Climb" type="Node" parent="CharacterStateMachine" unique_id=1317221277 node_paths=PackedStringArray("ground_state", "air_state", "animplayer", "tree", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("12_xj0yq")
 ground_state = NodePath("../Ground")
 air_state = NodePath("../Air")
@@ -655,28 +739,47 @@ animplayer = NodePath("../../AnimationPlayer")
 tree = NodePath("../../AnimationTree")
 character = NodePath("../..")
 hurtbox = NodePath("../../SlideCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath("../DeadState")
 
-[node name="ClimbHurt" type="Node" parent="CharacterStateMachine" unique_id=747968695 node_paths=PackedStringArray("climb", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+[node name="ClimbHurt" type="Node" parent="CharacterStateMachine" unique_id=747968695 node_paths=PackedStringArray("climb", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
 script = ExtResource("13_6y5aw")
 climb = NodePath("../Climb")
 character = NodePath("../..")
 hurtbox = NodePath("../../SlideCollision")
-hurtbox_sprite = NodePath("../../Sprite2D")
+hurtbox_sprite = NodePath("../../CharacterSprite")
 slide_hurtbox = NodePath("../../SlideCollision")
 actual_hurtbox = NodePath("../../Hurtbox")
 slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
 climb_hurt = NodePath(".")
+dead_state = NodePath("../DeadState")
+
+[node name="DeadState" type="Node" parent="CharacterStateMachine" unique_id=820088804 node_paths=PackedStringArray("explotano", "audio", "idle", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt", "dead_state")]
+script = ExtResource("14_6y5aw")
+explotano = NodePath("../../Death/ExplotanoSprite")
+audio = NodePath("../../Death/AudioStreamPlayer")
+idle = NodePath("../Air")
+character = NodePath("../..")
+hurtbox = NodePath("../../SlideCollision")
+hurtbox_sprite = NodePath("../../CharacterSprite")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
+slidecast = NodePath("../../SlideCast")
+hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
+dead_state = NodePath(".")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
+visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = -53.0
 offset_top = -49.0
@@ -717,9 +820,24 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_13163")
 disabled = true
 
+[node name="Death" type="Node2D" parent="." unique_id=343267845]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Death" unique_id=1222151920]
+stream = ExtResource("17_q81ek")
+volume_db = -12.799
+
+[node name="ExplotanoSprite" type="AnimatedSprite2D" parent="Death" unique_id=1193548895]
+visible = false
+position = Vector2(2, 9)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_44c3d")
+frame = 4
+
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
 [connection signal="area_exited" from="LadderDetection" to="." method="_on_ladder_detection_area_exited"]
 [connection signal="area_entered" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_entered"]
 [connection signal="area_exited" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_exited"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="SlideHurtbox" to="." method="_on_slide_hurtbox_area_entered"]
+[connection signal="finished" from="Death/AudioStreamPlayer" to="CharacterStateMachine/DeadState" method="_on_audio_stream_player_finished"]
+[connection signal="animation_finished" from="Death/ExplotanoSprite" to="CharacterStateMachine/DeadState" method="_on_explotano_sprite_animation_finished"]

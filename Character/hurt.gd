@@ -10,7 +10,6 @@ func on_enter():
 	character.local_velocity.y = 0
 	hurt_timer = 45
 	character.owie = true
-	pass
 
 func on_exit():
 	character.owie = false
@@ -36,3 +35,5 @@ func state_process(_delta, _direction):
 		else:
 			playback.travel("jump")
 			next_state = air_state
+	if character.dead:
+		next_state = dead_state

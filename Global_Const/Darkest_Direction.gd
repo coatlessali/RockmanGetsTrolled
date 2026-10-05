@@ -1,7 +1,7 @@
 extends Node
 
 enum {
-    LEFT = -1,
-    NONE = 0,
-    RIGHT = 1
+	LEFT = -1,
+	NONE = 0,
+	RIGHT = 1
 }
