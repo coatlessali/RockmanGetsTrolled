@@ -18,6 +18,16 @@ func state_process(_delta, direction):
 			playback.travel("climbing")
 			next_state = climb_state
 			print("climb")
+	if Input.is_action_pressed("down"):
+		if character.ladderdown:
+			character.position.y += 4
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
+		elif character.ladder && !character.is_on_floor():
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	# you shouldn't be in the air!
 	if(!character.is_on_floor()):
 		next_state = air_state

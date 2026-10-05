@@ -1,38 +1,49 @@
 extends CharacterBody2D
 
+# adjustable character vars, tweak to your heart's content
+var speed : float = 90
+var slide_velocity : float = 150
+var friction : float = 5
+var local_velocity_cap : float = 250
+var jump_velocity : float = -285
+var ladderjump : bool = true # enables ladder jumping
+
+# export vars for other nodes
 @export var camera : Camera2D
-@export var speed : float = 90
-@export var slide_velocity : float = 150
-@export var friction : float = 5
-@export var local_velocity_cap : float = 250
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
-@export var jump_velocity : float = -285
+
+
+# vars used for character state etc, do not touch
 var last_state : State
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var input_direction : Vector2
+var moving_direction : int = DDirection.RIGHT
 var local_velocity : Vector2 = Vector2.ZERO
 var environmental_velocity : Vector2 = Vector2.ZERO
-var moving_direction : int = DDirection.RIGHT
 var last_faced : int = DDirection.RIGHT
 var owie : bool = false
+var ladder : bool = false
+var ladderdown : bool = false
+var ladderpos : float = 0.0
+var climbing : bool = false
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var shader_intensity = 0.0
 var shader_speed = 0.0
-var climbing : bool = false
-var ladder : bool = false
-var ladderpos : float = 0.0
+
+
+
+
+
 
 func _ready():
 	animation_tree.active = true
-	sprite.flip_h = true
+	sprite.flip_h = true # the sprite sheet is cursed and flipped
 	sprite.material.set("shader_parameter/intensity", 0.0)
 	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
-	# print_debug("player.gd: ", last_faced)
 	input_direction = Input.get_vector("left", "right", "up", "down")
-	# unused, might be useful later
 	var x_direction = sign(input_direction.x)
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
@@ -40,12 +51,11 @@ func _physics_process(_delta):
 			pass
 	
 	if Input.is_action_pressed("fire"):
+		# charge shot shader
 		if shader_intensity < 0.75:
 			shader_intensity += 0.0075
-		print(shader_intensity)
 		if shader_speed < 10:
 			shader_speed += 0.075
-		print(shader_speed)
 	else:
 		shader_intensity = 0.0
 		shader_speed = 0.0
@@ -80,7 +90,6 @@ func _on_death_box_of_doom_body_entered(_body):
 
 func _on_camera_y_trigger_body_entered(_body):
 	camera.follow_y = true
-
 func _on_camera_y_trigger_body_exited(_body):
 	camera.follow_y = false
 
@@ -88,6 +97,11 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	ladder = true
 	if area.is_in_group("ladders"):
 		ladderpos = area.global_position.x
-
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	ladder = false
+func _on_ladder_detection_down_area_entered(area: Area2D) -> void:
+	ladderdown = true
+	if area.is_in_group("ladders"):
+		ladderpos = area.global_position.x
+func _on_ladder_detection_down_area_exited(area: Area2D) -> void:
+	ladderdown = false

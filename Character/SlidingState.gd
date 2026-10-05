@@ -25,6 +25,16 @@ func state_process(_delta, direction):
 			playback.travel("climbing")
 			next_state = climb_state
 			print("climb")
+	if Input.is_action_pressed("down"):
+		if character.ladderdown:
+			character.position.y += 4
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
+		elif character.ladder && !character.is_on_floor():
+			playback.travel("climbing")
+			next_state = climb_state
+			print("climb")
 	if slide_buffer > 0:
 		slide_buffer -= 1
 	if(character.is_on_wall() && slide_buffer == 0):

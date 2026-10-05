@@ -450,6 +450,9 @@ shader_parameter/intensity = 0.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
 size = Vector2(1, 22)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
+size = Vector2(1, 0.5)
+
 [node name="Player" type="CharacterBody2D" unique_id=1414423542 groups=["Player"]]
 script = ExtResource("1_flj5s")
 
@@ -630,5 +633,13 @@ volume_db = -12.0
 position = Vector2(0.5, 12)
 shape = SubResource("RectangleShape2D_44c3d")
 
+[node name="LadderDetectionDown" type="Area2D" parent="." unique_id=2122845878]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetectionDown" unique_id=1439224363]
+position = Vector2(0.5, 23.75)
+shape = SubResource("RectangleShape2D_yuier")
+
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
 [connection signal="area_exited" from="LadderDetection" to="." method="_on_ladder_detection_area_exited"]
+[connection signal="area_entered" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_entered"]
+[connection signal="area_exited" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_exited"]
