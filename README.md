@@ -14,6 +14,7 @@ Rockman Gets Trolled (formerly Darkest Saturn) is the working title for an upcom
 * completed ladder impl
 * health bar
 * placeholder song
+* screen transitions
 #### Near future:
 * add a proper enemy
 * first tileset
