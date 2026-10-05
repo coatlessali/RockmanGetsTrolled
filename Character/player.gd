@@ -12,6 +12,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 # export vars for other nodes
 @export var camera : Camera2D
 @export var healthbar : TextureProgressBar
+@export var music : AudioStreamPlayer
 @onready var sprite : Sprite2D = $CharacterSprite
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine

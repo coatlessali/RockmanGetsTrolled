@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://dbaxsnedyd0gc" path="res://Character/climb_hurt.gd" id="13_6y5aw"]
 [ext_resource type="Script" uid="uid://2k8bgdkne4sg" path="res://Character/dead_state.gd" id="14_6y5aw"]
 [ext_resource type="Texture2D" uid="uid://dwmvkiyktnvft" path="res://Art/explotano/explotano08.png" id="17_m40if"]
-[ext_resource type="AudioStream" uid="uid://cldg8fkfovfc2" path="res://Sounds/explotano.ogg" id="17_q81ek"]
+[ext_resource type="AudioStream" uid="uid://tos45pj1ytxk" path="res://Sounds/explotano.wav" id="17_q81ek"]
 [ext_resource type="Texture2D" uid="uid://caab5im6xbu1m" path="res://Art/explotano/explotano09.png" id="18_q81ek"]
 [ext_resource type="Texture2D" uid="uid://dxw2gjnjsn3kk" path="res://Art/explotano/explotano10.png" id="19_mwdr7"]
 [ext_resource type="Texture2D" uid="uid://cdjgj5ub4n8ta" path="res://Art/explotano/explotano11.png" id="20_4kk4v"]
