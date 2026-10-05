@@ -74,6 +74,9 @@ func state_process(_delta, direction):
 				playback.travel("idle")
 		
 	shoot_anim_timer("slide")
+	if character.hurt:
+		character.hurt = false
+		owie()
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("debug_owie"):

@@ -12,9 +12,6 @@ class_name GroundState
 @export var climb_state : State
 
 func state_process(_delta, direction):
-	if character.hurt:
-		owie()
-	
 	if Input.is_action_pressed("up"):
 		if character.ladder:
 			playback.travel("climbing")
@@ -40,8 +37,10 @@ func state_process(_delta, direction):
 			playback.travel("run")
 		else:
 			character.local_velocity.x = 0
-
 	shoot_anim_timer("idle") # State.gd
+	if character.hurt:
+		character.hurt = false
+		owie()
 
 func state_input(event : InputEvent):
 	#if event.is_action_pressed("debug_owie"):

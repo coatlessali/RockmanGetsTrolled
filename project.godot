@@ -41,6 +41,7 @@ project/assembly_name="BlackSaturn"
 
 ladders=""
 EnemyBullet=""
+volatile="attacks that disappear on contact"
 
 [input]
 

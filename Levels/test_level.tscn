@@ -776,7 +776,7 @@ size = Vector2(16, 96)
 b = Vector2(-16, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
-size = Vector2(16, 1)
+size = Vector2(64, 1)
 
 [node name="TestLevel" type="Node2D" unique_id=118663351]
 

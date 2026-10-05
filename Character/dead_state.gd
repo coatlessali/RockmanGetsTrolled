@@ -17,6 +17,9 @@ func state_process(_delta, _direction):
 
 
 func _on_audio_stream_player_finished() -> void:
+	character.owie = false
+	character.dead = false
+	can_move = true
 	character.sprite.show()
 	next_state = idle
 	character.position = Vector2(0, 0)

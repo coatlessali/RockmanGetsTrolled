@@ -3,12 +3,16 @@
 [ext_resource type="Script" uid="uid://dityrdppiygdh" path="res://Enemy/Met/Scripts/met.gd" id="1_ht170"]
 [ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/Met/Art/met.png" id="2_msjid"]
 [ext_resource type="AudioStream" uid="uid://c84k2oce2h6fl" path="res://Enemy/Met/Sound/ahh.ogg" id="3_ye30g"]
+[ext_resource type="Script" uid="uid://q260stvbwa3f" path="res://hurtbox.gd" id="4_rj75e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fb03"]
-size = Vector2(18, 31)
+size = Vector2(20, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r43bk"]
 size = Vector2(25, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imkf2"]
+size = Vector2(22, 20.375)
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_44c3d"]
 
@@ -20,7 +24,7 @@ sound = NodePath("AudioStreamPlayer2D")
 
 [node name="Active" type="CollisionShape2D" parent="." unique_id=112557160 groups=["Enemy"]]
 z_index = 1
-position = Vector2(1, -6.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_4fb03")
 one_way_collision = true
 
@@ -30,7 +34,7 @@ texture = ExtResource("2_msjid")
 [node name="Area2D" type="Area2D" parent="." unique_id=20063158]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=923480417]
-position = Vector2(0, -36)
+position = Vector2(-1, -36)
 scale = Vector2(10, 1)
 shape = SubResource("RectangleShape2D_r43bk")
 
@@ -38,12 +42,13 @@ shape = SubResource("RectangleShape2D_r43bk")
 stream = ExtResource("3_ye30g")
 volume_db = -8.0
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=459802424]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=459802424 groups=["EnemyBullet"]]
+script = ExtResource("4_rj75e")
 
 [node name="ActiveHurtbox" type="CollisionShape2D" parent="Hurtbox" unique_id=1700299776 groups=["Enemy"]]
 z_index = 1
-position = Vector2(1, -6)
-shape = SubResource("RectangleShape2D_4fb03")
+position = Vector2(0, -0.8125)
+shape = SubResource("RectangleShape2D_imkf2")
 
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=74424576]
 tree_root = SubResource("AnimationRootNode_44c3d")
