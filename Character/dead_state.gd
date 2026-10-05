@@ -11,7 +11,7 @@ func on_enter():
 	explotano.visible = true
 	audio.play()
 	explotano.play()
-	#character.music.stop()
+	character.music.stop()
 
 func state_process(_delta, _direction):
 	pass
@@ -25,7 +25,7 @@ func _on_audio_stream_player_finished() -> void:
 	next_state = idle
 	character.position = Vector2(0, 0)
 	character.hp = 28
-	#character.music.play()
+	character.music.play()
 
 
 func _on_explotano_sprite_animation_finished() -> void:

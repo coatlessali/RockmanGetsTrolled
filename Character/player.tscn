@@ -575,10 +575,9 @@ animations = [{
 script = ExtResource("1_flj5s")
 
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
-visible = false
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_m6p0u")
-target_position = Vector2(0, -7)
+target_position = Vector2(0, -3)
 
 [node name="SlideCollision" type="CollisionShape2D" parent="." unique_id=1053324761]
 position = Vector2(1.7881393e-06, 15.499998)
