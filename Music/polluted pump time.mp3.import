@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d00ahr5hggb4f"
+path="res://.godot/imported/polluted pump time.mp3-cbd8199b4a08245eeca461458049cbe1.mp3str"
+
+[deps]
+
+source_file="res://Music/polluted pump time.mp3"
+dest_files=["res://.godot/imported/polluted pump time.mp3-cbd8199b4a08245eeca461458049cbe1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
