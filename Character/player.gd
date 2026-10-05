@@ -37,6 +37,8 @@ var shader_speed = 0.0
 var hurt : bool = false
 var dead : bool = false
 var cam_pos = Vector2(0, 88)
+var weapon = "buster"
+var sliding : bool = false
 
 func _ready():
 	animation_tree.active = true
@@ -97,10 +99,12 @@ func apply_damage(area: Area2D) -> void:
 	if owie:
 		return
 	if area.is_in_group("EnemyBullet"):
+		if sliding && area.is_in_group("Dodge"):
+			return
 		hp -= area.damage
 		hurt = true
-	if area.is_in_group("volatile"):
-		area.queue_free()
+		if area.is_in_group("volatile"):
+			area.queue_free()
 
 func _on_death_box_of_doom_body_entered(_body):
 	position.x = 0

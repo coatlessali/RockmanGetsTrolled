@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7cksh"]
 size = Vector2(6, 6)
 
-[node name="Area2D" type="Area2D" unique_id=45240080 node_paths=PackedStringArray("visibility") groups=["Bullets"]]
+[node name="Area2D" type="Area2D" unique_id=45240080 node_paths=PackedStringArray("visibility") groups=["Bullets", "volatile"]]
 script = ExtResource("1_soppk")
 visibility = NodePath("VisibleOnScreenNotifier2D")
 

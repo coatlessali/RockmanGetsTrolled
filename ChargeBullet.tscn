@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://1cadtwk0bj8v"]
+
+[ext_resource type="Script" uid="uid://7d3b1lalxet0" path="res://ChargeBullet.gd" id="1_6e2cf"]
+[ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="2_v70lf"]
+[ext_resource type="Texture2D" uid="uid://bhx07ghofq7q8" path="res://Art/rock/charge_shot.png" id="3_rq25g"]
+[ext_resource type="AudioStream" uid="uid://d3qvqq64wae8f" path="res://Sounds/MM_Shoot.wav" id="3_v70lf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rq25g"]
+shader = ExtResource("2_v70lf")
+shader_parameter/speed = 2.0
+shader_parameter/intensity = 0.1250000059375
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v70lf"]
+atlas = ExtResource("3_rq25g")
+region = Rect2(0, 0, 24, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvlfk"]
+atlas = ExtResource("3_rq25g")
+region = Rect2(0, 17, 24, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44c3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v70lf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvlfk")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cksh"]
+size = Vector2(16, 12)
+
+[node name="Area2D" type="Area2D" unique_id=45240080 node_paths=PackedStringArray("visibility") groups=["Bullets", "volatile"]]
+script = ExtResource("1_6e2cf")
+visibility = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1787041498]
+z_index = -1
+material = SubResource("ShaderMaterial_rq25g")
+sprite_frames = SubResource("SpriteFrames_44c3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41878596]
+shape = SubResource("RectangleShape2D_7cksh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2023474356]
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(1.6, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1930311012]
+stream = ExtResource("3_v70lf")
+volume_db = -12.0
+autoplay = true
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

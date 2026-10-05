@@ -43,6 +43,7 @@ ladders=""
 EnemyBullet=""
 volatile="attacks that disappear on contact"
 CameraTriggers=""
+Dodge=""
 
 [input]
 

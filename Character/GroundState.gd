@@ -57,6 +57,16 @@ func state_input(event : InputEvent):
 		elif character.last_faced == DDirection.LEFT:
 			fire_funne = deg_to_rad(180)
 		fire(fire_funne)
+		
+		shoot_anim("idle_shoot") # State.gd
+	if event.is_action_released("fire"):
+		if character.shader_intensity > 0.25:
+			var fire_funne = 69
+			if character.last_faced == DDirection.RIGHT:
+				fire_funne = 0
+			else:
+				fire_funne = deg_to_rad(180)
+			charge_shot(fire_funne)
 
 		shoot_anim("idle_shoot") # State.gd
 
@@ -75,7 +85,35 @@ func slide():
 	next_state = slide_state
 
 func fire(angle):
-	var bullet = load("Bullet.tscn").instantiate()
-	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-	get_parent().add_child(bullet)
-	bullet.position = character.position + Vector2(character.last_faced*16, 11)
+	if character.weapon == "buster":
+		var bullet = load("Bullet.tscn").instantiate()
+		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+		get_parent().add_child(bullet)
+		bullet.position = character.position + Vector2(character.last_faced*16, 11)
+
+func charge_shot(angle):
+	if character.weapon == "buster":
+		print("1")
+		if character.shader_intensity <= 0.25:
+			print("2")
+			return
+		elif character.shader_intensity < 0.7:
+			print("3")
+			var bullet = load("Bullet.tscn").instantiate()
+			print("4")
+			bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+			print("5")
+			get_parent().add_child(bullet)
+			print("6")
+			bullet.position = character.position + Vector2(character.last_faced*16, 11)
+			print("7")
+		else:
+			print("8")
+			var bullet = load("res://ChargeBullet.tscn").instantiate()
+			print("9")
+			bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+			print("10")
+			get_parent().add_child(bullet)
+			print("11")
+			bullet.position = character.position + Vector2(character.last_faced*16, 11)
+			print("12")

@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var sprite : Sprite2D
 @onready var animation_tree : AnimationTree = $AnimationTree
 @export var sound : AudioStreamPlayer2D
-@export var hp : int = 1
+@export var hp : int = 3
 @export var bullets_max : int = 3
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -17,6 +17,8 @@ var inactive_timer = 60
 var active_timer = 20
 var delay_timer = 30
 var bullets_fired : int = 0
+
+var deflect : bool = false
 
 func _ready():
 	#animation_tree.active = true
@@ -35,8 +37,7 @@ func _physics_process(_delta):
 				inactive_timer -= 1
 				return
 			else:
-				remove_from_group(DGroups.DEFLECT)
-				add_to_group(DGroups.ENEMY)
+				deflect = false
 				if facing == DDirection.RIGHT:
 					speed = speed_delta
 				else:
@@ -55,8 +56,7 @@ func _physics_process(_delta):
 						bullets_fired += 1
 						active_timer = 20
 		DStates.INACTIVE:
-			remove_from_group(DGroups.ENEMY)
-			add_to_group(DGroups.DEFLECT)
+			deflect = true
 		_:
 			pass
 
@@ -67,16 +67,11 @@ func _physics_process(_delta):
 
 	move_and_slide()
 
-
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group(DGroups.PLAYER):
-		print_debug("eek!")
 		if body.position.x <= position.x:
-			print_debug("left")
 			facing = DDirection.LEFT
 		else:
-			print_debug("right")
 			facing = DDirection.RIGHT
 		inactive_timer = 60
 		active_timer = 20
@@ -86,11 +81,24 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_hurtbox_area_entered(area):
-	if area.is_in_group(DGroups.BULLETS) and state == DStates.ACTIVE:
-		hp -= 1
+	apply_damage(area)
 
 func fire(angle):
 	var bullet = load("res://Enemy/Met/MetBullet.tscn").instantiate()
 	get_parent().add_child(bullet)
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	bullet.position = position + Vector2(facing*1, 0)
+
+func apply_damage(area: Area2D) -> void:
+	if deflect:
+		if area.is_in_group("volatile"):
+			var random_angle = 2.5
+			if randf() < 0.5:
+				random_angle = 3.9
+			area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
+		return
+	if area.is_in_group("Bullets"):
+		print(hp)
+		hp -= area.damage
+		if area.is_in_group("volatile"):
+			area.queue_free()

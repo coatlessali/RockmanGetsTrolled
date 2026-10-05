@@ -82,6 +82,14 @@ func state_input(event : InputEvent):
 		elif character.last_faced == DDirection.LEFT:
 			fire_funne = deg_to_rad(180)
 		fire(fire_funne)
+	if event.is_action_released("fire"):
+		if character.shader_intensity > 0.25:
+			var fire_funne = 69
+			if character.last_faced == DDirection.RIGHT:
+				fire_funne = 0
+			else:
+				fire_funne = deg_to_rad(180)
+			charge_shot(fire_funne)
 	
 func jump():
 	character.local_velocity.y = character.jump_velocity
@@ -97,3 +105,14 @@ func fire(angle):
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	get_parent().add_child(bullet)
 	bullet.position = character.position + Vector2(character.last_faced*16, 10)
+
+func charge_shot(angle):
+	if character.weapon == "buster":
+		if character.shader_intensity <= 0.25:
+			return
+		var bullet = load("Bullet.tscn").instantiate()
+		if character.shader_intensity >= 0.70:
+			bullet = load("res://ChargeBullet.tscn").instantiate()
+		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+		get_parent().add_child(bullet)
+		bullet.position = character.position + Vector2(character.last_faced*16, 10)

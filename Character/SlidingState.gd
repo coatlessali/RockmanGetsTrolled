@@ -103,8 +103,19 @@ func state_input(event : InputEvent):
 		fire(fire_funne)
 		
 		shoot_anim("slide_shoot")
+	if event.is_action_released("fire"):
+		if character.shader_intensity > 0.25:
+			var fire_funne = 69
+			if character.last_faced == DDirection.RIGHT:
+				fire_funne = 0
+			else:
+				fire_funne = deg_to_rad(180)
+			charge_shot(fire_funne)
+
+		shoot_anim("slide_shoot") # State.gd
 	
 func on_enter():
+	character.sliding = true
 	dust_timer = 18
 	slide_buffer = 2
 	sprite.offset.y = 2
@@ -119,6 +130,7 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
+	character.sliding = false
 	if !slidecast.is_colliding():
 		#print("colliding")
 		sprite.offset.y = 1
@@ -151,3 +163,14 @@ func dust():
 	var particle = load("res://Character/slide_dust.tscn").instantiate()
 	get_parent().add_child(particle)
 	particle.position = Vector2(character.position.x, character.position.y + 8)
+
+func charge_shot(angle):
+	if character.weapon == "buster":
+		if character.shader_intensity <= 0.25:
+			return
+		var bullet = load("Bullet.tscn").instantiate()
+		if character.shader_intensity >= 0.70:
+			bullet = load("res://ChargeBullet.tscn").instantiate()
+		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+		get_parent().add_child(bullet)
+		bullet.position = character.position + Vector2(character.last_faced*10, 14)

@@ -15,6 +15,19 @@ func on_enter():
 func on_exit():
 	can_move = true
 
+func state_input(event: InputEvent):
+	if event.is_action_released("fire"):
+		print(character.shader_intensity)
+		if character.shader_intensity > 0.25:
+			var fire_funne = 69
+			if xdir == 1:
+				fire_funne = 0
+			elif xdir == -1:
+				fire_funne = deg_to_rad(180)
+			charge_shot(fire_funne)
+
+		shoot_anim("climb_shoot") # State.gd
+
 func state_process(_delta, direction):
 	character.local_velocity.x = 0
 	
@@ -73,3 +86,14 @@ func fire(angle):
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	get_parent().add_child(bullet)
 	bullet.position = character.position + Vector2(xdir*17, 5)
+
+func charge_shot(angle):
+	if character.weapon == "buster":
+		if character.shader_intensity <= 0.25:
+			return
+		var bullet = load("Bullet.tscn").instantiate()
+		if character.shader_intensity >= 0.70:
+			bullet = load("res://ChargeBullet.tscn").instantiate()
+		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+		get_parent().add_child(bullet)
+		bullet.position = character.position + Vector2(xdir*17, 5)

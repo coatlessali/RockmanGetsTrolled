@@ -3,14 +3,20 @@ extends State
 @export var explotano : AnimatedSprite2D
 @export var audio : AudioStreamPlayer
 @export var idle : State
+var pause : int = 30
+
+func state_process(_delta, _direction):
+	pause -= 1
+	if pause == 0:
+		character.sprite.hide()
+		explotano.visible = true
+		audio.play()
+		explotano.play()
 
 func on_enter():
 	character.local_velocity = Vector2(0, 0)
 	can_move = false
-	character.sprite.hide()
-	explotano.visible = true
-	audio.play()
-	explotano.play()
+	pause = 30
 	character.music.stop()
 
 func _on_audio_stream_player_finished() -> void:
