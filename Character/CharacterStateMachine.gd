@@ -28,6 +28,16 @@ func _ready():
 			push_warning("Child " + child.name + " is not a State for CharacterStateMachine!")
 
 func _physics_process(delta):
+	if character.camera.position != character.cam_pos:
+		if character.camera.position.x < character.cam_pos.x: # going right
+			character.position.x += 0.25
+		if character.camera.position.x > character.cam_pos.x: # going left
+			character.position.x -= 0.25
+		if character.camera.position.y < character.cam_pos.y:
+			character.position.y += 0.5
+		if character.camera.position.y > character.cam_pos.y:
+			character.position.y -= 0.5
+		return
 	if (current_state.next_state != null):
 		switch_states(current_state.next_state)
 

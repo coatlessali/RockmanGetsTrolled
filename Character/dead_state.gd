@@ -13,10 +13,6 @@ func on_enter():
 	explotano.play()
 	character.music.stop()
 
-func state_process(_delta, _direction):
-	pass
-
-
 func _on_audio_stream_player_finished() -> void:
 	character.owie = false
 	character.dead = false
@@ -26,6 +22,7 @@ func _on_audio_stream_player_finished() -> void:
 	character.position = Vector2(0, 0)
 	character.hp = 28
 	character.music.play()
+	character.camera.position = Vector2(0, 88)
 
 
 func _on_explotano_sprite_animation_finished() -> void:

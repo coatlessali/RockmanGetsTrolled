@@ -36,6 +36,7 @@ var shader_intensity = 0.0
 var shader_speed = 0.0
 var hurt : bool = false
 var dead : bool = false
+var cam_pos = Vector2(0, 88)
 
 func _ready():
 	animation_tree.active = true
@@ -44,6 +45,10 @@ func _ready():
 	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
+	camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
+	camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
+	if camera.position != cam_pos:
+		return
 	if hp <= 0:
 		dead = true
 	healthbar.value = hp
@@ -108,6 +113,9 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = true
 		ladderpos = area.global_position.x
+	if area.is_in_group("CameraTriggers"):
+		#cam_pos = area.get_meta("camera_position")
+		cam_pos = area.position
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = false
