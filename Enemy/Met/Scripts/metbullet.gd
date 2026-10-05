@@ -5,6 +5,7 @@ extends Area2D
 @export var speed = 200
 var deflected : bool = false
 var direction = Vector2.RIGHT
+var damage = 3
 
 func _ready():
 	add_to_group(DGroups.METBULLETS)
@@ -27,5 +28,3 @@ func _process(delta):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free() # Deletes bullet if it leaves the screen.
-
-

@@ -102,7 +102,9 @@ func on_enter():
 	timer = 35
 	slide_dir = character.last_faced
 	slide_hurtbox.disabled = false
+	slide_actual_hurtbox.monitoring = true
 	hurtbox.disabled = true
+	actual_hurtbox.monitoring = false
 	#hurtbox.scale.y = 0.1
 	#hurtbox.position.y += 21
 	playback.travel("slide")
@@ -113,6 +115,8 @@ func on_exit():
 		sprite.offset.y = 1
 		slide_hurtbox.disabled = true
 		hurtbox.disabled = false
+		actual_hurtbox.monitoring = true
+		slide_actual_hurtbox.monitoring = false
 	#print("kek")
 	#hurtbox.scale.y = 1
 	#hurtbox.position.y -= 21

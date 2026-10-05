@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://urxaxji1h1mo" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Script" uid="uid://bky2hgeh3dn6p" path="res://Character/AnimationTree.gd" id="3_j16up"]
 [ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="3_m6p0u"]
-[ext_resource type="Texture2D" uid="uid://dxib4a7nc1yd2" path="res://Art/rock/spritesheet.png" id="3_ur0x2"]
 [ext_resource type="Script" uid="uid://ds3q68t8hit3n" path="res://Character/CharacterStateMachine.gd" id="4_i4vv3"]
+[ext_resource type="Texture2D" uid="uid://bntwh16bghakx" path="res://Art/rockman_spritesheet.png" id="4_xj0yq"]
 [ext_resource type="Script" uid="uid://d0j2vegtcwwry" path="res://Character/GroundState.gd" id="5_kqs0o"]
 [ext_resource type="Script" uid="uid://b3iqp8nrr7yk6" path="res://Character/AirState.gd" id="6_stw0j"]
 [ext_resource type="Script" uid="uid://bf17dmren2cse" path="res://Character/StateDebugLabel.gd" id="8_viysk"]
@@ -20,7 +20,7 @@
 size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13163"]
-size = Vector2(14.999996, 13)
+size = Vector2(14.999996, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(14.444445, 22)
@@ -189,7 +189,7 @@ states/climbing/position = Vector2(1319.6523, 202.30734)
 states/climbing_pause/node = SubResource("AnimationNodeAnimation_6y5aw")
 states/climbing_pause/position = Vector2(1319.6523, 333.1797)
 states/hurt/node = SubResource("AnimationNodeAnimation_13163")
-states/hurt/position = Vector2(1166.8867, -31.091103)
+states/hurt/position = Vector2(1047.7734, -1.5051651)
 states/idle/node = SubResource("AnimationNodeAnimation_q8tj8")
 states/idle/position = Vector2(316.47266, 190.25)
 states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
@@ -209,7 +209,7 @@ states/slide/position = Vector2(488, 175.909)
 states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
 states/slide_shoot/position = Vector2(488, 268.909)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km"), "run", "climbing", SubResource("AnimationNodeStateMachineTransition_4t32h"), "idle", "climbing", SubResource("AnimationNodeStateMachineTransition_4myw8"), "climbing", "jump", SubResource("AnimationNodeStateMachineTransition_cjk1a"), "jump", "climbing", SubResource("AnimationNodeStateMachineTransition_76d41"), "climbing", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_m40if"), "jump_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_q81ek"), "climbing", "run", SubResource("AnimationNodeStateMachineTransition_mwdr7"), "climb_hurt", "climbing", SubResource("AnimationNodeStateMachineTransition_4kk4v"), "climbing", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_iaers"), "climbing_pause", "climbing", SubResource("AnimationNodeStateMachineTransition_ct4ma"), "climbing", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2kngs"), "climb_shoot", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_u3msb"), "climb_hurt", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5xm0m"), "climbing", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_0qjmq"), "climb_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_wtchp"), "climb_shoot", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2wj3k"), "climbing_pause", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5empq")]
-graph_offset = Vector2(778.21094, 62.35193)
+graph_offset = Vector2(711.70703, 5.99646)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -281,6 +281,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5xm0m"]
 resource_name = "climbing_pause"
+length = 0.033333335
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -489,21 +490,25 @@ size = Vector2(1, 22)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
 size = Vector2(1, 0.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gxle8"]
+size = Vector2(16, 22)
+
 [node name="Player" type="CharacterBody2D" unique_id=1414423542 groups=["Player"]]
 script = ExtResource("1_flj5s")
 
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
+visible = false
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_m6p0u")
 target_position = Vector2(0, -7)
 
-[node name="SlideHurtbox" type="CollisionShape2D" parent="." unique_id=1053324761]
-position = Vector2(0.49999824, 15.5)
+[node name="SlideCollision" type="CollisionShape2D" parent="." unique_id=1053324761]
+position = Vector2(1.7881393e-06, 15.499998)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_13163")
 disabled = true
 
-[node name="StandingHurtbox" type="CollisionShape2D" parent="." unique_id=118831155]
+[node name="StandingCollision" type="CollisionShape2D" parent="." unique_id=118831155]
 position = Vector2(0.5, 12)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
@@ -521,7 +526,7 @@ libraries/ = SubResource("AnimationLibrary_dvj6t")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060974059]
 material = SubResource("ShaderMaterial_13163")
 position = Vector2(-21, -9)
-texture = ExtResource("3_ur0x2")
+texture = ExtResource("4_xj0yq")
 centered = false
 offset = Vector2(5, 1)
 hframes = 4
@@ -531,13 +536,13 @@ frame = 5
 [node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "hurtbox_sprite", "slidecast", "current_state", "animation_tree")]
 script = ExtResource("4_i4vv3")
 character = NodePath("..")
-hurtbox = NodePath("../StandingHurtbox")
+hurtbox = NodePath("../StandingCollision")
 hurtbox_sprite = NodePath("../Sprite2D")
 slidecast = NodePath("../SlideCast")
 current_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" unique_id=1595056690 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("5_kqs0o")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
@@ -546,13 +551,16 @@ runstart_state = NodePath("../RunStart")
 sprite = NodePath("../../Sprite2D")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../StandingHurtbox")
+hurtbox = NodePath("../../StandingCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Air" type="Node" parent="CharacterStateMachine" unique_id=1575689672 node_paths=PackedStringArray("ground_state", "running_state", "running_start_state", "sliding_state", "sprite", "land_sound", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("6_stw0j")
 ground_state = NodePath("../Ground")
 running_state = NodePath("../Running")
@@ -562,26 +570,32 @@ sprite = NodePath("../../Sprite2D")
 land_sound = NodePath("../../Land")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../SlideHurtbox")
+hurtbox = NodePath("../../SlideCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Running" type="Node" parent="CharacterStateMachine" unique_id=558319330 node_paths=PackedStringArray("air_state", "ground_state", "slide_state", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("11_22h3l")
 air_state = NodePath("../Air")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../Sliding")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../SlideHurtbox")
+hurtbox = NodePath("../../SlideCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Sliding" type="Node" parent="CharacterStateMachine" unique_id=29726903 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "runstart_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("12_skwc6")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
@@ -591,13 +605,16 @@ runstart_state = NodePath("../RunStart")
 sprite = NodePath("../../Sprite2D")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../StandingHurtbox")
+hurtbox = NodePath("../../StandingCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="RunStart" type="Node" parent="CharacterStateMachine" unique_id=540161561 node_paths=PackedStringArray("air_state", "running_state", "slide_state", "ground_state", "sprite", "climb_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("12_pw0rc")
 air_state = NodePath("../Air")
 running_state = NodePath("../Running")
@@ -606,50 +623,60 @@ ground_state = NodePath("../Ground")
 sprite = NodePath("../../Sprite2D")
 climb_state = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../StandingHurtbox")
+hurtbox = NodePath("../../StandingCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="Hurt" type="Node" parent="CharacterStateMachine" unique_id=2020621819 node_paths=PackedStringArray("ground_state", "air_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="Hurt" type="Node" parent="CharacterStateMachine" unique_id=2020621819 node_paths=PackedStringArray("ground_state", "air_state", "slide_state", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("11_13163")
 ground_state = NodePath("../Ground")
 air_state = NodePath("../Air")
 slide_state = NodePath("../Sliding")
 character = NodePath("../..")
-hurtbox = NodePath("../../StandingHurtbox")
+hurtbox = NodePath("../../StandingCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath(".")
-
-[node name="Climb" type="Node" parent="CharacterStateMachine" unique_id=1317221277 node_paths=PackedStringArray("climb_hurt", "ground_state", "air_state", "animplayer", "tree", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
-script = ExtResource("12_xj0yq")
 climb_hurt = NodePath("../ClimbHurt")
+
+[node name="Climb" type="Node" parent="CharacterStateMachine" unique_id=1317221277 node_paths=PackedStringArray("ground_state", "air_state", "animplayer", "tree", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
+script = ExtResource("12_xj0yq")
 ground_state = NodePath("../Ground")
 air_state = NodePath("../Air")
 animplayer = NodePath("../../AnimationPlayer")
 tree = NodePath("../../AnimationTree")
 character = NodePath("../..")
-hurtbox = NodePath("../../SlideHurtbox")
+hurtbox = NodePath("../../SlideCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath("../ClimbHurt")
 
-[node name="ClimbHurt" type="Node" parent="CharacterStateMachine" unique_id=747968695 node_paths=PackedStringArray("climb", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "slidecast", "hurt")]
+[node name="ClimbHurt" type="Node" parent="CharacterStateMachine" unique_id=747968695 node_paths=PackedStringArray("climb", "character", "hurtbox", "hurtbox_sprite", "slide_hurtbox", "actual_hurtbox", "slide_actual_hurtbox", "slidecast", "hurt", "climb_hurt")]
 script = ExtResource("13_6y5aw")
 climb = NodePath("../Climb")
 character = NodePath("../..")
-hurtbox = NodePath("../../SlideHurtbox")
+hurtbox = NodePath("../../SlideCollision")
 hurtbox_sprite = NodePath("../../Sprite2D")
-slide_hurtbox = NodePath("../../SlideHurtbox")
+slide_hurtbox = NodePath("../../SlideCollision")
+actual_hurtbox = NodePath("../../Hurtbox")
+slide_actual_hurtbox = NodePath("../../SlideHurtbox")
 slidecast = NodePath("../../SlideCast")
 hurt = NodePath("../Hurt")
+climb_hurt = NodePath(".")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
-visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = -53.0
 offset_top = -49.0
@@ -676,7 +703,23 @@ shape = SubResource("RectangleShape2D_44c3d")
 position = Vector2(0.5, 23.75)
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Hurtbox" type="Area2D" parent="." unique_id=1455336009]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470883603]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_gxle8")
+
+[node name="SlideHurtbox" type="Area2D" parent="." unique_id=1757705720]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SlideHurtbox" unique_id=252556889]
+position = Vector2(1.7881393e-06, 15.499998)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_13163")
+disabled = true
+
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
 [connection signal="area_exited" from="LadderDetection" to="." method="_on_ladder_detection_area_exited"]
 [connection signal="area_entered" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_entered"]
 [connection signal="area_exited" from="LadderDetectionDown" to="." method="_on_ladder_detection_down_area_exited"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="SlideHurtbox" to="." method="_on_slide_hurtbox_area_entered"]

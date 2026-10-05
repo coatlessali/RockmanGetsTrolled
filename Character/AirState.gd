@@ -11,6 +11,7 @@ class_name AirState
 @export var land_sound : AudioStreamPlayer
 @export var climb_state : State
 
+#var climb_buffer = 0
 var air_velocity : float = 120
 var has_double_jumped = false
 
@@ -20,11 +21,11 @@ func state_process(delta, direction):
 			if character.local_velocity.y < 0:
 				character.local_velocity.y = 0
 	if Input.is_action_pressed("up"):
-		if character.ladder:
+		if character.ladder && character.climb_buffer == 0:
 			playback.travel("climbing")
 			next_state = climb_state
 			print("climb")
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down") && character.climb_buffer == 0:
 		if character.ladderdown:
 			character.position.y += 4
 			playback.travel("climbing")
@@ -53,11 +54,19 @@ func state_process(delta, direction):
 		character.local_velocity.x = air_velocity*sign(direction.x)
 		
 	shoot_anim_timer("jump") # State.gd
+	if character.climb_buffer > 0:
+		character.climb_buffer -= 1
+	
+	if character.hurt:
+		character.hurt = false
+		owie()
 
 func state_input(event : InputEvent):
 	if event.is_action_pressed("debug_owie"):
 		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
-		
+	#if character.hurt:
+		#character.hurt = false
+		#owie()
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
@@ -71,6 +80,7 @@ func state_input(event : InputEvent):
 		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
+	#climb_buffer = 6
 	if !Input.is_action_pressed("jump"):
 		character.local_velocity.y = 0
 	sprite.offset.y = 5

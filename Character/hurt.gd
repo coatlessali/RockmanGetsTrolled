@@ -1,6 +1,6 @@
 extends State
 
-var hurt_timer = 90
+var hurt_timer = 45
 @export var ground_state : State
 @export var air_state : State
 @export var slide_state : State

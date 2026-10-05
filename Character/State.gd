@@ -6,8 +6,11 @@ class_name State
 @export var hurtbox : CollisionShape2D
 @export var hurtbox_sprite : Sprite2D
 @export var slide_hurtbox : CollisionShape2D
+@export var actual_hurtbox: Area2D
+@export var slide_actual_hurtbox : Area2D
 @export var slidecast : ShapeCast2D
 @export var hurt : State
+@export var climb_hurt : State
 var next_state : State
 var last_state : State
 @export var can_move : bool = true
@@ -33,8 +36,14 @@ func on_exit():
 	pass
 
 func owie():
+	character.hurt = false
 	playback.travel("hurt")
 	next_state = hurt
+
+func ladder_owie():
+	character.hurt = false
+	playback.travel("climb_hurt")
+	next_state = climb_hurt
 
 # Forces a number to be converted to negative
 func force_negative(nval):

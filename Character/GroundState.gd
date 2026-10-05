@@ -13,6 +13,9 @@ class_name GroundState
 @export var climb_state : State
 
 func state_process(_delta, direction):
+	if character.hurt:
+		owie()
+	
 	if Input.is_action_pressed("up"):
 		if character.ladder:
 			playback.travel("climbing")
@@ -73,7 +76,6 @@ func jump():
 	next_state = air_state
 	#playback.travel("jump")
 	#print_debug("travelled to jump")
-
 
 func slide():
 	character.local_velocity.x = slide_velocity*sign(character.last_faced)

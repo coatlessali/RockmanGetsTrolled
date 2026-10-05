@@ -1,5 +1,4 @@
 extends State
-@export var climb_hurt : State
 @export var ground_state : State
 @export var air_state : State
 @export var animplayer : AnimationPlayer
@@ -42,9 +41,11 @@ func state_process(_delta, direction):
 		playback.travel("jump")
 		if character.ladderjump:
 			character.local_velocity.y = character.jump_velocity
+		character.climb_buffer = 8
 		next_state = air_state
 	if Input.is_action_just_pressed("slide"):
 		playback.travel("jump")
+		character.climb_buffer = 8
 		next_state = air_state
 	if Input.is_action_pressed("down") && character.is_on_floor():
 		playback.travel("idle")
@@ -62,6 +63,9 @@ func state_process(_delta, direction):
 
 		shoot_anim("climb_shoot") # State.gd
 
+	if character.hurt:
+		character.hurt = false
+		ladder_owie()
 	#shoot_anim_timer("climbing_pause") # State.gd
 	
 func fire(angle):
