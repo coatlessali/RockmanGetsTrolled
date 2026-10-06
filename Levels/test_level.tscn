@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cnt7i5culhx0j" path="res://Art/rock/healthbar.png" id="7_tc6tp"]
 [ext_resource type="Texture2D" uid="uid://cuq5p3751pfue" path="res://Art/rock/healthbar_fill.png" id="8_k8b6b"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="10_tc6tp"]
-[ext_resource type="AudioStream" uid="uid://b0rahkvtw1whj" path="res://Music/pollutedpump.res" id="11_k8b6b"]
+[ext_resource type="AudioStream" uid="uid://vqmwdql6t42b" path="res://Music/journal_adl.res" id="12_lx7qo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x01cw"]
 texture = ExtResource("1_eqpw1")
@@ -852,8 +852,8 @@ position = Vector2(96, -10.5)
 shape = SubResource("RectangleShape2D_44c3d")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=864772270]
-stream = ExtResource("11_k8b6b")
-volume_db = -18.022
+stream = ExtResource("12_lx7qo")
+volume_db = -3.425
 autoplay = true
 
 [node name="Camera Triggers" type="Node" parent="." unique_id=706740478]

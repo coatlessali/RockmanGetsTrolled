@@ -93,27 +93,15 @@ func fire(angle):
 
 func charge_shot(angle):
 	if character.weapon == "buster":
-		print("1")
 		if character.shader_intensity <= 0.25:
-			print("2")
 			return
 		elif character.shader_intensity < 0.7:
-			print("3")
 			var bullet = load("Bullet.tscn").instantiate()
-			print("4")
 			bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-			print("5")
 			get_parent().add_child(bullet)
-			print("6")
 			bullet.position = character.position + Vector2(character.last_faced*16, 11)
-			print("7")
 		else:
-			print("8")
 			var bullet = load("res://ChargeBullet.tscn").instantiate()
-			print("9")
 			bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-			print("10")
 			get_parent().add_child(bullet)
-			print("11")
 			bullet.position = character.position + Vector2(character.last_faced*16, 11)
-			print("12")

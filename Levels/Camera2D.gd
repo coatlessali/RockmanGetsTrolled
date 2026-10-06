@@ -15,8 +15,8 @@ func _physics_process(_delta: float) -> void:
 	if character.is_on_floor():
 		air_buffer = false
 	if character.cam_follow_x:
-		print(character.global_position.x)
-		print(position.x)
+		#print(character.global_position.x)
+		#print(position.x)
 		position.x = move_toward(position.x,character.global_position.x,4)
 		#position.x = position.x.lerp(position.x,character.position.x,4 * delta)
 		#position.x = character.position.xN
