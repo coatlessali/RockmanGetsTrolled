@@ -509,7 +509,7 @@ shader_parameter/intensity = 0.0
 [sub_resource type="LabelSettings" id="LabelSettings_4kk4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
-size = Vector2(1, 22)
+size = Vector2(1, 27)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
 size = Vector2(1, 0.5)
@@ -802,10 +802,9 @@ stream = ExtResource("12_xaqyh")
 volume_db = -12.0
 
 [node name="LadderDetection" type="Area2D" parent="." unique_id=1957018327]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetection" unique_id=2062183825]
-position = Vector2(0.5, 12)
+position = Vector2(0.5, 8.5)
 shape = SubResource("RectangleShape2D_44c3d")
 
 [node name="LadderDetectionDown" type="Area2D" parent="." unique_id=2122845878]

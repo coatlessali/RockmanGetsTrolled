@@ -10,12 +10,15 @@ class_name AirState
 @export var sprite : Sprite2D
 @export var land_sound : AudioStreamPlayer
 @export var climb_state : State
+var coyote_frames : int = 3 # this number doesn't matter, check on_enter()
 
 #var climb_buffer = 0
 var air_velocity : float = 120
 var has_double_jumped = false
 
 func state_process(delta, direction):
+	if coyote_frames > 0:
+		coyote_frames -= 1
 	if character.ceilinghit:
 		if character.is_on_ceiling():
 			if character.local_velocity.y < 0:
@@ -67,6 +70,9 @@ func state_input(event : InputEvent):
 	#if character.hurt:
 		#character.hurt = false
 		#owie()
+	if event.is_action_pressed("jump"):
+		if coyote_frames > 0 && character.last_state == sliding_state:
+			jump()
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
@@ -90,9 +96,10 @@ func state_input(event : InputEvent):
 		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
+	coyote_frames = 6
 	#climb_buffer = 6
-	#if !Input.is_action_pressed("jump"):
-		#character.local_velocity.y = 0
+	if !Input.is_action_pressed("jump"):
+		character.local_velocity.y = 0
 	sprite.offset.y = 5
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
@@ -124,3 +131,6 @@ func charge_shot(angle):
 		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 		get_parent().add_child(bullet)
 		bullet.position = character.position + Vector2(character.last_faced*16, 10)
+
+func jump():
+	character.local_velocity.y = character.jump_velocity
