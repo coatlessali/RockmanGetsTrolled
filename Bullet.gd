@@ -4,7 +4,7 @@ extends Area2D
 @export var visibility : VisibleOnScreenNotifier2D
 var deflected : bool = false
 var direction = Vector2(1.0,0.0)
-var speed = 250.0
+var speed = 300.0
 #var speed = 10 # for testing
 var expire = 120
 var damage = 1

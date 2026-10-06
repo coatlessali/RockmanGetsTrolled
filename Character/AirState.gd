@@ -112,7 +112,7 @@ func fire(angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	get_parent().add_child(bullet)
-	bullet.position = character.position + Vector2(character.last_faced*16, 3)
+	bullet.position = character.position + Vector2(character.last_faced*16, 10)
 	
 func charge_shot(angle):
 	if character.weapon == "buster":
@@ -123,4 +123,4 @@ func charge_shot(angle):
 			bullet = load("res://ChargeBullet.tscn").instantiate()
 		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 		get_parent().add_child(bullet)
-		bullet.position = character.position + Vector2(character.last_faced*16, 3)
+		bullet.position = character.position + Vector2(character.last_faced*16, 10)
