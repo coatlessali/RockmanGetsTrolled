@@ -501,7 +501,7 @@ _data = {
 &"slide_shoot": SubResource("Animation_pml56")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_13163"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4kk4v"]
 shader = ExtResource("3_m6p0u")
 shader_parameter/speed = 0.0
 shader_parameter/intensity = 0.0
@@ -578,17 +578,20 @@ animations = [{
 script = ExtResource("1_flj5s")
 
 [node name="SlideCast" type="ShapeCast2D" parent="." unique_id=2004767678]
+visible = false
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_m6p0u")
 target_position = Vector2(0, -3)
 
 [node name="SlideCollision" type="CollisionShape2D" parent="." unique_id=1053324761]
+visible = false
 position = Vector2(1.7881393e-06, 15.499998)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_13163")
 disabled = true
 
 [node name="StandingCollision" type="CollisionShape2D" parent="." unique_id=118831155]
+visible = false
 position = Vector2(0.5, 12)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
@@ -604,7 +607,7 @@ player = NodePath("..")
 libraries/ = SubResource("AnimationLibrary_dvj6t")
 
 [node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1060974059]
-material = SubResource("ShaderMaterial_13163")
+material = SubResource("ShaderMaterial_4kk4v")
 position = Vector2(-21, -9)
 texture = ExtResource("4_xj0yq")
 centered = false
@@ -797,24 +800,28 @@ stream = ExtResource("12_xaqyh")
 volume_db = -12.0
 
 [node name="LadderDetection" type="Area2D" parent="." unique_id=1957018327]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetection" unique_id=2062183825]
 position = Vector2(0.5, 12)
 shape = SubResource("RectangleShape2D_44c3d")
 
 [node name="LadderDetectionDown" type="Area2D" parent="." unique_id=2122845878]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetectionDown" unique_id=1439224363]
 position = Vector2(0.5, 23.75)
 shape = SubResource("RectangleShape2D_yuier")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1455336009]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470883603]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_gxle8")
 
 [node name="SlideHurtbox" type="Area2D" parent="." unique_id=1757705720]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlideHurtbox" unique_id=252556889]
 position = Vector2(1.7881393e-06, 15.499998)

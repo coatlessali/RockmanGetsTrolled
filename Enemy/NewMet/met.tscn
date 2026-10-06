@@ -45,7 +45,6 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_b7n0l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1650324288]
-visible = false
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
