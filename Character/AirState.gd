@@ -91,8 +91,8 @@ func state_input(event : InputEvent):
 
 func on_enter():
 	#climb_buffer = 6
-	if !Input.is_action_pressed("jump"):
-		character.local_velocity.y = 0
+	#if !Input.is_action_pressed("jump"):
+		#character.local_velocity.y = 0
 	sprite.offset.y = 5
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")

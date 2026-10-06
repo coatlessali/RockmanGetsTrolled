@@ -34,16 +34,16 @@ func _physics_process(delta):
 		if character.camera.position.x > character.cam_pos.x: # going left
 			character.position.x -= 0.25
 		if character.camera.position.y < character.cam_pos.y:
-			character.position.y += 0.5
+			character.position.y += 0.75
 		if character.camera.position.y > character.cam_pos.y:
-			character.position.y -= 0.5
+			character.position.y -= 0.75
 		print("return")
 		return
 	elif character.cam_follow_x:
 		if abs(character.camera.position.x - character.position.x) > 4:
 			return
 	elif character.cam_follow_y:
-		if abs(character.camera.position.y - character.position.y) > 4:
+		if abs(character.camera.position.y - character.position.y) > 12:
 			return
 	if (current_state.next_state != null):
 		switch_states(current_state.next_state)

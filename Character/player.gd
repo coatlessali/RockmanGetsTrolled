@@ -58,7 +58,7 @@ func _physics_process(_delta):
 		if abs(camera.position.x - position.x) > 4:
 			return
 	elif cam_follow_y:
-		if abs(camera.position.y - position.y) > 4:
+		if abs(camera.position.y - position.y) > 12:
 			return
 	if camera.position != cam_pos && !cam_follow_x && !cam_follow_y:
 		return
@@ -138,6 +138,10 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = false
+	if area.is_in_group("CameraFollowX"):
+		cam_follow_x = false
+	if area.is_in_group("CameraFollowY"):
+		cam_follow_y = false
 func _on_ladder_detection_down_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladderdown = true

@@ -46,6 +46,7 @@ CameraTriggers=""
 Dodge=""
 Player=""
 CameraFollowX=""
+CameraFollowY=""
 
 [input]
 

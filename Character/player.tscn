@@ -506,6 +506,8 @@ shader = ExtResource("3_m6p0u")
 shader_parameter/speed = 0.0
 shader_parameter/intensity = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_4kk4v"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
 size = Vector2(1, 22)
 
@@ -784,13 +786,13 @@ climb_hurt = NodePath("../ClimbHurt")
 dead_state = NodePath(".")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
-visible = false
-modulate = Color(0, 0, 0, 1)
 offset_left = -53.0
 offset_top = -49.0
 offset_right = 53.0
 offset_bottom = -23.0
 scale = Vector2(0.75394, 0.820863)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+label_settings = SubResource("LabelSettings_4kk4v")
 script = ExtResource("8_viysk")
 state_machine = NodePath("../CharacterStateMachine")
 character = NodePath("..")
