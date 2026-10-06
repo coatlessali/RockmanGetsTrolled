@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sal6sxrml4bf"
-path="res://.godot/imported/met.png-afcdcb05d4fef4345bdb96c36e21c38f.ctex"
+uid="uid://7hbqqe8cbff"
+path="res://.godot/imported/placeholder_background_sky.png-544dd867fa35926b1054530226330a19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/Met/Art/met.png"
-dest_files=["res://.godot/imported/met.png-afcdcb05d4fef4345bdb96c36e21c38f.ctex"]
+source_file="res://Art/Levels/TestLevel/placeholder_background_sky.png"
+dest_files=["res://.godot/imported/placeholder_background_sky.png-544dd867fa35926b1054530226330a19.ctex"]
 
 [params]
 

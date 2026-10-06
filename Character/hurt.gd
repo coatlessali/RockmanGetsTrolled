@@ -7,6 +7,7 @@ var hurt_timer = 45
 # Called when the node enters the scene tree for the first time.
 
 func on_enter():
+	character.hurtsound.play()
 	character.local_velocity.y = 0
 	hurt_timer = 45
 	character.owie = true

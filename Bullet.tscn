@@ -8,11 +8,11 @@
 size = Vector2(6, 6)
 
 [node name="Area2D" type="Area2D" unique_id=45240080 node_paths=PackedStringArray("visibility") groups=["Bullets", "volatile"]]
+z_index = 1
 script = ExtResource("1_soppk")
 visibility = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1016723445]
-z_index = -1
 texture = ExtResource("2_j7mcj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41878596]

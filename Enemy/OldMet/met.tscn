@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://djfulrhk5k7cg"]
 
-[ext_resource type="Script" uid="uid://dityrdppiygdh" path="res://Enemy/Met/Scripts/met.gd" id="1_ht170"]
-[ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/Met/Art/met.png" id="2_msjid"]
-[ext_resource type="AudioStream" uid="uid://c84k2oce2h6fl" path="res://Enemy/Met/Sound/ahh.ogg" id="3_ye30g"]
+[ext_resource type="Script" uid="uid://dityrdppiygdh" path="res://Enemy/OldMet/Scripts/met.gd" id="1_ht170"]
+[ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/OldMet/Art/met.png" id="2_msjid"]
+[ext_resource type="AudioStream" uid="uid://c84k2oce2h6fl" path="res://Enemy/OldMet/Sound/ahh.ogg" id="3_ye30g"]
 [ext_resource type="Script" uid="uid://q260stvbwa3f" path="res://hurtbox.gd" id="4_rj75e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fb03"]

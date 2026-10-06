@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://ctf3ctcqd2h4i"]
+
+[ext_resource type="Script" uid="uid://cd4w7hphnhoem" path="res://Enemy/OldMet/Scripts/metbullet.gd" id="1_i47o8"]
+[ext_resource type="Texture2D" uid="uid://vhlvkj5e46bv" path="res://Art/enemy_bullet.png" id="2_h5udr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx16m"]
+atlas = ExtResource("2_h5udr")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2h1d3"]
+atlas = ExtResource("2_h5udr")
+region = Rect2(0, 12, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0u3gx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx16m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2h1d3")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qo3j"]
+size = Vector2(8, 6)
+
+[node name="Area2D" type="Area2D" unique_id=106577814 groups=["Dodge", "EnemyBullet", "volatile"]]
+script = ExtResource("1_i47o8")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1721817397]
+sprite_frames = SubResource("SpriteFrames_0u3gx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1105925111]
+shape = SubResource("RectangleShape2D_0qo3j")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=761477812]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

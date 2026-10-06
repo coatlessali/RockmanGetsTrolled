@@ -13,6 +13,8 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @export var camera : Camera2D
 @export var healthbar : TextureProgressBar
 @export var music : AudioStreamPlayer
+@onready var hurtsound : AudioStreamPlayer = $Hurt
+@onready var charge : AudioStreamPlayer = $Charge
 @onready var sprite : Sprite2D = $CharacterSprite
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
@@ -60,6 +62,11 @@ func _physics_process(_delta):
 		last_faced = x_direction
 		#if !is_on_floor():
 			#pass
+	
+	if Input.is_action_just_pressed("fire"):
+		charge.play()
+	if Input.is_action_just_released("fire"):
+		charge.stop()
 	
 	if Input.is_action_pressed("fire"):
 		# charge shot shader

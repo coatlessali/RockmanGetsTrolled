@@ -34,6 +34,8 @@
 [ext_resource type="Texture2D" uid="uid://cgors0gnmli82" path="res://Art/explotano/explotano05.png" id="31_cw8fd"]
 [ext_resource type="Texture2D" uid="uid://bil4r8s58dipx" path="res://Art/explotano/explotano06.png" id="32_2vv0w"]
 [ext_resource type="Texture2D" uid="uid://bj5cwia2q07ly" path="res://Art/explotano/explotano07.png" id="33_eryot"]
+[ext_resource type="AudioStream" uid="uid://dlwpbvysom78b" path="res://Sounds/Hurt.wav" id="35_mwdr7"]
+[ext_resource type="AudioStream" uid="uid://ckivcxuv8yfhc" path="res://Sounds/charge.wav" id="36_4kk4v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p0u"]
 size = Vector2(14, 20)
@@ -831,6 +833,14 @@ position = Vector2(2, 9)
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_44c3d")
 frame = 4
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." unique_id=802651829]
+stream = ExtResource("35_mwdr7")
+volume_db = -13.867
+
+[node name="Charge" type="AudioStreamPlayer" parent="." unique_id=657494069]
+stream = ExtResource("36_4kk4v")
+volume_db = -9.683
 
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
 [connection signal="area_exited" from="LadderDetection" to="." method="_on_ladder_detection_area_exited"]

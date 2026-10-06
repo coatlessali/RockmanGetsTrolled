@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7d3b1lalxet0" path="res://ChargeBullet.gd" id="1_6e2cf"]
 [ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="2_v70lf"]
 [ext_resource type="Texture2D" uid="uid://bhx07ghofq7q8" path="res://Art/rock/charge_shot.png" id="3_rq25g"]
-[ext_resource type="AudioStream" uid="uid://d3qvqq64wae8f" path="res://Sounds/MM_Shoot.wav" id="3_v70lf"]
+[ext_resource type="AudioStream" uid="uid://bvfh3w4gqu4is" path="res://Sounds/DSSHOTGN.wav" id="4_rq25g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rq25g"]
 shader = ExtResource("2_v70lf")
@@ -52,8 +52,8 @@ position = Vector2(-2.38419e-07, 0)
 scale = Vector2(1.6, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1930311012]
-stream = ExtResource("3_v70lf")
-volume_db = -12.0
+stream = ExtResource("4_rq25g")
+volume_db = -14.332
 autoplay = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

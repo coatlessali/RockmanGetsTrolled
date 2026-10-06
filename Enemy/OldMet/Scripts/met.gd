@@ -17,7 +17,6 @@ var inactive_timer = 60
 var active_timer = 20
 var delay_timer = 30
 var bullets_fired : int = 0
-
 var deflect : bool = false
 
 func _ready():
@@ -47,7 +46,9 @@ func _physics_process(_delta):
 						delay_timer -= 1
 					else:
 						state = DStates.INACTIVE
-						delay_timer = 0
+						bullets_fired = 0
+						inactive_timer = 60
+						delay_timer = 30
 				else:
 					if active_timer > 0:
 						active_timer -=1
@@ -84,7 +85,7 @@ func _on_hurtbox_area_entered(area):
 	apply_damage(area)
 
 func fire(angle):
-	var bullet = load("res://Enemy/Met/MetBullet.tscn").instantiate()
+	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
 	get_parent().add_child(bullet)
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
 	bullet.position = position + Vector2(facing*1, 0)
