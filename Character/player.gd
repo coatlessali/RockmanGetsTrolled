@@ -71,7 +71,7 @@ func _physics_process(_delta):
 	if Input.is_action_pressed("fire"):
 		# charge shot shader
 		if shader_intensity < 0.75:
-			shader_intensity += 0.0075
+			shader_intensity += 0.0085
 		if shader_speed < 10:
 			shader_speed += 0.075
 	else:
