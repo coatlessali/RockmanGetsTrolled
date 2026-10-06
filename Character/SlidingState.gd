@@ -92,8 +92,8 @@ func state_input(event : InputEvent):
 			return
 		else:
 			jump()
-	if event.is_action_pressed("slide"):
-		slide()
+	#if event.is_action_pressed("slide"):
+		#slide()
 	if event.is_action_pressed("fire"):
 		var fire_funne = 69
 		if character.last_faced == DDirection.RIGHT:

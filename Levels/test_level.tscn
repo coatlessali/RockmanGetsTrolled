@@ -874,6 +874,7 @@ shape = SubResource("RectangleShape2D_yuier")
 position = Vector2(256, -153)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger9" unique_id=1124703236]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_yuier")
 
 [node name="CameraTrigger10" type="Area2D" parent="Camera Triggers" unique_id=738785712 groups=["CameraTriggers"]]

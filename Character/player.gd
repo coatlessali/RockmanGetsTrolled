@@ -51,8 +51,15 @@ func _ready():
 	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
-	camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
-	camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
+	if !cam_follow_x && !cam_follow_y:
+		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
+		camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
+	elif cam_follow_x:
+		if abs(camera.position.x - position.x) > 4:
+			return
+	elif cam_follow_y:
+		if abs(camera.position.y - position.y) > 4:
+			return
 	if camera.position != cam_pos && !cam_follow_x && !cam_follow_y:
 		return
 	if hp <= 0:

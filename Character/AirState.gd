@@ -38,13 +38,13 @@ func state_process(delta, direction):
 	if(character.is_on_floor()):
 		land_sound.play()
 		character.local_velocity.y = 0
-		#if Input.is_action_pressed("slide"):
-			#next_state = sliding_state
 		if direction.x != DDirection.NONE:
 			next_state = running_state
 		else:
 			next_state = ground_state
 		playback.travel("idle")
+		if Input.is_action_pressed("slide"):
+			next_state = sliding_state
 	else:
 		if character.local_velocity.y < character.gravity:
 			character.local_velocity.y += character.gravity * delta

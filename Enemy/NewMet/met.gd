@@ -45,8 +45,6 @@ func _physics_process(delta: float) -> void:
 				sprite.frame = 3
 			if timer == 48:
 				sprite.frame = 4
-			if timer == 44:
-				sprite.frame = 5
 			if timer > 0:
 				timer -=1
 			else:
