@@ -45,6 +45,7 @@ volatile="attacks that disappear on contact"
 CameraTriggers=""
 Dodge=""
 Player=""
+CameraFollowX=""
 
 [input]
 

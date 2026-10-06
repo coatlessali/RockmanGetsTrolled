@@ -39,6 +39,8 @@ var shader_speed = 0.0
 var hurt : bool = false
 var dead : bool = false
 var cam_pos = Vector2(0, 88)
+var cam_follow_x : bool = false
+var cam_follow_y : bool = false
 var weapon = "buster"
 var sliding : bool = false
 
@@ -51,7 +53,7 @@ func _ready():
 func _physics_process(_delta):
 	camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
 	camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
-	if camera.position != cam_pos:
+	if camera.position != cam_pos && !cam_follow_x && !cam_follow_y:
 		return
 	if hp <= 0:
 		dead = true
@@ -120,6 +122,12 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("CameraTriggers"):
 		#cam_pos = area.get_meta("camera_position")
 		cam_pos = area.position
+		cam_follow_x = false
+		cam_follow_y = false
+	if area.is_in_group("CameraFollowX"):
+		cam_follow_x = true
+	if area.is_in_group("CameraFollowY"):
+		cam_follow_y = true
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = false
