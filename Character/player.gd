@@ -113,13 +113,6 @@ func apply_damage(area: Area2D) -> void:
 		if area.is_in_group("volatile"):
 			area.queue_free()
 
-func _on_death_box_of_doom_body_entered(_body):
-	position.x = 0
-	position.y = 0
-func _on_camera_y_trigger_body_entered(_body):
-	camera.follow_y = true
-func _on_camera_y_trigger_body_exited(_body):
-	camera.follow_y = false
 func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = true
