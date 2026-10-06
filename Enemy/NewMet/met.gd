@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 		1: # shooting
 			if timer == 60:
 				sprite.frame = 1
-				fire(deg_to_rad(-60))
-				fire(deg_to_rad(0))
-				fire(deg_to_rad(120))
+				fire(deg_to_rad(-30/2)) # divide the angle by two???
+				fire(deg_to_rad(0)) # what the fuck???
+				fire(deg_to_rad(30/2)) # ewwwww
 			if timer == 56:
 				sprite.frame = 2
 			if timer == 52:
@@ -70,6 +70,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func fire(angle):
+	print("angle: " + str(angle))
 	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
 	get_parent().add_child(bullet)
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
