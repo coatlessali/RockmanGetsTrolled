@@ -36,9 +36,9 @@ func _physics_process(delta: float) -> void:
 		1: # shooting
 			if timer == 60:
 				sprite.frame = 1
-				fire(deg_to_rad(-45))
+				fire(deg_to_rad(-60))
 				fire(deg_to_rad(0))
-				fire(deg_to_rad(45))
+				fire(deg_to_rad(120))
 			if timer == 56:
 				sprite.frame = 2
 			if timer == 52:

@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var sprite : AnimatedSprite2D = $Sprite2D
 @export var visibility : VisibleOnScreenNotifier2D
-@export var speed = 200
+@export var speed = 125
 var deflected : bool = false
 var direction = Vector2.RIGHT
 var damage = 3
