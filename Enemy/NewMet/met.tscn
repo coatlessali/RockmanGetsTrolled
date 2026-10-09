@@ -8,7 +8,7 @@
 size = Vector2(18, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46ymj"]
-size = Vector2(196, 128)
+size = Vector2(196, 98.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7n0l"]
 size = Vector2(20, 21)
@@ -27,6 +27,7 @@ vframes = 4
 frame = 4
 
 [node name="MetCollision" type="CollisionShape2D" parent="." unique_id=1310682599]
+visible = false
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_44c3d")
 
@@ -34,10 +35,11 @@ shape = SubResource("RectangleShape2D_44c3d")
 visible = false
 
 [node name="PlayerDetectionAreaShape" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1259206919]
-position = Vector2(0, -4.75)
+position = Vector2(0, -19.375)
 shape = SubResource("RectangleShape2D_46ymj")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1277491146 groups=["EnemyBullet"]]
+visible = false
 script = ExtResource("3_46ymj")
 
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox" unique_id=1462197329]
@@ -45,6 +47,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_b7n0l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1650324288]
+visible = false
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

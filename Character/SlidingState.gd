@@ -16,12 +16,18 @@ class_name SlideState
 @export var climb_state : State
 var slide_buffer : int = 2
 var dust_timer = 18
+var after_image = 5
 
 func state_process(_delta, direction):
 	if dust_timer % 6 == 0:
 	#if dust_timer == 18:
 		dust()
 	dust_timer -= 1
+	if after_image > 0:
+		after_image -=1
+	else:
+		after_image = 5
+		character.after_image()
 	# you shouldn't be in the air!
 	#if last_state != null:
 		#print_debug(last_state)
@@ -115,6 +121,7 @@ func state_input(event : InputEvent):
 		shoot_anim("slide_shoot") # State.gd
 	
 func on_enter():
+	after_image = 1
 	character.sliding = true
 	dust_timer = 18
 	slide_buffer = 2
@@ -163,6 +170,7 @@ func dust():
 	var particle = load("res://Character/slide_dust.tscn").instantiate()
 	get_parent().add_child(particle)
 	particle.position = Vector2(character.position.x, character.position.y + 8)
+	particle.flip_h = !sprite.flip_h
 
 func charge_shot(angle):
 	if character.weapon == "buster":

@@ -21,6 +21,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 
 # vars used for character state etc, do not touch
 var hp = 28
+var intro : bool = false
 var last_state : State
 var input_direction : Vector2
 var moving_direction : int = DDirection.RIGHT
@@ -122,6 +123,25 @@ func apply_damage(area: Area2D) -> void:
 		if area.is_in_group("volatile"):
 			area.queue_free()
 
+func after_image() -> void:
+	var afterimage = load("res://fade.tscn").instantiate()
+	afterimage.texture = sprite.texture
+	afterimage.position = position
+	afterimage.position.y += 6
+	afterimage.position.x -= 4
+	afterimage.modulate.a = 0.75
+	afterimage.modulate.r = 0.1
+	afterimage.modulate.g = 0.3
+	afterimage.offset = sprite.offset
+	afterimage.flip_h = sprite.flip_h
+	afterimage.flip_v = sprite.flip_v
+	afterimage.hframes = sprite.hframes
+	afterimage.vframes = sprite.vframes
+	afterimage.frame = sprite.frame
+	afterimage.z_index = sprite.z_index-1
+	get_parent().add_child(afterimage)
+	
+
 func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = true
@@ -149,7 +169,6 @@ func _on_ladder_detection_down_area_entered(area: Area2D) -> void:
 func _on_ladder_detection_down_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladderdown = false
-
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	apply_damage(area)

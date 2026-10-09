@@ -11,12 +11,20 @@ class_name AirState
 @export var land_sound : AudioStreamPlayer
 @export var climb_state : State
 var coyote_frames : int = 3 # this number doesn't matter, check on_enter()
+var after_image_toggle : bool = false
+var after_image = 5
 
 #var climb_buffer = 0
 var air_velocity : float = 120
 var has_double_jumped = false
 
 func state_process(delta, direction):
+	if after_image_toggle:
+		if after_image > 0:
+			after_image -=1
+		else:
+			after_image = 5
+			character.after_image()
 	if coyote_frames > 0:
 		coyote_frames -= 1
 	if character.ceilinghit:
@@ -96,6 +104,7 @@ func state_input(event : InputEvent):
 		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
+	after_image = 1
 	coyote_frames = 6
 	#climb_buffer = 6
 	if !Input.is_action_pressed("jump"):
@@ -105,7 +114,9 @@ func on_enter():
 	playback.travel("jump")
 	if(character.last_state == sliding_state):
 		air_velocity = character.slide_velocity
+		after_image_toggle = true
 	else:
+		after_image_toggle = false
 		air_velocity = character.speed
 
 func on_exit():

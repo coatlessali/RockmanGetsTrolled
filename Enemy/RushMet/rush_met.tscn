@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://qk63vpyxxiad"]
+
+[ext_resource type="Script" uid="uid://cl58nugm8dys1" path="res://Enemy/RushMet/rush_met.gd" id="1_mitrx"]
+[ext_resource type="Texture2D" uid="uid://p4emnv1wiq7i" path="res://Enemy/RushMet/rushmet.png" id="1_xsvx8"]
+[ext_resource type="Script" uid="uid://dwhqvf0wr1g0f" path="res://Enemy/NewMet/hurt_box.gd" id="2_6jw5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jw5p"]
+size = Vector2(18, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mitrx"]
+size = Vector2(196, 93.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxvmr"]
+size = Vector2(20, 21)
+
+[node name="RushMet" type="CharacterBody2D" unique_id=480798536]
+script = ExtResource("1_mitrx")
+
+[node name="MetSprite" type="Sprite2D" parent="." unique_id=1644839108]
+position = Vector2(1, -1)
+texture = ExtResource("1_xsvx8")
+hframes = 3
+vframes = 4
+frame = 4
+
+[node name="MetCollision" type="CollisionShape2D" parent="." unique_id=1866522392]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6jw5p")
+
+[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=1740539375]
+visible = false
+
+[node name="PlayerDetectionAreaShape" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=234691938]
+position = Vector2(0, -21.875)
+shape = SubResource("RectangleShape2D_mitrx")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=50031917 groups=["EnemyBullet"]]
+visible = false
+script = ExtResource("2_6jw5p")
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox" unique_id=746365344]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_pxvmr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1104953032]
+visible = false
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

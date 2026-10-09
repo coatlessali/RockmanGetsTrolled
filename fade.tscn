@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bbji06w8e471"]
+
+[ext_resource type="Script" uid="uid://ch4mwauvs5xn0" path="res://fade.gd" id="1_bg7ga"]
+
+[node name="Fade" type="Sprite2D" unique_id=554456645]
+script = ExtResource("1_bg7ga")

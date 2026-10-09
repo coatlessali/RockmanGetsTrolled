@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const SPEED = 120
+const SPEED = 200
 var active : bool = false
 var state : int = 0
 var direction : int = -1
@@ -16,29 +16,18 @@ func _physics_process(delta: float) -> void:
 	match state:
 		0: # inactive
 			velocity.x = 0
-			if sprite.frame != 0:
-				if sprite.frame == 7:
-					sprite.frame = 8
-				elif sprite.frame == 8:
-					sprite.frame = 9
-				elif sprite.frame == 9:
-					sprite.frame = 10
-				elif sprite.frame == 10:
-					sprite.frame = 11
-				elif sprite.frame == 11:
-					sprite.frame = 0
-				else:
-					sprite.frame = 7
-			else:
-				sprite.frame = 0
-				timer = 60
+			sprite.frame = 4
+			timer = 1
+			sprite.offset.x = randf_range(-1, 1)
+			#sprite.offset.y = randf_range(-0.25, 0.25)
 			# hiding sprite
 		1: # shooting
 			if timer == 60:
+				sprite.offset = Vector2(0.0, 0.0)
 				sprite.frame = 1
-				fire(deg_to_rad(-30))
-				fire(deg_to_rad(0))
-				fire(deg_to_rad(30))
+				#fire(deg_to_rad(-105.0/2)) # divide the angle by two???
+				#fire(deg_to_rad(0)) # what the fuck???
+				#fire(deg_to_rad(105.0/2)) # ewwwww
 			if timer == 56:
 				sprite.frame = 2
 			if timer == 52:
@@ -52,17 +41,35 @@ func _physics_process(delta: float) -> void:
 			# shooting sprite
 			walk_timer = 60
 		2: # walking
+			if sprite.self_modulate.b > 0:
+				sprite.self_modulate.b -= 0.025
+				sprite.self_modulate.g -= 0.025
+			if walk_timer == 50:
+				velocity.y -= 200 # jump height
+				sprite.frame = 7
+				sprite.rotation_degrees = -90
+			if walk_timer < 50:
+				sprite.offset.x = randf_range(-1, 1)
+				sprite.offset.y = randf_range(-1, 1)
 			if walk_timer > 0:
 				walk_timer -= 1
-			else:
-				state = 0
-			if anim_timer == 0:
-				sprite.frame = 5
-			if anim_timer == 4:
-				sprite.frame = 6
-			if anim_timer == 8:
-				anim_timer = -1
-			anim_timer += 1
+			if is_on_floor() or is_on_ceiling() or is_on_wall():
+				if walk_timer < 49:
+					fire(deg_to_rad(90))
+					fire(deg_to_rad(180))
+					fire(deg_to_rad(270))
+					fire(deg_to_rad(360))
+					var explotano = load("res://explotano.tscn").instantiate()
+					get_parent().add_child(explotano)
+					explotano.position = position
+					queue_free() # despawn met (kill it)
+			#if anim_timer == 0:
+			#	sprite.frame = 5
+			#if anim_timer == 4:
+			#	sprite.frame = 6
+			#if anim_timer == 8:
+			#	anim_timer = -1
+			#anim_timer += 1
 			velocity.x = SPEED * direction
 		_:
 			pass
@@ -74,6 +81,7 @@ func fire(angle):
 	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
 	get_parent().add_child(bullet)
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+	bullet.speed = 500
 	bullet.direction.x *= direction
 	bullet.position = position + Vector2(direction*6, 0)
 
@@ -96,16 +104,16 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
 		if area.is_in_group("volatile"):
-			if state == 0:
-				var random_angle = 2.5
-				if randf() < 0.5:
-					random_angle = 3.9
-				area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
+			#if state == 0:
+				#var random_angle = 2.5
+				#if randf() < 0.5:
+				#random_angle = 3.9
+				#area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
 				#area.sprite.flip_h = !area.sprite.flip_h
-			else:
-				area.queue_free() # despawn player bullet
-		if state != 0:
-			var explotano = load("res://explotano.tscn").instantiate()
-			get_parent().add_child(explotano)
-			explotano.position = position
-			queue_free() # despawn met (kill it)
+			#else:
+			area.queue_free() # despawn player bullet
+		#if state != 0:
+		var explotano = load("res://explotano.tscn").instantiate()
+		get_parent().add_child(explotano)
+		explotano.position = position
+		queue_free() # despawn met (kill it)

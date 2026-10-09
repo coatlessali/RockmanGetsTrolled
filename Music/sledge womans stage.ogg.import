@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dm0embm0dmgah"
+path="res://.godot/imported/sledge womans stage.ogg-2c41fde90a67f34805afdf58c07def2c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Music/sledge womans stage.ogg"
+dest_files=["res://.godot/imported/sledge womans stage.ogg-2c41fde90a67f34805afdf58c07def2c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
