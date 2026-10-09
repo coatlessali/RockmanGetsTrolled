@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://pw7koyh32apb"]
+
+[ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_x15rd"]
+
+[node name="Level" unique_id=571183391 instance=ExtResource("1_x15rd")]
+
+[node name="TileMapLayer" parent="." index="3" unique_id=1862710628]
+tile_map_data = PackedByteArray(0, 0, 254, 255, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0)
