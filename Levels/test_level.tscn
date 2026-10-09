@@ -96,11 +96,15 @@ size = Vector2(16, 160)
 
 [node name="TestLevel" type="Node2D" unique_id=118663351]
 
-[node name="RushMet" parent="." unique_id=480798536 instance=ExtResource("1_x458k")]
-position = Vector2(75, -379)
+[node name="ScreenRespawnZone2" type="VisibleOnScreenNotifier2D" parent="." unique_id=929560546]
+position = Vector2(-118, -312)
+rect = Rect2(-9, -199, 254, 238)
 
-[node name="RushMet2" parent="." unique_id=6268254 instance=ExtResource("1_x458k")]
-position = Vector2(69, -315)
+[node name="RushMet" parent="ScreenRespawnZone2" unique_id=480798536 instance=ExtResource("1_x458k")]
+position = Vector2(193, -67)
+
+[node name="RushMet2" parent="ScreenRespawnZone2" unique_id=6268254 instance=ExtResource("1_x458k")]
+position = Vector2(187, -3)
 
 [node name="Player" parent="." unique_id=1439702836 node_paths=PackedStringArray("camera", "healthbar", "music") instance=ExtResource("2_t7emj")]
 z_index = 2
@@ -109,8 +113,12 @@ camera = NodePath("../Camera2D")
 healthbar = NodePath("../Camera2D/HealthBar")
 music = NodePath("../Music")
 
-[node name="Met2" parent="." unique_id=651141964 instance=ExtResource("1_lx7qo")]
-position = Vector2(-113, 166)
+[node name="ScreenRespawnZone" type="VisibleOnScreenNotifier2D" parent="." unique_id=1936602609]
+position = Vector2(-118, 168)
+rect = Rect2(-9, -199, 254, 238)
+
+[node name="Met2" parent="ScreenRespawnZone" unique_id=651141964 instance=ExtResource("1_lx7qo")]
+position = Vector2(5, -2)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=193852519 node_paths=PackedStringArray("character")]
 position = Vector2(0, 88)
@@ -431,4 +439,10 @@ shape = SubResource("SegmentShape2D_yuier")
 one_way_collision = true
 debug_color = Color(0, 0.6189147, 0.5769363, 0.41960785)
 
+[connection signal="screen_entered" from="ScreenRespawnZone2" to="ScreenRespawnZone2/RushMet" method="_on_screen_respawn_zone_2_screen_entered"]
+[connection signal="screen_entered" from="ScreenRespawnZone2" to="ScreenRespawnZone2/RushMet2" method="_on_screen_respawn_zone_2_screen_entered"]
+[connection signal="screen_exited" from="ScreenRespawnZone2" to="ScreenRespawnZone2/RushMet" method="_on_screen_respawn_zone_2_screen_exited"]
+[connection signal="screen_exited" from="ScreenRespawnZone2" to="ScreenRespawnZone2/RushMet2" method="_on_screen_respawn_zone_2_screen_exited"]
+[connection signal="screen_entered" from="ScreenRespawnZone" to="ScreenRespawnZone/Met2" method="_on_screen_respawn_zone_screen_entered"]
+[connection signal="screen_exited" from="ScreenRespawnZone" to="ScreenRespawnZone/Met2" method="_on_screen_respawn_zone_screen_exited"]
 [connection signal="animation_finished" from="Camera2D/Ready" to="Camera2D" method="_on_ready_animation_finished"]

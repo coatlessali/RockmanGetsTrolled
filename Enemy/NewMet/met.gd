@@ -7,12 +7,20 @@ var timer : int = 60
 var anim_timer : int = 0
 var walk_timer : int = 60
 var first_anim_timer : int = 0
+var onscreen : bool = true
+var home_pos : Vector2 = Vector2(0,0)
 @onready var sprite : Sprite2D = $MetSprite
+@onready var hurtbox : Area2D = $HurtBox
+
+func _ready() -> void:
+	home_pos = position
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
+	if !onscreen:
+		return
 	match state:
 		0: # inactive
 			velocity.x = 0
@@ -108,4 +116,31 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			var explotano = load("res://explotano.tscn").instantiate()
 			get_parent().add_child(explotano)
 			explotano.position = position
-			queue_free() # despawn met (kill it)
+			sprite.visible = false
+			onscreen = false
+			hurtbox.set_deferred("monitoring", false) 
+			hurtbox.set_deferred("monitorable", false) 
+			#queue_free() # despawn met (kill it)
+
+
+func _on_screen_respawn_zone_screen_entered() -> void:
+	print("respawn")
+	hurtbox.set_deferred("monitoring", true) 
+	hurtbox.set_deferred("monitorable", true) 
+
+	onscreen = true
+	position = home_pos
+	active = false
+	state = 0
+	direction = -1
+	timer = 60
+	anim_timer = 0
+	walk_timer = 60
+	first_anim_timer = 0
+	sprite.visible = true
+
+
+func _on_screen_respawn_zone_screen_exited() -> void:
+	hurtbox.set_deferred("monitoring", false) 
+	hurtbox.set_deferred("monitorable", false) 
+	onscreen = false

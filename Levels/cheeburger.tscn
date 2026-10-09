@@ -1,8 +1,22 @@
-[gd_scene format=3 uid="uid://pw7koyh32apb"]
+[gd_scene format=4 uid="uid://pw7koyh32apb"]
 
 [ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_x15rd"]
+[ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="2_1se4r"]
 
 [node name="Level" unique_id=571183391 instance=ExtResource("1_x15rd")]
 
+[node name="Player" parent="." index="2" unique_id=1414423542]
+position = Vector2(-105, -133)
+
 [node name="TileMapLayer" parent="." index="3" unique_id=1862710628]
-tile_map_data = PackedByteArray(0, 0, 254, 255, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 1, 0, 0, 0, 0, 0, 0, 0)
+tile_map_data = PackedByteArray("AAD+/wUAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAUAAQAAAAAAAAACAAUAAQAAAAAAAAD9/wUAAQAAAAAAAAD8/wUAAQAAAAAAAAD7/wUAAQAAAAAAAAD6/wUAAQAAAAAAAAD5/wUAAQAAAAAAAAD4/wUAAQAAAAAAAAADAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAA=")
+
+[node name="ScreenRespawnZone" type="VisibleOnScreenNotifier2D" parent="." index="5" unique_id=26771155]
+position = Vector2(-118, 88)
+rect = Rect2(-9, -199, 254, 238)
+
+[node name="Met2" parent="ScreenRespawnZone" index="0" unique_id=651141964 instance=ExtResource("2_1se4r")]
+position = Vector2(237, -21)
+
+[connection signal="screen_entered" from="ScreenRespawnZone" to="ScreenRespawnZone/Met2" method="_on_screen_respawn_zone_screen_entered"]
+[connection signal="screen_exited" from="ScreenRespawnZone" to="ScreenRespawnZone/Met2" method="_on_screen_respawn_zone_screen_exited"]
