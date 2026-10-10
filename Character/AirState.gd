@@ -54,8 +54,8 @@ func state_process(delta, direction):
 		else:
 			next_state = ground_state
 		playback.travel("idle")
-		if Input.is_action_pressed("slide"):
-			next_state = sliding_state
+		#if Input.is_action_pressed("slide"):
+			#next_state = sliding_state
 	else:
 		if character.local_velocity.y < character.gravity:
 			character.local_velocity.y += character.gravity * delta
@@ -113,6 +113,7 @@ func on_enter():
 	# Determines whether to jump with sliding speed
 	playback.travel("jump")
 	if(character.last_state == sliding_state):
+	#if Input.is_action_pressed("slide"):
 		air_velocity = character.slide_velocity
 		after_image_toggle = true
 	else:

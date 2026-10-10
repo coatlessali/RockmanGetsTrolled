@@ -106,7 +106,7 @@ position = Vector2(69, -300)
 z_index = 2
 position = Vector2(48, -33)
 camera = NodePath("../Camera2D")
-healthbar = NodePath("../Camera2D/HealthBar")
+healthbar = NodePath("../Camera2D/HealthFrame/HealthBar")
 music = NodePath("../Music")
 
 [node name="Met2" parent="." unique_id=651141964 instance=ExtResource("1_lx7qo")]
@@ -124,12 +124,29 @@ z_index = 10
 position = Vector2(-118, -71)
 texture = ExtResource("6_4t6x8")
 
-[node name="HealthBar" type="TextureProgressBar" parent="Camera2D" unique_id=95872705]
+[node name="HealthBar" type="TextureProgressBar" parent="Camera2D/HealthFrame" unique_id=95872705]
 z_index = 10
-offset_left = -127.0
-offset_top = -99.0
-offset_right = -119.0
-offset_bottom = -43.0
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
+max_value = 28.0
+value = 28.0
+fill_mode = 3
+texture_under = ExtResource("7_tc6tp")
+texture_progress = ExtResource("8_k8b6b")
+
+[node name="AmmoFrame" type="Sprite2D" parent="Camera2D" unique_id=16198082]
+z_index = 10
+position = Vector2(-108, -71)
+texture = ExtResource("6_4t6x8")
+
+[node name="AmmoBar" type="TextureProgressBar" parent="Camera2D/AmmoFrame" unique_id=780595933]
+z_index = 10
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
 max_value = 28.0
 value = 28.0
 fill_mode = 3

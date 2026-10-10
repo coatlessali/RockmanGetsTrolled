@@ -43,8 +43,11 @@ var dead : bool = false
 var cam_pos = Vector2(0, 88)
 var cam_follow_x : bool = false
 var cam_follow_y : bool = false
-var weapon = "buster"
 var sliding : bool = false
+
+# weapons = buster, resin, shard, sledge, slip, burly
+var weapon = "buster"
+#var weapons
 
 func _ready():
 	animation_tree.active = true
