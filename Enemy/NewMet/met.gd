@@ -25,7 +25,10 @@ func _physics_process(delta: float) -> void:
 	if !onscreen:
 		return
 	if Global.transition:
+		sprite.hide()
 		return
+	else:
+		sprite.show()
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	match state:

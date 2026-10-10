@@ -185,6 +185,8 @@ position = Vector2(512, -472)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTriggers/CameraTrigger4" index="0" unique_id=1956945230]
 shape = SubResource("RectangleShape2D_km5ld")
 
+[node name="Anchor" type="Node2D" parent="CameraTriggers/CameraTrigger4" index="1" unique_id=1129869853]
+
 [node name="CameraTrigger5" type="Area2D" parent="CameraTriggers" index="3" unique_id=421119323 groups=["CameraTriggers"]]
 position = Vector2(512, -232)
 

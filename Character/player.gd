@@ -52,7 +52,6 @@ var going_right : bool = false
 
 # weapons = buster, resin, shard, sledge, slip, burly
 var weapon = "buster"
-#var weapons
 
 func _ready():
 	animation_tree.active = true
@@ -99,8 +98,6 @@ func _physics_process(_delta):
 	var x_direction = sign(input_direction.x)
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
-		#if !is_on_floor():
-			#pass
 	
 	if Input.is_action_just_pressed("fire"):
 		charge.play()
