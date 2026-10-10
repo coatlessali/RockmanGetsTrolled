@@ -17,9 +17,9 @@ var home_pos : Vector2 = Vector2(0, 0)
 func _ready() -> void:
 	home_pos = position
 	if direction == 1:
-		sprite.flip_h = false
-	else:
 		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 
 func _physics_process(delta: float) -> void:
 	#vosn2d.global_position = home_pos

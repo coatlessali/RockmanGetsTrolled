@@ -3,69 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="1_lx7qo"]
 [ext_resource type="PackedScene" uid="uid://qk63vpyxxiad" path="res://Enemy/RushMet/rush_met.tscn" id="1_x458k"]
 [ext_resource type="PackedScene" uid="uid://xxaoff7gwbrm" path="res://Character/player.tscn" id="2_t7emj"]
-[ext_resource type="Script" uid="uid://bllac8sfk83gh" path="res://Levels/Camera2D.gd" id="4_xtnno"]
-[ext_resource type="Texture2D" uid="uid://c377im73diqqv" path="res://Art/rock/healthbar_frame.png" id="6_4t6x8"]
+[ext_resource type="PackedScene" uid="uid://cqh8nmo6dimuj" path="res://Camera.tscn" id="4_tc6tp"]
 [ext_resource type="Texture2D" uid="uid://o3b3jtm7joxn" path="res://Art/Levels/TestLevel/placeholder_background.png" id="6_tc6tp"]
 [ext_resource type="Texture2D" uid="uid://yut142irdjpr" path="res://Art/stars.png" id="7_dkv23"]
 [ext_resource type="Texture2D" uid="uid://7hbqqe8cbff" path="res://Art/Levels/TestLevel/placeholder_background_sky.png" id="7_lx7qo"]
-[ext_resource type="Texture2D" uid="uid://cnt7i5culhx0j" path="res://Art/rock/healthbar.png" id="7_tc6tp"]
-[ext_resource type="Texture2D" uid="uid://cuq5p3751pfue" path="res://Art/rock/healthbar_fill.png" id="8_k8b6b"]
-[ext_resource type="Texture2D" uid="uid://7lp08xq2n2vh" path="res://Art/ready.png" id="8_x458k"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="10_tc6tp"]
 [ext_resource type="TileSet" uid="uid://dlnrmcwvwgejk" path="res://Levels/new_tile_set.tres" id="11_dkv23"]
 [ext_resource type="AudioStream" uid="uid://vqmwdql6t42b" path="res://Music/journal_adl.res" id="12_lx7qo"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ouwm7"]
-atlas = ExtResource("8_x458k")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lrol0"]
-atlas = ExtResource("8_x458k")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_44c3d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrol0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrol0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrol0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lrol0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ouwm7")
-}],
-"loop": 0,
-"name": &"default",
-"speed": 8.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
 size = Vector2(2154, 1)
@@ -102,60 +46,19 @@ position = Vector2(75, -379)
 [node name="RushMet2" parent="." unique_id=6268254 instance=ExtResource("1_x458k")]
 position = Vector2(69, -300)
 
-[node name="Player" parent="." unique_id=1439702836 node_paths=PackedStringArray("camera", "healthbar", "music") instance=ExtResource("2_t7emj")]
+[node name="Player" parent="." unique_id=1439702836 node_paths=PackedStringArray("camera", "music") instance=ExtResource("2_t7emj")]
 z_index = 2
 position = Vector2(48, -33)
 camera = NodePath("../Camera2D")
-healthbar = NodePath("../Camera2D/HealthFrame/HealthBar")
 music = NodePath("../Music")
 
 [node name="Met2" parent="." unique_id=651141964 instance=ExtResource("1_lx7qo")]
 position = Vector2(-113, 166)
+direction = 1
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=193852519 node_paths=PackedStringArray("character")]
+[node name="Camera2D" parent="." unique_id=1937260346 node_paths=PackedStringArray("character") instance=ExtResource("4_tc6tp")]
 position = Vector2(0, 88)
-zoom = Vector2(2, 2)
-process_callback = 0
-script = ExtResource("4_xtnno")
 character = NodePath("../Player")
-
-[node name="HealthFrame" type="Sprite2D" parent="Camera2D" unique_id=277260153]
-z_index = 10
-position = Vector2(-118, -71)
-texture = ExtResource("6_4t6x8")
-
-[node name="HealthBar" type="TextureProgressBar" parent="Camera2D/HealthFrame" unique_id=95872705]
-z_index = 10
-offset_left = -9.0
-offset_top = -28.0
-offset_right = -1.0
-offset_bottom = 28.0
-max_value = 28.0
-value = 28.0
-fill_mode = 3
-texture_under = ExtResource("7_tc6tp")
-texture_progress = ExtResource("8_k8b6b")
-
-[node name="AmmoFrame" type="Sprite2D" parent="Camera2D" unique_id=16198082]
-z_index = 10
-position = Vector2(-108, -71)
-texture = ExtResource("6_4t6x8")
-
-[node name="AmmoBar" type="TextureProgressBar" parent="Camera2D/AmmoFrame" unique_id=780595933]
-z_index = 10
-offset_left = -9.0
-offset_top = -28.0
-offset_right = -1.0
-offset_bottom = 28.0
-max_value = 28.0
-value = 28.0
-fill_mode = 3
-texture_under = ExtResource("7_tc6tp")
-texture_progress = ExtResource("8_k8b6b")
-
-[node name="Ready" type="AnimatedSprite2D" parent="Camera2D" unique_id=162760113]
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_44c3d")
 
 [node name="Textures" type="Node" parent="." unique_id=293877189]
 
@@ -214,11 +117,15 @@ position = Vector2(0, 88)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger" unique_id=684067894]
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger" unique_id=1475856770]
+
 [node name="CameraTrigger8" type="Area2D" parent="Camera Triggers" unique_id=1705635481 groups=["CameraTriggers"]]
 position = Vector2(256, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger8" unique_id=1871128280]
 shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger8" unique_id=728471073]
 
 [node name="CameraTrigger9" type="Area2D" parent="Camera Triggers" unique_id=230611105 groups=["CameraTriggers"]]
 position = Vector2(256, -153)
@@ -227,11 +134,15 @@ position = Vector2(256, -153)
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger9" unique_id=1188372489]
+
 [node name="CameraTrigger10" type="Area2D" parent="Camera Triggers" unique_id=738785712 groups=["CameraTriggers"]]
 position = Vector2(-256, -152)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger10" unique_id=131830600]
 shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger10" unique_id=1861456182]
 
 [node name="CameraTrigger2" type="Area2D" parent="Camera Triggers" unique_id=1619394979 groups=["CameraTriggers"]]
 position = Vector2(-256, 88)
@@ -239,11 +150,15 @@ position = Vector2(-256, 88)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger2" unique_id=1955585095]
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger2" unique_id=1778397195]
+
 [node name="CameraTrigger3" type="Area2D" parent="Camera Triggers" unique_id=415602002 groups=["CameraTriggers"]]
 position = Vector2(0, -152)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger3" unique_id=637698533]
 shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger3" unique_id=1230860404]
 
 [node name="CameraTrigger11" type="Area2D" parent="Camera Triggers" unique_id=1784979055 groups=["CameraTriggers"]]
 position = Vector2(0, -872)
@@ -251,11 +166,15 @@ position = Vector2(0, -872)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger11" unique_id=1859867765]
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger11" unique_id=513282150]
+
 [node name="CameraTrigger4" type="Area2D" parent="Camera Triggers" unique_id=1649308027 groups=["CameraTriggers"]]
 position = Vector2(-512, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger4" unique_id=1502005646]
 shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger4" unique_id=206805874]
 
 [node name="CameraTrigger5" type="Area2D" parent="Camera Triggers" unique_id=1049438048 groups=["CameraTriggers"]]
 position = Vector2(-768, 88)
@@ -263,17 +182,23 @@ position = Vector2(-768, 88)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger5" unique_id=1945625847]
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger5" unique_id=2039367974]
+
 [node name="CameraTrigger6" type="Area2D" parent="Camera Triggers" unique_id=830628865 groups=["CameraTriggers"]]
 position = Vector2(-1024, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger6" unique_id=1645335865]
 shape = SubResource("RectangleShape2D_yuier")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger6" unique_id=1235793920]
+
 [node name="CameraTrigger7" type="Area2D" parent="Camera Triggers" unique_id=1303557443 groups=["CameraTriggers"]]
 position = Vector2(-1280, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/CameraTrigger7" unique_id=1120770147]
 shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger7" unique_id=215697456]
 
 [node name="FollowHorizontal" type="Area2D" parent="Camera Triggers" unique_id=1136593650 groups=["CameraFollowX"]]
 position = Vector2(512, 0)
@@ -282,12 +207,19 @@ position = Vector2(512, 0)
 position = Vector2(592, 88)
 shape = SubResource("RectangleShape2D_nhq0i")
 
+[node name="Anchor" type="Node2D" parent="Camera Triggers/FollowHorizontal" unique_id=1096278289]
+
 [node name="FollowVertical" type="Area2D" parent="Camera Triggers" unique_id=389373637 groups=["CameraFollowY"]]
 position = Vector2(0, -383)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/FollowVertical" unique_id=1663023261]
 position = Vector2(0, -129)
 shape = SubResource("RectangleShape2D_gxle8")
+
+[node name="Anchor3" type="Node2D" parent="Camera Triggers/FollowVertical" unique_id=2041129789]
+
+[node name="Anchor" type="Node2D" parent="Camera Triggers/FollowVertical" unique_id=452798786]
+position = Vector2(0, -240)
 
 [node name="Ladders" type="Node" parent="." unique_id=415894499]
 
@@ -447,5 +379,3 @@ position = Vector2(8, -32.5)
 shape = SubResource("SegmentShape2D_yuier")
 one_way_collision = true
 debug_color = Color(0, 0.6189147, 0.5769363, 0.41960785)
-
-[connection signal="animation_finished" from="Camera2D/Ready" to="Camera2D" method="_on_ready_animation_finished"]
