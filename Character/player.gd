@@ -69,14 +69,11 @@ func _physics_process(_delta):
 		if camera.position.is_equal_approx(cam_pos):
 			camera.position = cam_pos
 			camera_trans = false
-		if camera.position.y < cam_pos.y:
-			position.y += 0.5
-		if camera.position.y > cam_pos.y:
-			position.y -= 0.5
-		if camera.position.x < cam_pos.x:
-			position.x += 0.25
-		if camera.position.x > cam_pos.x:
-			position.x -= 0.25
+			Global.transition = false
+		if camera.position.y != cam_pos.y:
+			position.y -= sign(camera.position.y - cam_pos.y)*0.5
+		if camera.position.x != cam_pos.x:
+			position.x -= sign(camera.position.x - cam_pos.x)*0.25
 		return
 	if cam_follow_x:
 		if position.x > cam_pos.x && going_right:
@@ -179,16 +176,19 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		cam_follow_x = false
 		cam_follow_y = false
 		camera_trans = true
+		Global.transition = true
 	if area.is_in_group("CameraFollowX"):
 		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_x = true
 		camera_trans = true
+		Global.transition = true
 	if area.is_in_group("CameraFollowY"):
 		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_y = true
 		camera_trans = true
+		Global.transition = true
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = false
@@ -200,6 +200,8 @@ func _on_ladder_detection_area_exited(area: Area2D) -> void:
 			#pass
 
 func get_cam_pos(trigger: Area2D) -> void:
+	# failsafe
+	cam_pos = trigger.global_position
 	var temp : float = INF
 	for child in trigger.get_children():
 		if child.name.contains("Anchor"):

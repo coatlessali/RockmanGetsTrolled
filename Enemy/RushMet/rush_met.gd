@@ -1,5 +1,5 @@
 extends CharacterBody2D
-const SPEED = 200
+const SPEED = 180
 var active : bool = false
 var state : int = 0
 @export var direction : int = -1
@@ -25,7 +25,8 @@ func _physics_process(delta: float) -> void:
 	#vosn2d.global_position = home_pos
 	# Add the gravity.
 	if !onscreen:
-		#print(onscreen)
+		return
+	if Global.transition:
 		return
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -59,7 +60,7 @@ func _physics_process(delta: float) -> void:
 				sprite.self_modulate.b -= 0.025
 				sprite.self_modulate.g -= 0.025
 			if walk_timer == 50:
-				velocity.y -= 200 # jump height
+				velocity.y -= 180 # jump height
 				sprite.frame = 7
 				sprite.rotation_degrees = -90
 			if walk_timer < 50:

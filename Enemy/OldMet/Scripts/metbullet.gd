@@ -11,6 +11,8 @@ func _ready() -> void:
 	sprite.play()
 
 func _process(delta):
+	if Global.transition:
+		queue_free()
 	position = position + speed * direction * delta
 	sprite.flip_h = (direction.x == DDirection.LEFT) # flips the sprite if moving left
 	#if wallotile:

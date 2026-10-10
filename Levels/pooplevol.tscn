@@ -8,7 +8,7 @@ size = Vector2(1440, 240)
 
 [node name="Level" unique_id=571183391 instance=ExtResource("1_6xgv7")]
 
-[node name="Camera2D" parent="." index="1" unique_id=325535106]
+[node name="Camera2D" parent="." index="0" unique_id=1937260346]
 position = Vector2(0, 4)
 
 [node name="Player" parent="." index="2" unique_id=1414423542]
