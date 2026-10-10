@@ -2,7 +2,7 @@ extends CharacterBody2D
 const SPEED = 120
 var active : bool = false
 var state : int = 0
-var direction : int = -1
+@export var direction : int = -1
 var timer : int = 60
 var anim_timer : int = 0
 var walk_timer : int = 60
@@ -11,16 +11,21 @@ var onscreen : bool = true
 var home_pos : Vector2 = Vector2(0,0)
 @onready var sprite : Sprite2D = $MetSprite
 @onready var hurtbox : Area2D = $HurtBox
+@onready var collision : CollisionShape2D = $MetCollision
 
 func _ready() -> void:
 	home_pos = position
+	if direction == 1:
+		sprite.flip_h = true
+	else:
+		sprite.flip_h = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
 	if !onscreen:
 		return
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	match state:
 		0: # inactive
 			velocity.x = 0
@@ -44,9 +49,9 @@ func _physics_process(delta: float) -> void:
 		1: # shooting
 			if timer == 60:
 				sprite.frame = 1
-				fire(deg_to_rad(-30))
-				fire(deg_to_rad(0))
-				fire(deg_to_rad(30))
+				fire(-30)
+				fire(0)
+				fire(30)
 			if timer == 56:
 				sprite.frame = 2
 			if timer == 52:
@@ -81,7 +86,7 @@ func fire(angle):
 	print("angle: " + str(angle))
 	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
 	get_parent().add_child(bullet)
-	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+	bullet.direction = Vector2.RIGHT.rotated(deg_to_rad(angle)).normalized()
 	bullet.direction.x *= direction
 	bullet.position = position + Vector2(direction*6, 0)
 
@@ -98,8 +103,11 @@ func _on_player_detection_area_body_entered(body: Node2D) -> void:
 			sprite.flip_h = false
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	if state == 2:
-		queue_free()
+	hurtbox.set_deferred("monitoring", false) 
+	hurtbox.set_deferred("monitorable", false) 
+	#collision.disabled = true
+	onscreen = false
+	position = home_pos
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
@@ -122,14 +130,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			hurtbox.set_deferred("monitorable", false) 
 			#queue_free() # despawn met (kill it)
 
-
-func _on_screen_respawn_zone_screen_entered() -> void:
-	print("respawn")
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	hurtbox.set_deferred("monitoring", true) 
 	hurtbox.set_deferred("monitorable", true) 
 
 	onscreen = true
-	position = home_pos
 	active = false
 	state = 0
 	direction = -1
@@ -138,9 +143,3 @@ func _on_screen_respawn_zone_screen_entered() -> void:
 	walk_timer = 60
 	first_anim_timer = 0
 	sprite.visible = true
-
-
-func _on_screen_respawn_zone_screen_exited() -> void:
-	hurtbox.set_deferred("monitoring", false) 
-	hurtbox.set_deferred("monitorable", false) 
-	onscreen = false

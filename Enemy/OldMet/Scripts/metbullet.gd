@@ -13,6 +13,9 @@ func _ready() -> void:
 func _process(delta):
 	position = position + speed * direction * delta
 	sprite.flip_h = (direction.x == DDirection.LEFT) # flips the sprite if moving left
+	#if wallotile:
+		#if is_on_floor() or is_on_ceiling() or is_on_wall():
+			#pass
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

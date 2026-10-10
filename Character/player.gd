@@ -13,6 +13,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @export var camera : Camera2D
 @export var healthbar : TextureProgressBar
 @export var music : AudioStreamPlayer
+@export var facing_direction = 1
 @onready var hurtsound : AudioStreamPlayer = $Hurt
 @onready var charge : AudioStreamPlayer = $Charge
 @onready var sprite : Sprite2D = $CharacterSprite
@@ -47,7 +48,10 @@ var sliding : bool = false
 
 func _ready():
 	animation_tree.active = true
-	sprite.flip_h = true # the sprite sheet is cursed and flipped
+	if facing_direction == 1:
+		sprite.flip_h = true # the sprite sheet is cursed and flipped
+	else:
+		sprite.flip_h = false
 	sprite.material.set("shader_parameter/intensity", 0.0)
 	sprite.material.set("shader_parameter/speed", 0.0)
 

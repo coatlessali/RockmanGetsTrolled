@@ -37,7 +37,7 @@ func _physics_process(delta):
 			character.position.y += 0.75
 		if character.camera.position.y > character.cam_pos.y:
 			character.position.y -= 0.75
-		print("return")
+		#print("return")
 		return
 	elif character.cam_follow_x:
 		if abs(character.camera.position.x - character.position.x) > 4:
