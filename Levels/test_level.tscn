@@ -201,13 +201,16 @@ shape = SubResource("RectangleShape2D_yuier")
 [node name="Anchor" type="Node2D" parent="Camera Triggers/CameraTrigger7" unique_id=215697456]
 
 [node name="FollowHorizontal" type="Area2D" parent="Camera Triggers" unique_id=1136593650 groups=["CameraFollowX"]]
-position = Vector2(512, 0)
+position = Vector2(512, 88)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera Triggers/FollowHorizontal" unique_id=442802687]
-position = Vector2(592, 88)
+position = Vector2(592, 0)
 shape = SubResource("RectangleShape2D_nhq0i")
 
 [node name="Anchor" type="Node2D" parent="Camera Triggers/FollowHorizontal" unique_id=1096278289]
+
+[node name="Anchor2" type="Node2D" parent="Camera Triggers/FollowHorizontal" unique_id=427357578]
+position = Vector2(1184, 0)
 
 [node name="FollowVertical" type="Area2D" parent="Camera Triggers" unique_id=389373637 groups=["CameraFollowY"]]
 position = Vector2(0, -383)

@@ -41,6 +41,7 @@ var shader_speed = 0.0
 var hurt : bool = false
 var dead : bool = false
 var cam_pos = Vector2(0, 88)
+var cam2_pos = Vector2(0, 88)
 var cam_follow_x : bool = false
 var cam_follow_y : bool = false
 var sliding : bool = false
@@ -76,15 +77,20 @@ func _physics_process(_delta):
 			position.x -= sign(camera.position.x - cam_pos.x)*0.25
 		return
 	if cam_follow_x:
-		if position.x > cam_pos.x && going_right:
-			camera.position.x = position.x
 		if position.x < cam_pos.x && !going_right:
-			camera.position.x = position.x
+			if position.x >= cam2_pos.x:
+				camera.position.x = position.x
+		if position.x > cam_pos.x && going_right:
+			if position.x <= cam2_pos.x:
+				camera.position.x = position.x
 	if cam_follow_y:
 		if position.y < cam_pos.y && !going_down:
-			camera.position.y = position.y
+			if position.y >= cam2_pos.y:
+				camera.position.y = position.y
 		if position.y > cam_pos.y && going_down:
-			camera.position.y = position.y
+			if position.y <= cam2_pos.y:
+				camera.position.y = position.y
+		
 			
 	if hp <= 0:
 		dead = true
@@ -202,10 +208,14 @@ func _on_ladder_detection_area_exited(area: Area2D) -> void:
 func get_cam_pos(trigger: Area2D) -> void:
 	# failsafe
 	cam_pos = trigger.global_position
+	cam2_pos = trigger.global_position
 	var temp : float = INF
+	var temp2 : float = INF
 	for child in trigger.get_children():
 		if child.name.contains("Anchor"):
 			if global_position.distance_to(child.global_position) < temp:
+				temp2 = temp
+				cam2_pos = cam_pos
 				temp = global_position.distance_to(child.global_position)
 				cam_pos = child.global_position
 				if position.y > child.global_position.y:
@@ -216,6 +226,8 @@ func get_cam_pos(trigger: Area2D) -> void:
 					going_right = false
 				else:
 					going_right = true
+			elif global_position.distance_to(child.global_position) < temp2:
+				cam2_pos = child.global_position
 	
 func _on_ladder_detection_down_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
