@@ -29,8 +29,8 @@ Global="*uid://brwmit7pp1e2x"
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=448
+window/size/viewport_width=256
+window/size/viewport_height=224
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
@@ -116,3 +116,4 @@ debug_phys_interpol={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

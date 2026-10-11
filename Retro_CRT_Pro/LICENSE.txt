@@ -1,0 +1,35 @@
+============================================================
+    COMMERCIAL LICENSE - Node3D STUDIO
+============================================================
+Product: RetroVision Pro Shader
+Copyright © 2026 Node3D Studio. All rights reserved.
+============================================================
+
+By purchasing this asset, you are granted a non-exclusive, 
+perpetual, worldwide license to use the "RetroVision Pro" 
+shader under the following terms:
+
+1. PERMITTED USES:
+   - Use in any number of personal or commercial video games.
+   - Modification of the source code for the purpose of 
+     integrating it into your project.
+
+2. PROHIBITED USES:
+   - You MAY NOT redistribute, sub-license, or resell the 
+     source code (.gdshader file) as a standalone asset, 
+     part of a template, or as part of a shader pack.
+   - You MAY NOT claim the original code as your own.
+
+3. ATTRIBUTION:
+   - Attribution to "Node3D Studio" is highly appreciated 
+     but NOT required for commercial use.
+
+4. LIABILITY:
+   - The shader is provided "as is". Node3D Studio is not 
+     responsible for any technical issues arising from 
+     misuse or engine compatibility changes.
+
+============================================================
+Thank you for respecting the creator's rights.
+Node3D Studio
+============================================================

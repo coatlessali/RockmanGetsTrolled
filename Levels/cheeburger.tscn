@@ -35,6 +35,7 @@ size = Vector2(256, 480)
 
 [node name="Camera2D" parent="." index="0" unique_id=1937260346]
 z_index = 1
+zoom = Vector2(1, 1)
 
 [node name="Music" parent="." index="1" unique_id=392293257]
 stream = ExtResource("2_3rgmp")

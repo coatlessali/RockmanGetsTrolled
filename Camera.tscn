@@ -59,7 +59,6 @@ animations = [{
 }]
 
 [node name="Camera2D" type="Camera2D" unique_id=1937260346]
-zoom = Vector2(2, 2)
 process_callback = 0
 script = ExtResource("1_xjyju")
 
@@ -100,5 +99,13 @@ texture_progress = ExtResource("4_07nfj")
 [node name="Ready" type="AnimatedSprite2D" parent="." unique_id=1132866749]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_44c3d")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1597159055]
+visible = false
+z_index = 67
+offset_left = -128.0
+offset_top = -112.0
+offset_right = 128.0
+offset_bottom = 112.0
 
 [connection signal="animation_finished" from="Ready" to="." method="_on_ready_animation_finished"]
