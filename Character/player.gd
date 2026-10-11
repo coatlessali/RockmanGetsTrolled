@@ -63,6 +63,13 @@ func _ready():
 	sprite.material.set("shader_parameter/speed", 0.0)
 
 func _physics_process(_delta):
+	if Input.is_action_just_pressed("debug_phys_interpol"):
+		get_tree().physics_interpolation = !get_tree().physics_interpolation
+		if get_tree().physics_interpolation == true:
+			print("RTX On")
+		else:
+			print("RTX Off")
+	
 	if camera_trans:
 		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
 		camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)

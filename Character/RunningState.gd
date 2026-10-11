@@ -95,8 +95,8 @@ func slide():
 func fire(angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-	get_parent().add_child(bullet)
 	bullet.position = character.position + Vector2(character.last_faced*16, 10)
+	get_parent().add_child(bullet)
 
 func charge_shot(angle):
 	if character.weapon == "buster":
@@ -106,5 +106,5 @@ func charge_shot(angle):
 		if character.shader_intensity >= 0.70:
 			bullet = load("res://ChargeBullet.tscn").instantiate()
 		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-		get_parent().add_child(bullet)
 		bullet.position = character.position + Vector2(character.last_faced*16, 10)
+		get_parent().add_child(bullet)

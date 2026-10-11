@@ -163,14 +163,14 @@ func fire(angle):
 	var direction = Vector2.RIGHT.rotated(angle).normalized()
 	var bullet = load("Bullet.tscn").instantiate()
 	bullet.direction = direction
-	get_parent().add_child(bullet)
 	bullet.position = character.position + Vector2(character.last_faced*10, 14)
+	get_parent().add_child(bullet)
 
 func dust():
 	var particle = load("res://Character/slide_dust.tscn").instantiate()
-	get_parent().add_child(particle)
 	particle.position = Vector2(character.position.x, character.position.y + 8)
 	particle.flip_h = !sprite.flip_h
+	get_parent().add_child(particle)
 
 func charge_shot(angle):
 	if character.weapon == "buster":
@@ -180,5 +180,5 @@ func charge_shot(angle):
 		if character.shader_intensity >= 0.70:
 			bullet = load("res://ChargeBullet.tscn").instantiate()
 		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-		get_parent().add_child(bullet)
 		bullet.position = character.position + Vector2(character.last_faced*10, 14)
+		get_parent().add_child(bullet)

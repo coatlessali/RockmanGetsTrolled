@@ -22,7 +22,7 @@ func _ready() -> void:
 		sprite.flip_h = false
 
 func _physics_process(delta: float) -> void:
-	#vosn2d.global_position = home_pos
+	vosn2d.global_position = home_pos
 	# Add the gravity.
 	if !onscreen:
 		return
@@ -100,11 +100,11 @@ func _physics_process(delta: float) -> void:
 func fire(angle):
 	print("angle: " + str(angle))
 	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
-	get_parent().add_child(bullet)
 	bullet.direction = Vector2.RIGHT.rotated(deg_to_rad(angle)).normalized()
 	bullet.speed = 500
 	bullet.direction.x *= direction
 	bullet.position = position + Vector2(direction*6, 0)
+	get_parent().add_child(bullet)
 
 func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if state != 0:
@@ -138,8 +138,8 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			area.queue_free() # despawn player bullet
 		#if state != 0:
 		var explotano = load("res://explotano.tscn").instantiate()
-		get_parent().add_child(explotano)
 		explotano.position = position
+		get_parent().add_child(explotano)
 		sprite.visible = false
 		onscreen = false
 		hurtbox.set_deferred("monitoring", false) 
