@@ -25,7 +25,7 @@ func _on_audio_stream_player_finished() -> void:
 	can_move = true
 	character.sprite.show()
 	next_state = idle
-	character.position = Vector2(0, 0)
+	character.position = character.home_pos
 	character.hp = 28
 	character.music.play()
 	character.camera.position = Vector2(0, 88)

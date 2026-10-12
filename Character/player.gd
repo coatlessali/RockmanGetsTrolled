@@ -22,6 +22,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 
 # vars used for character state etc, do not touch
+var home_pos = Vector2(0, 0)
 var hp = 28
 var intro : bool = false
 var last_state : State
@@ -241,6 +242,8 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		cam_follow_y = false
 		camera_trans = true
 		Global.transition = true
+		if area.is_in_group("Checkpoint"):
+			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 	if area.is_in_group("CameraFollowX"):
 		#cam_pos = area.position
 		get_cam_pos(area)

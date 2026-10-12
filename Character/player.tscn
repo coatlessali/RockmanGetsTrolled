@@ -840,6 +840,7 @@ climb_hurt = NodePath("../ClimbHurt")
 dead_state = NodePath("../DeadState")
 
 [node name="StateDebugLabel" type="Label" parent="." unique_id=1032672927 node_paths=PackedStringArray("state_machine", "character")]
+visible = false
 offset_left = -53.0
 offset_top = -49.0
 offset_right = 53.0
@@ -907,7 +908,7 @@ volume_db = -9.683
 
 [node name="Slide" type="AudioStreamPlayer" parent="." unique_id=759576433]
 stream = ExtResource("38_5xm0m")
-volume_db = -6.171
+volume_db = -8.0
 
 [node name="Weapons" type="Node" parent="." unique_id=2115021690]
 
