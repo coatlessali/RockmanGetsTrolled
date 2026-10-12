@@ -98,3 +98,13 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 				hurtbox.set_deferred("monitoring", false) 
 				hurtbox.set_deferred("monitorable", false)
 				position = home_pos
+
+
+func _on_player_detection_body_exited(body: Node2D) -> void:
+	if body.is_in_group("Player"):
+		if body.position.x < position.x:
+			sprite.flip_h = false
+			direction = -1
+		else:
+			sprite.flip_h = true
+			direction = 1

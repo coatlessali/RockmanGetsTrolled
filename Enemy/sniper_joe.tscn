@@ -47,12 +47,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhq0i"]
 size = Vector2(22, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
+size = Vector2(2, 91)
+
 [node name="Sniper Joe" type="CharacterBody2D" unique_id=420513699]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7jfn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2070944201]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_va8fw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1511362083]
@@ -68,6 +72,13 @@ shape = SubResource("RectangleShape2D_nhq0i")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1846565918]
 rect = Rect2(-16, -15, 32, 30)
 
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=60479506]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1047323363]
+position = Vector2(0, -33)
+shape = SubResource("RectangleShape2D_44c3d")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
