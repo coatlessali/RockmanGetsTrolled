@@ -127,7 +127,7 @@ func on_enter():
 	dust_timer = 18
 	slide_buffer = 2
 	sprite.offset.y = 2
-	timer = 35
+	timer = 25
 	slide_dir = character.last_faced
 	slide_hurtbox.disabled = false
 	slide_actual_hurtbox.monitoring = true

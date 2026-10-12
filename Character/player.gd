@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 # adjustable character vars, tweak to your heart's content
-var speed : float = 90
-var slide_velocity : float = 140
+var speed : float = 95
+var slide_velocity : float = 150
 var friction : float = 5
 var local_velocity_cap : float = 250
 var jump_velocity : float = -285

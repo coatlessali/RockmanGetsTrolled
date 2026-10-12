@@ -7,7 +7,7 @@ class_name RunStart
 @export var running_state : State
 @export var slide_state : State
 @export var ground_state : State
-@export var default_pause_frames : int = 6
+@export var default_pause_frames : int = 3
 @export var sprite : Sprite2D
 @export var climb_state : State
 var pause_frames : int = 30

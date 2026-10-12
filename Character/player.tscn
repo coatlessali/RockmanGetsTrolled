@@ -37,7 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://bj5cwia2q07ly" path="res://Art/explotano/explotano07.png" id="33_eryot"]
 [ext_resource type="AudioStream" uid="uid://dlwpbvysom78b" path="res://Sounds/Hurt.wav" id="35_mwdr7"]
 [ext_resource type="AudioStream" uid="uid://ckivcxuv8yfhc" path="res://Sounds/charge.wav" id="36_4kk4v"]
-[ext_resource type="AudioStream" uid="uid://crtyloaeeu0h5" path="res://Sounds/slide.wav" id="38_2kngs"]
+[ext_resource type="AudioStream" uid="uid://dkmacc2ongalq" path="res://Sounds/slide_compressed.wav" id="38_5xm0m"]
 [ext_resource type="Script" uid="uid://ctg0euikna86d" path="res://Character/buster.gd" id="39_u3msb"]
 [ext_resource type="Script" uid="uid://css47omiuvdlt" path="res://Character/rush_coil.gd" id="40_5xm0m"]
 
@@ -905,7 +905,7 @@ stream = ExtResource("36_4kk4v")
 volume_db = -9.683
 
 [node name="Slide" type="AudioStreamPlayer" parent="." unique_id=759576433]
-stream = ExtResource("38_2kngs")
+stream = ExtResource("38_5xm0m")
 volume_db = -6.171
 
 [node name="Weapons" type="Node" parent="." unique_id=2115021690]
