@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://53xx7jolc0c0" path="res://Enemy/sniper_joe.gd" id="1_j7jfn"]
 [ext_resource type="Texture2D" uid="uid://t4nikw423l56" path="res://Art/sniper_joe.png" id="2_u64fa"]
+[ext_resource type="Script" uid="uid://cr6kveqa5u2nn" path="res://Enemy/sniper_joe_hurtbox.gd" id="3_u64fa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va8fw"]
 size = Vector2(24, 24)
@@ -46,19 +47,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nhq0i"]
 size = Vector2(22, 24)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
+size = Vector2(2, 91)
+
 [node name="Sniper Joe" type="CharacterBody2D" unique_id=420513699]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7jfn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2070944201]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_va8fw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1511362083]
 sprite_frames = SubResource("SpriteFrames_nhq0i")
 animation = &"Idle"
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=852696361]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=852696361 groups=["EnemyBullet"]]
+script = ExtResource("3_u64fa")
 
 [node name="Hurtbox shape" type="CollisionShape2D" parent="Hurtbox" unique_id=1457089478]
 shape = SubResource("RectangleShape2D_nhq0i")
@@ -66,7 +72,13 @@ shape = SubResource("RectangleShape2D_nhq0i")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1846565918]
 rect = Rect2(-16, -15, 32, 30)
 
+[node name="PlayerDetection" type="Area2D" parent="." unique_id=60479506]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection" unique_id=1047323363]
+position = Vector2(0, -33)
+shape = SubResource("RectangleShape2D_44c3d")
+
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
