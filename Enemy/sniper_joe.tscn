@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://53xx7jolc0c0" path="res://Enemy/sniper_joe.gd" id="1_j7jfn"]
 [ext_resource type="Texture2D" uid="uid://t4nikw423l56" path="res://Art/sniper_joe.png" id="2_u64fa"]
+[ext_resource type="Script" uid="uid://cr6kveqa5u2nn" path="res://Enemy/sniper_joe_hurtbox.gd" id="3_u64fa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va8fw"]
 size = Vector2(24, 24)
@@ -58,7 +59,8 @@ shape = SubResource("RectangleShape2D_va8fw")
 sprite_frames = SubResource("SpriteFrames_nhq0i")
 animation = &"Idle"
 
-[node name="Hurtbox" type="Area2D" parent="." unique_id=852696361]
+[node name="Hurtbox" type="Area2D" parent="." unique_id=852696361 groups=["EnemyBullet"]]
+script = ExtResource("3_u64fa")
 
 [node name="Hurtbox shape" type="CollisionShape2D" parent="Hurtbox" unique_id=1457089478]
 shape = SubResource("RectangleShape2D_nhq0i")
@@ -67,6 +69,5 @@ shape = SubResource("RectangleShape2D_nhq0i")
 rect = Rect2(-16, -15, 32, 30)
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

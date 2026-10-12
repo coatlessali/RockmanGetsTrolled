@@ -380,4 +380,5 @@ one_way_collision = true
 debug_color = Color(0, 0.6189147, 0.5769363, 0.41960785)
 
 [node name="Sniper Joe" parent="." unique_id=420513699 instance=ExtResource("10_k8b6b")]
-position = Vector2(-57, 164)
+position = Vector2(-57, 165)
+direction = 1

@@ -2,27 +2,41 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var collision = $CollisionShape2D
 @onready var hurtbox = $Hurtbox
+@onready var vosn2d : VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 
-var direction = -1
-var timer = 180
+@export var direction = -1
+var timer = 120
 var shootingtimer = 180
 var shooting = false
 var onscreen = false
+var home_pos = Vector2(0, 0)
+var hp = 10
 
 func _ready() -> void:
+	if direction == -1:
+		sprite.flip_h = false
+	else:
+		sprite.flip_h = true
 	sprite.animation = "Idle"
+	home_pos = position
+	
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if !onscreen:
 		return
+	if Global.transition:
+		sprite.hide()
+		return
+	else:
+		sprite.show()
 	timer -= 1
 	if timer <= 0:
 		shooting = true
 		sprite.animation = "Shoot"
 	if shooting:
 		shootingtimer -= 1
-		if shootingtimer == 150 or shootingtimer == 135 or shootingtimer == 120:
+		if shootingtimer == 150 or shootingtimer == 125 or shootingtimer == 100:
 			fire()
 		if shootingtimer <= 0:
 			sprite.animation = "Idle"
@@ -33,10 +47,18 @@ func _physics_process(delta: float) -> void:
 
 func fire():
 	sprite.play()
+	var bullet = load("res://Enemy/NewMet/MetBullet.tscn").instantiate()
+	bullet.direction = Vector2.RIGHT.normalized()
+	bullet.direction.x *= direction
+	bullet.position = position + Vector2(direction*9, 4)
+	bullet.speed = 120
+	get_parent().add_child(bullet)
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	onscreen = true
+	hurtbox.set_deferred("monitoring", true) 
+	hurtbox.set_deferred("monitorable", true)
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
@@ -45,11 +67,34 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	timer = 180
 	shootingtimer = 180
 	shooting = false
-
-
-func _on_hurtbox_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+	hurtbox.set_deferred("monitoring", false) 
+	hurtbox.set_deferred("monitorable", false)
+	position = home_pos
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	if area.is_in_group("Bullets"):
+		if area.is_in_group("volatile"):
+			if !shooting:
+				# TODO: come back to this later and just =* direction.x
+				var random_angle = 2.5
+				if randf() < 0.5:
+					random_angle = 3.9
+				area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
+			else:
+				area.queue_free() # despawn player bullet
+		if shooting:
+			hp -= area.damage
+			if hp <= 0:
+				var explotano = load("res://explotano.tscn").instantiate()
+				explotano.position = position
+				get_parent().add_child(explotano)
+				sprite.visible = false
+				onscreen = false
+				sprite.animation = "Idle"
+				timer = 180
+				shootingtimer = 180
+				shooting = false
+				hurtbox.set_deferred("monitoring", false) 
+				hurtbox.set_deferred("monitorable", false)
+				position = home_pos
