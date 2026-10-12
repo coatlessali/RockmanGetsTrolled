@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dnqjwj5bnmoha"]
 
 [ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_v0be5"]
-[ext_resource type="AudioStream" uid="uid://dvbkhtbx7o55" path="res://Sounds/journal_adl.ogg" id="2_jj4wx"]
+[ext_resource type="AudioStream" uid="uid://dvbkhtbx7o55" path="res://Music/journal_adl.ogg" id="2_jj4wx"]
 [ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="3_cntf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_km5ld"]

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sal6sxrml4bf"
-path="res://.godot/imported/met.png-ec2921b7aebde9d187703b2976b2e126.ctex"
+path="res://.godot/imported/met.png-ec64b6d637c8348df6977c077cf4717a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemy/OldMet/Art/met.png"
-dest_files=["res://.godot/imported/met.png-ec2921b7aebde9d187703b2976b2e126.ctex"]
+source_file="res://Enemy/BigDumbStupidIdiot/met.png"
+dest_files=["res://.godot/imported/met.png-ec64b6d637c8348df6977c077cf4717a.ctex"]
 
 [params]
 
