@@ -1,12 +1,12 @@
 [gd_scene format=4 uid="uid://dmmkegp00cl18"]
 
-[ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="1_lx7qo"]
 [ext_resource type="PackedScene" uid="uid://qk63vpyxxiad" path="res://Enemy/RushMet/rush_met.tscn" id="1_x458k"]
 [ext_resource type="PackedScene" uid="uid://xxaoff7gwbrm" path="res://Character/player.tscn" id="2_t7emj"]
 [ext_resource type="PackedScene" uid="uid://cqh8nmo6dimuj" path="res://Camera.tscn" id="4_tc6tp"]
 [ext_resource type="Texture2D" uid="uid://o3b3jtm7joxn" path="res://Art/Levels/TestLevel/placeholder_background.png" id="6_tc6tp"]
 [ext_resource type="Texture2D" uid="uid://yut142irdjpr" path="res://Art/stars.png" id="7_dkv23"]
 [ext_resource type="Texture2D" uid="uid://7hbqqe8cbff" path="res://Art/Levels/TestLevel/placeholder_background_sky.png" id="7_lx7qo"]
+[ext_resource type="PackedScene" uid="uid://3m2p24s43m46" path="res://Enemy/sniper_joe.tscn" id="10_k8b6b"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="10_tc6tp"]
 [ext_resource type="TileSet" uid="uid://dlnrmcwvwgejk" path="res://Levels/new_tile_set.tres" id="11_dkv23"]
 [ext_resource type="AudioStream" uid="uid://vqmwdql6t42b" path="res://Music/journal_adl.res" id="12_lx7qo"]
@@ -51,10 +51,6 @@ z_index = 2
 position = Vector2(48, -33)
 camera = NodePath("../Camera2D")
 music = NodePath("../Music")
-
-[node name="Met2" parent="." unique_id=651141964 instance=ExtResource("1_lx7qo")]
-position = Vector2(-113, 166)
-direction = 1
 
 [node name="Camera2D" parent="." unique_id=1937260346 node_paths=PackedStringArray("character") instance=ExtResource("4_tc6tp")]
 position = Vector2(0, 88)
@@ -382,3 +378,6 @@ position = Vector2(8, -32.5)
 shape = SubResource("SegmentShape2D_yuier")
 one_way_collision = true
 debug_color = Color(0, 0.6189147, 0.5769363, 0.41960785)
+
+[node name="Sniper Joe" parent="." unique_id=420513699 instance=ExtResource("10_k8b6b")]
+position = Vector2(-57, 164)

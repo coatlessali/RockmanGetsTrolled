@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://3m2p24s43m46"]
+
+[ext_resource type="Script" uid="uid://53xx7jolc0c0" path="res://Enemy/sniper_joe.gd" id="1_j7jfn"]
+[ext_resource type="Texture2D" uid="uid://t4nikw423l56" path="res://Art/sniper_joe.png" id="2_u64fa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_va8fw"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyspa"]
+atlas = ExtResource("2_u64fa")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66wu4"]
+atlas = ExtResource("2_u64fa")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7bmj"]
+atlas = ExtResource("2_u64fa")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nhq0i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyspa")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wu4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7bmj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66wu4")
+}],
+"loop": 0,
+"name": &"Shoot",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nhq0i"]
+size = Vector2(22, 24)
+
+[node name="Sniper Joe" type="CharacterBody2D" unique_id=420513699]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_j7jfn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2070944201]
+shape = SubResource("RectangleShape2D_va8fw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1511362083]
+sprite_frames = SubResource("SpriteFrames_nhq0i")
+animation = &"Idle"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=852696361]
+
+[node name="Hurtbox shape" type="CollisionShape2D" parent="Hurtbox" unique_id=1457089478]
+shape = SubResource("RectangleShape2D_nhq0i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1846565918]
+rect = Rect2(-16, -15, 32, 30)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
