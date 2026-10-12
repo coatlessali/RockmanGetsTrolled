@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://dnqjwj5bnmoha"]
 
 [ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_v0be5"]
-[ext_resource type="AudioStream" uid="uid://btvg8btamlvql" path="res://Music/journal_adl.tres" id="2_v0be5"]
 [ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="3_cntf0"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="3_jj4wx"]
 [ext_resource type="Texture2D" uid="uid://o3b3jtm7joxn" path="res://Art/Levels/TestLevel/placeholder_background.png" id="5_cntf0"]
@@ -39,10 +38,7 @@ size = Vector2(16, 96)
 [node name="Camera2D" parent="." index="0" unique_id=1937260346]
 position = Vector2(0, 4)
 
-[node name="Music" parent="." index="1" unique_id=392293257]
-stream = ExtResource("2_v0be5")
-
-[node name="DeathTrap" type="Area2D" parent="Music" index="0" unique_id=1490519212 groups=["EnemyBullet"]]
+[node name="DeathTrap" type="Area2D" parent="Music" parent_id_path=PackedInt32Array(392293257) index="0" unique_id=1490519212 groups=["EnemyBullet"]]
 position = Vector2(2594, 170)
 script = ExtResource("3_jj4wx")
 metadata/_edit_group_ = true
@@ -224,7 +220,7 @@ stretch_mode = 1
 [node name="Parallax2D" type="Parallax2D" parent="." index="25" unique_id=1039050169]
 z_index = -9
 scroll_scale = Vector2(0.5, 1)
-scroll_offset = Vector2(-128, -140)
+scroll_offset = Vector2(-128, -112)
 repeat_size = Vector2(256, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=889237493]

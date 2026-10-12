@@ -7,3 +7,4 @@ sampling_rate = 44100.0
 
 [resource]
 packet_sequence = SubResource("OggPacketSequence_07n17")
+loop = true
