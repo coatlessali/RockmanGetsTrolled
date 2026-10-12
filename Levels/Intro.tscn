@@ -63,7 +63,7 @@ shape = SubResource("RectangleShape2D_v0be5")
 position = Vector2(-592, 0)
 
 [node name="Anchor2" type="Node2D" parent="FollowHorizontal2" index="2" unique_id=42322810]
-position = Vector2(720, 0)
+position = Vector2(1246, 0)
 
 [node name="Met" parent="." index="8" unique_id=651141964 instance=ExtResource("3_cntf0")]
 position = Vector2(568, 52)
