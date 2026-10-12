@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctf3ctcqd2h4i"]
 
-[ext_resource type="Script" uid="uid://cd4w7hphnhoem" path="res://Enemy/OldMet/Scripts/metbullet.gd" id="1_i47o8"]
+[ext_resource type="Script" uid="uid://cd4w7hphnhoem" path="res://Enemy/NewMet/metbullet.gd" id="1_i47o8"]
 [ext_resource type="Texture2D" uid="uid://vhlvkj5e46bv" path="res://Art/enemy_bullet.png" id="2_h5udr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vx16m"]

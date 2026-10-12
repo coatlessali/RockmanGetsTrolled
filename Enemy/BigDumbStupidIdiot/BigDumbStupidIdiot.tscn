@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://txwm4m810fo5"]
 
 [ext_resource type="Script" uid="uid://k8inc3yenfpb" path="res://Enemy/BigDumbStupidIdiot/big_dumb_stupid_idiot.gd" id="1_1iama"]
-[ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/OldMet/Art/met.png" id="2_2boj5"]
+[ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/BigDumbStupidIdiot/met.png" id="2_2boj5"]
 [ext_resource type="Script" uid="uid://b53s6f35sgxr4" path="res://Enemy/BigDumbStupidIdiot/hurt_box.gd" id="3_2boj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]

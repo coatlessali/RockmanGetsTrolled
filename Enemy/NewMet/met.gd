@@ -93,7 +93,7 @@ func _physics_process(delta: float) -> void:
 
 func fire(angle):
 	print("angle: " + str(angle))
-	var bullet = load("res://Enemy/OldMet/MetBullet.tscn").instantiate()
+	var bullet = load("res://Enemy/NewMet/MetBullet.tscn").instantiate()
 	bullet.direction = Vector2.RIGHT.rotated(deg_to_rad(angle)).normalized()
 	bullet.direction.x *= direction
 	bullet.position = position + Vector2(direction*6, 0)

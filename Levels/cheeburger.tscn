@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_x15rd"]
 [ext_resource type="PackedScene" uid="uid://c6hhf8j2dooy" path="res://Enemy/NewMet/met.tscn" id="2_1se4r"]
-[ext_resource type="AudioStream" uid="uid://cl7u2wtil6nok" path="res://Sounds/magician.ogg" id="2_3rgmp"]
+[ext_resource type="AudioStream" uid="uid://cl7u2wtil6nok" path="res://Music/magician.ogg" id="2_3rgmp"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="4_agepi"]
 [ext_resource type="PackedScene" uid="uid://txwm4m810fo5" path="res://Enemy/BigDumbStupidIdiot/BigDumbStupidIdiot.tscn" id="5_oebdc"]
 [ext_resource type="PackedScene" uid="uid://qk63vpyxxiad" path="res://Enemy/RushMet/rush_met.tscn" id="6_fj1ql"]
