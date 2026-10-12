@@ -43,7 +43,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_pxvmr")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1104953032]
-rect = Rect2(-31, -32, 62, 64)
+rect = Rect2(-10, -10, 20, 22)
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

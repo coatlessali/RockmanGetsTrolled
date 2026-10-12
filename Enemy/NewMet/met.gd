@@ -56,15 +56,17 @@ func _physics_process(delta: float) -> void:
 		1: # shooting
 			if timer == 60:
 				sprite.frame = 1
-				fire(-30)
-				fire(0)
-				fire(30)
+				
 			if timer == 56:
 				sprite.frame = 2
 			if timer == 52:
 				sprite.frame = 3
 			if timer == 48:
 				sprite.frame = 4
+			if timer == 30:
+				fire(-45)
+				fire(0)
+				fire(45)
 			if timer > 0:
 				timer -=1
 			else:

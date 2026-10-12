@@ -8,7 +8,7 @@
 size = Vector2(18, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_46ymj"]
-size = Vector2(196, 98.75)
+size = Vector2(148, 84)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7n0l"]
 size = Vector2(20, 21)
@@ -32,10 +32,9 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_44c3d")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=951919258]
-visible = false
 
 [node name="PlayerDetectionAreaShape" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1259206919]
-position = Vector2(0, -19.375)
+position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_46ymj")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1277491146 groups=["EnemyBullet"]]
@@ -47,7 +46,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_b7n0l")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1650324288]
-rect = Rect2(-30, -31, 60, 62)
+rect = Rect2(-9, -8, 18, 19)
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="." method="_on_player_detection_area_body_entered"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

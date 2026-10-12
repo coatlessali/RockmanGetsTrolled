@@ -16,6 +16,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @export var facing_direction = 1
 @onready var hurtsound : AudioStreamPlayer = $Hurt
 @onready var charge : AudioStreamPlayer = $Charge
+@onready var slidesound : AudioStreamPlayer = $Slide
 @onready var sprite : Sprite2D = $CharacterSprite
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
@@ -50,10 +51,48 @@ var camera_offset : Vector2 = Vector2(0,0)
 var going_down : bool = false
 var going_right : bool = false
 
-# weapons = buster, resin, shard, sledge, slip, burly
-var weapon = "buster"
+@onready var weapon_current : Weapon = $Weapons/Buster
+@onready var weapon_buster : Weapon = $Weapons/Buster
+@onready var weapon_rushcoil : Weapon = $Weapons/RushCoil
+@onready var weapons : Array[Weapon] = [weapon_buster, weapon_rushcoil]
+var weapon_max = 0
+var weapon_num = 0
+var color_buster = PackedColorArray([Color(0.29, 0.80, 0.84, 1.00), Color(0.03, 0.15, 0.34, 1.00), Color(0.09, 0.38, 0.84, 1.00)])
+var color_rush = PackedColorArray([Color.WHITE, Color(0.50, 0.12, 0.10, 1.00), Color(0.86, 0.19, 0.18, 1.00)])
+var palettes : Array[PackedColorArray] = [color_buster, color_rush]
+# weapons = buster, resin, shard, sledge, slip, burly, rushcoil
+#var weapon = "buster"
+
+func change_weapon():
+	pass # this is where the weapon wheel will go
+
+func cycle_weapon(cycle : bool):
+	if cycle:
+		if weapon_num == weapon_max:
+			weapon_num = 0
+		else:
+			weapon_num += 1
+	else:
+		if weapon_num == 0:
+			weapon_num = weapon_max
+		else:
+			weapon_num -=1
+	if weapon_num == 0:
+		camera.ammoframe.hide()
+	else:
+		camera.ammoframe.show()
+	weapon_current = weapons[weapon_num]
+	change_palette(palettes[weapon_num])
+	print(weapon_current.name)
+	charge.stop()
+	camera.ammobar.value = weapon_current.ammo
+
+func change_palette(palette : PackedColorArray):
+	sprite.material.set("shader_parameter/replace_colors", palette)
 
 func _ready():
+	weapon_max = weapons.size() - 1
+	change_palette(color_buster)
 	animation_tree.active = true
 	if facing_direction == 1:
 		sprite.flip_h = true # the sprite sheet is cursed and flipped
@@ -69,6 +108,13 @@ func _physics_process(_delta):
 			print("RTX On")
 		else:
 			print("RTX Off")
+	if Input.is_action_just_pressed("weapon_next"):
+		cycle_weapon(true)
+	if Input.is_action_just_pressed("weapon_prev"):
+		cycle_weapon(false)
+	
+	if hp > 28:
+		hp = 28
 	
 	if camera_trans:
 		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
@@ -82,20 +128,6 @@ func _physics_process(_delta):
 		if camera.position.x != cam_pos.x:
 			position.x -= sign(camera.position.x - cam_pos.x)*0.25
 		return
-	if cam_follow_x:
-		if position.x < cam_pos.x && !going_right:
-			if position.x >= cam2_pos.x:
-				camera.position.x = position.x
-		if position.x > cam_pos.x && going_right:
-			if position.x <= cam2_pos.x:
-				camera.position.x = position.x
-	if cam_follow_y:
-		if position.y < cam_pos.y && !going_down:
-			if position.y >= cam2_pos.y:
-				camera.position.y = position.y
-		if position.y > cam_pos.y && going_down:
-			if position.y <= cam2_pos.y:
-				camera.position.y = position.y
 		
 			
 	if hp <= 0:
@@ -106,12 +138,12 @@ func _physics_process(_delta):
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
 	
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire") && weapon_current == weapon_buster:
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		charge.stop()
 	
-	if Input.is_action_pressed("fire"):
+	if Input.is_action_pressed("fire") && weapon_current == weapon_buster:
 		# charge shot shader
 		if shader_intensity < 0.75:
 			shader_intensity += 0.0085
@@ -133,6 +165,21 @@ func _physics_process(_delta):
 	update_facing_direction(x_direction)
 	sprite.material.set("shader_parameter/intensity", shader_intensity)
 	sprite.material.set("shader_parameter/speed", shader_speed)
+	
+	if cam_follow_x:
+		if position.x < cam_pos.x && !going_right:
+			if position.x >= cam2_pos.x:
+				camera.position.x = position.x
+		if position.x > cam_pos.x && going_right:
+			if position.x <= cam2_pos.x:
+				camera.position.x = position.x
+	if cam_follow_y:
+		if position.y < cam_pos.y && !going_down:
+			if position.y >= cam2_pos.y:
+				camera.position.y = position.y
+		if position.y > cam_pos.y && going_down:
+			if position.y <= cam2_pos.y:
+				camera.position.y = position.y
 
 func update_animation(direction):
 	animation_tree.set("parameters/Move/blend_position", direction.x)
@@ -155,6 +202,14 @@ func apply_damage(area: Area2D) -> void:
 		hurt = true
 		if area.is_in_group("volatile"):
 			area.queue_free()
+	if area.is_in_group("HealthPickup"):
+		if weapon_current == weapon_buster:
+			hp += area.health
+		else:
+			pass
+		area.queue_free()
+	if area.is_in_group("1UP"):
+		pass # put 1UP logic here
 
 func after_image() -> void:
 	var afterimage = load("res://fade.tscn").instantiate()
@@ -173,7 +228,6 @@ func after_image() -> void:
 	afterimage.frame = sprite.frame
 	afterimage.z_index = sprite.z_index-1
 	get_parent().add_child(afterimage)
-	
 
 func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
@@ -199,6 +253,7 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		cam_follow_y = true
 		camera_trans = true
 		Global.transition = true
+
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
 		ladder = false
@@ -206,11 +261,8 @@ func _on_ladder_detection_area_exited(area: Area2D) -> void:
 		cam_follow_x = false
 	if area.is_in_group("CameraFollowY"):
 		cam_follow_y = false
-		#if area.get_meta("MinimumY"):
-			#pass
 
 func get_cam_pos(trigger: Area2D) -> void:
-	# failsafe
 	cam_pos = trigger.global_position
 	cam2_pos = trigger.global_position
 	var temp : float = INF

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://depfad8nqi2rs"]
+
+[ext_resource type="Script" uid="uid://omnquqicipm8" path="res://Character/rush_coil_dog.gd" id="1_scqru"]
+[ext_resource type="Texture2D" uid="uid://cbl5q6jtvrb2s" path="res://Art/rush/rush_sheet.png" id="2_6uljw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
+size = Vector2(24, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
+size = Vector2(15.5, 7.5)
+
+[node name="Rush" type="CharacterBody2D" unique_id=2058466418]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_scqru")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=904043435]
+texture = ExtResource("2_6uljw")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1939114500]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_44c3d")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1398348787]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1256169223]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_yuier")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

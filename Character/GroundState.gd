@@ -48,15 +48,9 @@ func state_input(event : InputEvent):
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_pressed("slide"):
-		#owie()
 		slide()
 	if event.is_action_pressed("fire"):
-		var fire_funne = 69
-		if character.last_faced == DDirection.RIGHT:
-			fire_funne = 0
-		elif character.last_faced == DDirection.LEFT:
-			fire_funne = deg_to_rad(180)
-		fire(fire_funne)
+		fire()
 		
 		shoot_anim("idle_shoot") # State.gd
 	if event.is_action_released("fire"):
@@ -84,15 +78,11 @@ func slide():
 	character.local_velocity.x = character.slide_velocity*sign(character.last_faced)
 	next_state = slide_state
 
-func fire(angle):
-	if character.weapon == "buster":
-		var bullet = load("Bullet.tscn").instantiate()
-		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-		bullet.position = character.position + Vector2(character.last_faced*16, 11)
-		get_parent().add_child(bullet)
+func fire():
+	character.weapon_current.fire_weapon(Vector2(16, 11), 0)
 
 func charge_shot(angle):
-	if character.weapon == "buster":
+	if character.weapon_current == character.weapon_buster:
 		if character.shader_intensity <= 0.25:
 			return
 		elif character.shader_intensity < 0.7:

@@ -121,6 +121,7 @@ func state_input(event : InputEvent):
 		shoot_anim("slide_shoot") # State.gd
 	
 func on_enter():
+	character.slidesound.play()
 	after_image = 1
 	character.sliding = true
 	dust_timer = 18
@@ -137,6 +138,7 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
+	#character.slidesound.stop()
 	character.sliding = false
 	if !slidecast.is_colliding():
 		#print("colliding")
@@ -173,7 +175,7 @@ func dust():
 	get_parent().add_child(particle)
 
 func charge_shot(angle):
-	if character.weapon == "buster":
+	if character.weapon_current == character.weapon_buster:
 		if character.shader_intensity <= 0.25:
 			return
 		var bullet = load("Bullet.tscn").instantiate()

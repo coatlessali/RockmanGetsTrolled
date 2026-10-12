@@ -3,8 +3,7 @@ extends State
 @export var air_state : State
 @export var animplayer : AnimationPlayer
 @export var tree : AnimationTree
-var xdir = -1
-
+var xdir = 1
 func on_enter():
 	playback.travel("climbing")
 	character.local_velocity.y = 0
@@ -27,6 +26,12 @@ func state_input(event: InputEvent):
 			charge_shot(fire_funne)
 
 		shoot_anim("climb_shoot") # State.gd
+	if event.is_action_pressed("left"):
+		character.last_faced = -1
+		character.sprite.flip_h = false
+	if event.is_action_pressed("right"):
+		character.last_faced = 1
+		character.sprite.flip_h = true
 
 func state_process(_delta, direction):
 	character.local_velocity.x = 0
@@ -67,12 +72,7 @@ func state_process(_delta, direction):
 		playback.travel("jump")
 		next_state = air_state
 	if Input.is_action_just_pressed("fire"):
-		var fire_funne = 69
-		if xdir == 1:
-			fire_funne = 0
-		elif xdir == -1:
-			fire_funne = deg_to_rad(180)
-		fire(fire_funne)
+		fire()
 
 		shoot_anim("climb_shoot") # State.gd
 
@@ -81,14 +81,11 @@ func state_process(_delta, direction):
 		ladder_owie()
 	#shoot_anim_timer("climbing_pause") # State.gd
 	
-func fire(angle):
-	var bullet = load("Bullet.tscn").instantiate()
-	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-	bullet.position = character.position + Vector2(xdir*17, 5)
-	get_parent().add_child(bullet)
+func fire():
+	character.weapon_current.fire_weapon(Vector2(17, 5), 0)
 
 func charge_shot(angle):
-	if character.weapon == "buster":
+	if character.weapon_current == character.weapon_buster:
 		if character.shader_intensity <= 0.25:
 			return
 		var bullet = load("Bullet.tscn").instantiate()

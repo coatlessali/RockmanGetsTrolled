@@ -37,6 +37,9 @@
 [ext_resource type="Texture2D" uid="uid://bj5cwia2q07ly" path="res://Art/explotano/explotano07.png" id="33_eryot"]
 [ext_resource type="AudioStream" uid="uid://dlwpbvysom78b" path="res://Sounds/Hurt.wav" id="35_mwdr7"]
 [ext_resource type="AudioStream" uid="uid://ckivcxuv8yfhc" path="res://Sounds/charge.wav" id="36_4kk4v"]
+[ext_resource type="AudioStream" uid="uid://crtyloaeeu0h5" path="res://Sounds/slide.wav" id="38_2kngs"]
+[ext_resource type="Script" uid="uid://ctg0euikna86d" path="res://Character/buster.gd" id="39_u3msb"]
+[ext_resource type="Script" uid="uid://css47omiuvdlt" path="res://Character/rush_coil.gd" id="40_5xm0m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m6p0u"]
 size = Vector2(14, 20)
@@ -533,6 +536,11 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kk4v"]
 shader = ExtResource("3_m6p0u")
+shader_parameter/target_colors = PackedColorArray(0.29411766, 0.80784315, 0.8745098, 1, 0.03137255, 0.15686275, 0.34509805, 1, 0.09411765, 0.3882353, 0.84313726, 1)
+shader_parameter/replace_colors = PackedColorArray(1, 1, 1, 1, 0.50980395, 0.12156863, 0.101960786, 1, 0.8627451, 0.19607843, 0.18431373, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
 shader_parameter/speed = 0.0
 shader_parameter/intensity = 0.0
 
@@ -623,6 +631,7 @@ shape = SubResource("RectangleShape2D_13163")
 disabled = true
 
 [node name="StandingCollision" type="CollisionShape2D" parent="." unique_id=118831155]
+visible = false
 position = Vector2(0.5, 12)
 scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_crd0r")
@@ -846,6 +855,7 @@ stream = ExtResource("12_xaqyh")
 volume_db = -12.0
 
 [node name="LadderDetection" type="Area2D" parent="." unique_id=1957018327]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetection" unique_id=2062183825]
 position = Vector2(1, 11.5)
@@ -859,12 +869,14 @@ position = Vector2(0.5, 23.75)
 shape = SubResource("RectangleShape2D_yuier")
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1455336009]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=470883603]
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_gxle8")
 
 [node name="SlideHurtbox" type="Area2D" parent="." unique_id=1757705720]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SlideHurtbox" unique_id=252556889]
 position = Vector2(-0.4999982, 15.499996)
@@ -891,6 +903,20 @@ volume_db = -13.867
 [node name="Charge" type="AudioStreamPlayer" parent="." unique_id=657494069]
 stream = ExtResource("36_4kk4v")
 volume_db = -9.683
+
+[node name="Slide" type="AudioStreamPlayer" parent="." unique_id=759576433]
+stream = ExtResource("38_2kngs")
+volume_db = -6.171
+
+[node name="Weapons" type="Node" parent="." unique_id=2115021690]
+
+[node name="Buster" type="Node" parent="Weapons" unique_id=482680614 node_paths=PackedStringArray("character")]
+script = ExtResource("39_u3msb")
+character = NodePath("../..")
+
+[node name="RushCoil" type="Node" parent="Weapons" unique_id=2088094968 node_paths=PackedStringArray("character")]
+script = ExtResource("40_5xm0m")
+character = NodePath("../..")
 
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
 [connection signal="area_exited" from="LadderDetection" to="." method="_on_ladder_detection_area_exited"]

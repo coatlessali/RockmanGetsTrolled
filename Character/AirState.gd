@@ -84,22 +84,12 @@ func state_input(event : InputEvent):
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
-		var fire_funne = 69
-		if character.last_faced == DDirection.RIGHT:
-			fire_funne = 0
-		elif character.last_faced == DDirection.LEFT:
-			fire_funne = deg_to_rad(180) # PI or 3.1415926536
-		fire(fire_funne)
+		fire()
 		
 		shoot_anim("jump_shoot") # State.gd
 	if event.is_action_released("fire"):
 		if character.shader_intensity > 0.25:
-			var fire_funne = 69
-			if character.last_faced == DDirection.RIGHT:
-				fire_funne = 0
-			else:
-				fire_funne = deg_to_rad(180)
-			charge_shot(fire_funne)
+			charge_shot()
 
 		shoot_anim("jump_shoot") # State.gd
 
@@ -127,20 +117,18 @@ func on_exit():
 		#has_double_jumped = false
 		playback.travel("idle")
 
-func fire(angle):
-	var bullet = load("Bullet.tscn").instantiate()
-	bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
-	bullet.position = character.position + Vector2(character.last_faced*16, 10)
-	get_parent().add_child(bullet)
+func fire():
+	character.weapon_current.fire_weapon(Vector2(16,10), 0)
 	
-func charge_shot(angle):
-	if character.weapon == "buster":
+func charge_shot():
+	if character.weapon_current == character.weapon_buster:
 		if character.shader_intensity <= 0.25:
 			return
 		var bullet = load("Bullet.tscn").instantiate()
 		if character.shader_intensity >= 0.70:
 			bullet = load("res://ChargeBullet.tscn").instantiate()
-		bullet.direction = Vector2.RIGHT.rotated(angle).normalized()
+		bullet.direction = Vector2.RIGHT
+		bullet.direction.x *= character.last_faced
 		bullet.position = character.position + Vector2(character.last_faced*16, 10)
 		get_parent().add_child(bullet)
 
