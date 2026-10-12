@@ -7,7 +7,6 @@ class_name CharacterStateMachine
 @export var hurtbox_sprite : Sprite2D
 @export var slidecast : ShapeCast2D
 @export var current_state : State
-#@export var last_state : State
 @export var animation_tree : AnimationTree
 
 var shoot : int = 0
