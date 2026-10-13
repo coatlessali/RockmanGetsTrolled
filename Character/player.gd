@@ -11,7 +11,6 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 
 # export vars for other nodes
 @export var camera : Camera2D
-
 @export var music : AudioStreamPlayer
 @export var facing_direction = 1
 @onready var hurtsound : AudioStreamPlayer = $Hurt
@@ -20,6 +19,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var sprite : Sprite2D = $CharacterSprite
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
+@onready var dead_state : State = $CharacterStateMachine/DeadState
 
 # vars used for character state etc, do not touch
 var home_pos = Vector2(0, 0)
@@ -52,6 +52,7 @@ var camera_trans : bool = false
 var camera_offset : Vector2 = Vector2(0,0)
 var going_down : bool = false
 var going_right : bool = false
+var respawn : bool = false
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
@@ -118,16 +119,21 @@ func _physics_process(_delta):
 	
 	if iframes > 0:
 		iframes -= 1
-		if iframes % 2 != 0:
-			sprite.visible = false
-		else:
-			sprite.visible = true
+		if state_machine.current_state != dead_state:
+			if iframes % 2 != 0:
+				sprite.visible = false
+			else:
+				sprite.visible = true
 	else:
 		sprite.visible = true
 	if hp > 28:
 		hp = 28
 	
 	if camera_trans:
+		if respawn:
+			camera.position = cam_pos
+			respawn = false
+			return
 		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
 		camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
 		if camera.position.is_equal_approx(cam_pos):

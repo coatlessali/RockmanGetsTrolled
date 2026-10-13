@@ -29,6 +29,7 @@ func _on_audio_stream_player_finished() -> void:
 	character.hp = 28
 	character.music.play()
 	character.camera.global_position = character.cam_pos
+	character.respawn = true
 
 
 func _on_explotano_sprite_animation_finished() -> void:

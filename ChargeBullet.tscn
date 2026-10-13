@@ -7,6 +7,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rq25g"]
 shader = ExtResource("2_v70lf")
+shader_parameter/target_colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/replace_colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/color_count = 0
+shader_parameter/tolerance = 0.0
+shader_parameter/shader_active = true
 shader_parameter/speed = 2.0
 shader_parameter/intensity = 0.1250000059375
 
@@ -33,7 +38,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7cksh"]
-size = Vector2(16, 12)
+size = Vector2(35, 25)
 
 [node name="Area2D" type="Area2D" unique_id=45240080 node_paths=PackedStringArray("visibility") groups=["Bullets", "volatile"]]
 script = ExtResource("1_6e2cf")
@@ -42,14 +47,17 @@ visibility = NodePath("VisibleOnScreenNotifier2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1787041498]
 z_index = -1
 material = SubResource("ShaderMaterial_rq25g")
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_44c3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41878596]
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_7cksh")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2023474356]
 position = Vector2(-2.38419e-07, 0)
 scale = Vector2(1.6, 1)
+rect = Rect2(-10.625, -12, 22.5, 26)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1930311012]
 stream = ExtResource("4_rq25g")
