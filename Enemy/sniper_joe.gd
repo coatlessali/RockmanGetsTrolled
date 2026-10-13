@@ -70,21 +70,15 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	hurtbox.set_deferred("monitoring", false) 
 	hurtbox.set_deferred("monitorable", false)
 	position = home_pos
+	hp = 10
 
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
-		if area.is_in_group("volatile"):
-			if !shooting:
-				# TODO: come back to this later and just =* direction.x
-				var random_angle = 2.5
-				if randf() < 0.5:
-					random_angle = 3.9
-				area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
-			else:
-				area.queue_free() # despawn player bullet
 		if shooting:
 			hp -= area.damage
+			print(hp)
+			print(area.damage)
 			if hp <= 0:
 				var explotano = load("res://explotano.tscn").instantiate()
 				explotano.position = position
@@ -98,6 +92,16 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 				hurtbox.set_deferred("monitoring", false) 
 				hurtbox.set_deferred("monitorable", false)
 				position = home_pos
+				hp = 10
+		if area.is_in_group("volatile"):
+			if !shooting:
+				# TODO: come back to this later and just =* direction.x
+				var random_angle = 2.5
+				if randf() < 0.5:
+					random_angle = 3.9
+				area.direction = Vector2(1.0,0.0).rotated(random_angle).normalized()
+			else:
+				area.queue_free() # despawn player bullet
 
 
 func _on_player_detection_body_exited(body: Node2D) -> void:

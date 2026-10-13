@@ -28,7 +28,7 @@ func _on_audio_stream_player_finished() -> void:
 	character.position = character.home_pos
 	character.hp = 28
 	character.music.play()
-	character.camera.position = Vector2(0, 88)
+	character.camera.global_position = character.cam_pos
 
 
 func _on_explotano_sprite_animation_finished() -> void:

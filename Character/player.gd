@@ -25,6 +25,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 var home_pos = Vector2(0, 0)
 var hp = 28
 var intro : bool = false
+var iframes : int = 0
 var last_state : State
 var input_direction : Vector2
 var moving_direction : int = DDirection.RIGHT
@@ -114,6 +115,15 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("weapon_prev"):
 		cycle_weapon(false)
 	
+	
+	if iframes > 0:
+		iframes -= 1
+		if iframes % 2 != 0:
+			sprite.visible = false
+		else:
+			sprite.visible = true
+	else:
+		sprite.visible = true
 	if hp > 28:
 		hp = 28
 	
@@ -194,6 +204,8 @@ func update_facing_direction(x_direction):
 		sprite.flip_h = false
 
 func apply_damage(area: Area2D) -> void:
+	if iframes > 0:
+		return
 	if owie:
 		return
 	if area.is_in_group("EnemyBullet"):
@@ -243,6 +255,9 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		camera_trans = true
 		Global.transition = true
 		if area.is_in_group("Checkpoint"):
+			print(area.get_node("Anchor").name)
+			print(area.get_meta("spawn_offset"))
+			print(area.get_node("Anchor").global_position)
 			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 	if area.is_in_group("CameraFollowX"):
 		#cam_pos = area.position
@@ -250,12 +265,22 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		cam_follow_x = true
 		camera_trans = true
 		Global.transition = true
+		if area.is_in_group("Checkpoint"):
+			print(area.get_node("Anchor").name)
+			print(area.get_meta("spawn_offset"))
+			print(area.get_node("Anchor").global_position)
+			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 	if area.is_in_group("CameraFollowY"):
 		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_y = true
 		camera_trans = true
 		Global.transition = true
+		if area.is_in_group("Checkpoint"):
+			print(area.get_node("Anchor").name)
+			print(area.get_meta("spawn_offset"))
+			print(area.get_node("Anchor").global_position)
+			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):

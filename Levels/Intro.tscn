@@ -81,8 +81,9 @@ position = Vector2(3680, -712)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraTrigger5" index="0" unique_id=85481787]
 shape = SubResource("RectangleShape2D_km5ld")
 
-[node name="FollowHorizontal" type="Area2D" parent="." index="9" unique_id=1279933714 groups=["CameraFollowX"]]
+[node name="FollowHorizontal" type="Area2D" parent="." index="9" unique_id=1279933714 groups=["CameraFollowX", "Checkpoint"]]
 position = Vector2(592, 8)
+metadata/spawn_offset = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FollowHorizontal" index="0" unique_id=719025438]
 position = Vector2(72, 0)
