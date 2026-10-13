@@ -220,8 +220,8 @@ stretch_mode = 1
 
 [node name="Parallax2D" type="Parallax2D" parent="." index="25" unique_id=1039050169]
 z_index = -9
-scroll_scale = Vector2(0.5, 1)
-scroll_offset = Vector2(-128, -112)
+scroll_scale = Vector2(0.5, 0)
+scroll_offset = Vector2(-128, 0)
 repeat_size = Vector2(256, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=889237493]
