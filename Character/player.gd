@@ -162,24 +162,13 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("fire"): # && weapon_current == weapon_buster:
 		# charge shot shader
-		# 214 degrees redline
-		camera.needle.rotation_degrees = (shader_intensity*(1.0/0.75))*214.0
-		camera.needle.rotation_degrees = move_toward(camera.needle.rotation_degrees, -25.0, 0.5)
+		camera.chargebar.value = shader_intensity
 		if shader_intensity < 0.75:
 			shader_intensity += 0.0085
 		if shader_speed < 7.5:
 			shader_speed += 0.085
 	else:
-		if is_equal_approx(camera.needle.rotation_degrees, -25.0):
-			camera.needle.rotation_degrees = -22.5
-		elif is_equal_approx(camera.needle.rotation_degrees, -22.5):
-			camera.needle.rotation_degrees = -20.0
-		elif is_equal_approx(camera.needle.rotation_degrees, -20.0):
-			camera.needle.rotation_degrees = -23.0
-		elif is_equal_approx(camera.needle.rotation_degrees, -23.0):
-			camera.needle.rotation_degrees = -25.0
-		else:
-			camera.needle.rotation_degrees = -25.0
+		camera.chargebar.value = move_toward(camera.chargebar.value, 0.0, 0.05)
 		shader_intensity = 0.0
 		shader_speed = 0.0
 

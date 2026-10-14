@@ -4,10 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://dgs44x7wwwo5h" path="res://Art/rock/otherbars.png" id="2_a0f6b"]
 [ext_resource type="Texture2D" uid="uid://c377im73diqqv" path="res://Art/rock/healthbar_frame.png" id="2_lxp0o"]
 [ext_resource type="Texture2D" uid="uid://ccb8qeewaknse" path="res://Art/rock/needle.png" id="3_07nfj"]
-[ext_resource type="Texture2D" uid="uid://cnt7i5culhx0j" path="res://Art/rock/healthbar.png" id="3_a0f6b"]
 [ext_resource type="Texture2D" uid="uid://cuq5p3751pfue" path="res://Art/rock/healthbar_fill.png" id="4_07nfj"]
+[ext_resource type="Script" uid="uid://3g6ijphx0tqb" path="res://charge_bar.gd" id="5_4656x"]
 [ext_resource type="Texture2D" uid="uid://7lp08xq2n2vh" path="res://Art/ready.png" id="5_we8rk"]
+[ext_resource type="Script" uid="uid://cbfj3b2tngeoj" path="res://graze_bar.gd" id="6_07nfj"]
 [ext_resource type="FontFile" uid="uid://b28eub80ul2xw" path="res://fonts/CyberpunkWaifus.ttf" id="6_lxp0o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuier"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44c3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j25qr"]
+bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_updsb"]
+bg_color = Color(0.18900003, 0.3996, 0.54, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouwm7"]
 atlas = ExtResource("5_we8rk")
@@ -61,17 +73,12 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j25qr"]
-bg_color = Color(0, 0, 0, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_updsb"]
-bg_color = Color(0.35000002, 0.98916686, 1, 1)
-
 [node name="Camera2D" type="Camera2D" unique_id=1937260346]
 process_callback = 0
 script = ExtResource("1_xjyju")
 
 [node name="OtherBars" type="Sprite2D" parent="." unique_id=286004712]
+visible = false
 position = Vector2(-118, -71)
 texture = ExtResource("2_a0f6b")
 
@@ -88,6 +95,18 @@ z_index = 10
 position = Vector2(-98, -71)
 texture = ExtResource("2_lxp0o")
 
+[node name="ChargeBar" type="ProgressBar" parent="HealthFrame" unique_id=1558671738]
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yuier")
+theme_override_styles/fill = SubResource("StyleBoxFlat_44c3d")
+max_value = 0.75
+fill_mode = 3
+show_percentage = false
+script = ExtResource("5_4656x")
+
 [node name="HealthBar" type="TextureProgressBar" parent="HealthFrame" unique_id=572956285]
 z_index = 10
 offset_left = -9.0
@@ -97,7 +116,6 @@ offset_bottom = 28.0
 max_value = 28.0
 value = 28.0
 fill_mode = 3
-texture_under = ExtResource("3_a0f6b")
 texture_progress = ExtResource("4_07nfj")
 metadata/_edit_use_anchors_ = true
 
@@ -105,6 +123,20 @@ metadata/_edit_use_anchors_ = true
 z_index = 10
 position = Vector2(-88, -71)
 texture = ExtResource("2_lxp0o")
+
+[node name="GrazeBar" type="ProgressBar" parent="AmmoFrame" unique_id=1007710017]
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_j25qr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_updsb")
+max_value = 2.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("6_07nfj")
 
 [node name="AmmoBar" type="TextureProgressBar" parent="AmmoFrame" unique_id=1193495511]
 z_index = 10
@@ -115,7 +147,6 @@ offset_bottom = 28.0
 max_value = 28.0
 value = 28.0
 fill_mode = 3
-texture_under = ExtResource("3_a0f6b")
 texture_progress = ExtResource("4_07nfj")
 
 [node name="Ready" type="AnimatedSprite2D" parent="." unique_id=1132866749]
@@ -140,18 +171,5 @@ theme_override_fonts/normal_font = ExtResource("6_lxp0o")
 theme_override_font_sizes/normal_font_size = 12
 text = "This is some test text."
 horizontal_alignment = 1
-
-[node name="GrazeBar" type="ProgressBar" parent="." unique_id=1007710017]
-offset_left = -127.0
-offset_top = -73.0
-offset_right = -109.0
-offset_bottom = -62.0
-theme_override_font_sizes/font_size = 6
-theme_override_styles/background = SubResource("StyleBoxFlat_j25qr")
-theme_override_styles/fill = SubResource("StyleBoxFlat_updsb")
-max_value = 2.0
-step = 1.0
-fill_mode = 3
-show_percentage = false
 
 [connection signal="animation_finished" from="Ready" to="." method="_on_ready_animation_finished"]
