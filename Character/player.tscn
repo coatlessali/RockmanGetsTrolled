@@ -45,7 +45,7 @@
 size = Vector2(14, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13163"]
-size = Vector2(14.999996, 15)
+size = Vector2(14.999996, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(14.444445, 22)
@@ -625,8 +625,7 @@ shape = SubResource("RectangleShape2D_m6p0u")
 target_position = Vector2(0, -3)
 
 [node name="SlideCollision" type="CollisionShape2D" parent="." unique_id=1053324761]
-visible = false
-position = Vector2(1.7881393e-06, 15.499998)
+position = Vector2(-1.7881393e-06, 15.499998)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_13163")
 disabled = true

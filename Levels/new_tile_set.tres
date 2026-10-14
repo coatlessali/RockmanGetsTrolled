@@ -763,6 +763,9 @@ texture = ExtResource("3_j25qr")
 1:2/0 = 0
 0:3/0 = 0
 1:3/0 = 0
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, -3, -8, -3, -8, -8, 8, -8)
+1:4/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 3
