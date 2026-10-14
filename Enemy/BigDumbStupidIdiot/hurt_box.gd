@@ -1,5 +1,6 @@
 extends Area2D
 var damage = 28
+var grazed : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

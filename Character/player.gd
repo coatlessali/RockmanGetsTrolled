@@ -162,11 +162,24 @@ func _physics_process(_delta):
 	
 	if Input.is_action_pressed("fire"): # && weapon_current == weapon_buster:
 		# charge shot shader
+		# 214 degrees redline
+		camera.needle.rotation_degrees = (shader_intensity*(1.0/0.75))*214.0
+		camera.needle.rotation_degrees = move_toward(camera.needle.rotation_degrees, -25.0, 0.5)
 		if shader_intensity < 0.75:
 			shader_intensity += 0.0085
-		if shader_speed < 10:
-			shader_speed += 0.075
+		if shader_speed < 7.5:
+			shader_speed += 0.085
 	else:
+		if is_equal_approx(camera.needle.rotation_degrees, -25.0):
+			camera.needle.rotation_degrees = -22.5
+		elif is_equal_approx(camera.needle.rotation_degrees, -22.5):
+			camera.needle.rotation_degrees = -20.0
+		elif is_equal_approx(camera.needle.rotation_degrees, -20.0):
+			camera.needle.rotation_degrees = -23.0
+		elif is_equal_approx(camera.needle.rotation_degrees, -23.0):
+			camera.needle.rotation_degrees = -25.0
+		else:
+			camera.needle.rotation_degrees = -25.0
 		shader_intensity = 0.0
 		shader_speed = 0.0
 
@@ -331,3 +344,34 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	apply_damage(area)
 func _on_slide_hurtbox_area_entered(area: Area2D) -> void:
 	apply_damage(area)
+
+
+
+
+
+func _on_graze_area_area_exited(area: Area2D) -> void:
+	graze(area)
+func _on_slide_graze_area_area_exited(area: Area2D) -> void:
+	graze(area)
+func graze(area: Area2D) -> void:
+	if state_machine.current_state.next_state == state_machine.get_node("Hurt"):
+		return
+	if state_machine.current_state.next_state == state_machine.get_node("ClimbHurt"):
+		return
+	if iframes > 0:
+		return
+	if area.is_in_group("EnemyBullet"):
+		if area.grazed:
+			return
+		if camera.grazebar.value < 2:
+			camera.grazebar.value += 1
+			area.grazed = true
+		else:
+			if weapon_current == weapon_buster:
+				return
+			camera.grazebar.value = 0
+			area.grazed = true
+			if weapon_current.ammo < 28:
+				weapon_current.ammo += 1
+				camera.ammobar.value = weapon_current.ammo
+			

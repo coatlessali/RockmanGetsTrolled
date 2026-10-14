@@ -6,6 +6,7 @@ extends Area2D
 var deflected : bool = false
 var direction = Vector2.RIGHT
 var damage = 3
+var grazed : bool = false
 
 func _ready() -> void:
 	sprite.play()

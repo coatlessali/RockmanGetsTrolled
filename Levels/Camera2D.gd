@@ -5,6 +5,9 @@ extends Camera2D
 @onready var ammobar : TextureProgressBar = $AmmoFrame/AmmoBar
 @onready var ammoframe : Sprite2D = $AmmoFrame
 @onready var textpopup : RichTextLabel = $RichTextLabel
+@onready var grazearea : Area2D = character.get_node("GrazeArea")
+@onready var grazebar : ProgressBar = $GrazeBar
+@onready var needle : Node2D = $OtherBars/Needle
 var air_buffer : bool = true
 var buffer : bool = false
 var readyplayed : bool = false
