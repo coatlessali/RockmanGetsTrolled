@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="BlackSaturn"
-run/main_scene="res://Levels/test_level.tscn"
+run/main_scene="uid://pw7koyh32apb"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
@@ -49,6 +49,7 @@ Player=""
 CameraFollowX=""
 CameraFollowY=""
 Checkpoint=""
+TextPopups=""
 
 [input]
 

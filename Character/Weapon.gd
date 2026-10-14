@@ -10,3 +10,6 @@ func _ready() -> void:
 
 func fire_weapon(_fire_pos : Vector2, _angle):
 	pass
+
+func fire_charged_weapon(_fire_pos : Vector2, _angle):
+	pass

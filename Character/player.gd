@@ -155,12 +155,12 @@ func _physics_process(_delta):
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
 	
-	if Input.is_action_just_pressed("fire") && weapon_current == weapon_buster:
+	if Input.is_action_just_pressed("fire"): # && weapon_current == weapon_buster:
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		charge.stop()
 	
-	if Input.is_action_pressed("fire") && weapon_current == weapon_buster:
+	if Input.is_action_pressed("fire"): # && weapon_current == weapon_buster:
 		# charge shot shader
 		if shader_intensity < 0.75:
 			shader_intensity += 0.0085
@@ -283,10 +283,10 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		camera_trans = true
 		Global.transition = true
 		if area.is_in_group("Checkpoint"):
-			print(area.get_node("Anchor").name)
-			print(area.get_meta("spawn_offset"))
-			print(area.get_node("Anchor").global_position)
 			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
+	if area.is_in_group("TextPopups"):
+		camera.text_popup(area.get_meta("text"))
+		area.queue_free() # delete the popup trigger so the text only plays once
 
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):

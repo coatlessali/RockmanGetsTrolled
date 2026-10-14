@@ -4,6 +4,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+var jump_multiplier = 1.6
 var timer = 420
 var has_touched_floor : bool = false
 
@@ -37,5 +38,5 @@ func _ready() -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") && sprite.frame == 0:
 		timer = 60
-		body.local_velocity.y = body.jump_velocity*1.6
+		body.local_velocity.y = body.jump_velocity*jump_multiplier
 		sprite.frame = 1
