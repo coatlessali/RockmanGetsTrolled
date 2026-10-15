@@ -155,12 +155,12 @@ func _physics_process(_delta):
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
 	
-	if Input.is_action_just_pressed("fire"): # && weapon_current == weapon_buster:
+	if Input.is_action_just_pressed("fire") && weapon_current == weapon_buster:
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		charge.stop()
 	
-	if Input.is_action_pressed("fire"): # && weapon_current == weapon_buster:
+	if Input.is_action_pressed("fire") && weapon_current == weapon_buster:
 		# charge shot shader
 		camera.chargebar.value = shader_intensity
 		if shader_intensity < 0.75:

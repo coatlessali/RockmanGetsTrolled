@@ -61,7 +61,6 @@ func state_process(delta, direction):
 			character.local_velocity.y += character.gravity * delta
 		else:
 			pass
-		#character.local_velocity.x = character.speed*sign(direction.x)
 		character.local_velocity.x = air_velocity*sign(direction.x)
 		
 	shoot_anim_timer("jump") # State.gd
@@ -73,13 +72,14 @@ func state_process(delta, direction):
 		owie()
 
 func state_input(event : InputEvent):
-	if event.is_action_pressed("debug_owie"):
-		owie() # test hurting for the time being, comment out this line and the one above it to turn it off
-	#if character.hurt:
-		#character.hurt = false
-		#owie()
 	if event.is_action_pressed("jump"):
 		if coyote_frames > 0 && character.last_state == sliding_state:
+			jump()
+		elif character.weapon_current == character.weapon_rushcoil && character.weapon_current.ex && character.weapon_current.ammo > 0 && !has_double_jumped:
+			# possibly make it passive but still 
+			has_double_jumped = true
+			character.weapon_current.ammo -= 1
+			character.camera.ammobar.value = character.weapon_current.ammo
 			jump()
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
@@ -94,6 +94,7 @@ func state_input(event : InputEvent):
 		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
+	has_double_jumped = false
 	after_image = 1
 	coyote_frames = 6
 	#climb_buffer = 6

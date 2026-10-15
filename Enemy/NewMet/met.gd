@@ -4,6 +4,7 @@ var active : bool = false
 var state : int = 0
 @export var direction : int = -1
 var timer : int = 60
+var hide_timer : int = 90
 var anim_timer : int = 0
 var walk_timer : int = 60
 var first_anim_timer : int = 0
@@ -36,6 +37,10 @@ func _physics_process(delta: float) -> void:
 	match state:
 		0: # inactive
 			velocity.x = 0
+			if hide_timer > 0:
+				hide_timer -= 1
+			elif active:
+				state = 1
 			if sprite.frame != 0:
 				if sprite.frame == 7:
 					sprite.frame = 8
@@ -63,21 +68,25 @@ func _physics_process(delta: float) -> void:
 				sprite.frame = 3
 			if timer == 48:
 				sprite.frame = 4
-			if timer == 30:
+			if timer == 36:
 				fire(-45)
+			if timer == 35:
 				fire(0)
+			if timer == 34:
 				fire(45)
 			if timer > 0:
 				timer -=1
 			else:
 				state = 2
 			# shooting sprite
-			walk_timer = 60
+			walk_timer = 0
 		2: # walking
+			hide_timer = 90
 			if walk_timer > 0:
 				walk_timer -= 1
 			else:
 				state = 0
+				return
 			if anim_timer == 0:
 				sprite.frame = 5
 			if anim_timer == 4:
@@ -103,6 +112,7 @@ func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if state != 0:
 		return
 	if body.is_in_group("Player"):
+		active = true
 		state = 1
 		if body.global_position > global_position: # if player is to the right
 			direction = 1 # turn it right
