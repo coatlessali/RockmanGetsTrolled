@@ -14,6 +14,7 @@ var damage = 1
 var limit = true
 
 func _ready():
+	sprite.rotation = direction.angle()
 	if autoplay:
 		sound.play()
 	add_to_group(DGroups.BULLETS)
@@ -34,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			queue_free()
 	position = position + speed * direction * delta
-	sprite.flip_h = (direction.x == -1.0) # flips the sprite if moving left
+	#sprite.flip_h = (sign(direction.x) == -1) # flips the sprite if moving left
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free() # Deletes bullet if it leaves the screen.
