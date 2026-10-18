@@ -40,6 +40,8 @@
 [ext_resource type="AudioStream" uid="uid://dkmacc2ongalq" path="res://Sounds/slide_compressed.wav" id="38_5xm0m"]
 [ext_resource type="Script" uid="uid://ctg0euikna86d" path="res://Character/buster.gd" id="39_u3msb"]
 [ext_resource type="Script" uid="uid://css47omiuvdlt" path="res://Character/rush_coil.gd" id="40_5xm0m"]
+[ext_resource type="Script" uid="uid://cug5bu6dqvxfd" path="res://Character/BurlySSO.gd" id="41_0qjmq"]
+[ext_resource type="AudioStream" uid="uid://dfootgypnfbom" path="res://Sounds/SSO.ogg" id="42_wtchp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xm0m"]
 size = Vector2(26, 28)
@@ -946,6 +948,13 @@ character = NodePath("../..")
 script = ExtResource("40_5xm0m")
 character = NodePath("../..")
 
+[node name="Burly" type="Node" parent="Weapons" unique_id=665001668 node_paths=PackedStringArray("character")]
+script = ExtResource("41_0qjmq")
+character = NodePath("../..")
+
+[node name="Sound" type="AudioStreamPlayer" parent="Weapons/Burly" unique_id=446031495]
+stream = ExtResource("42_wtchp")
+
 [connection signal="area_exited" from="GrazeArea" to="." method="_on_graze_area_area_exited"]
 [connection signal="area_exited" from="SlideGrazeArea" to="." method="_on_slide_graze_area_area_exited"]
 [connection signal="area_entered" from="LadderDetection" to="." method="_on_ladder_detection_area_entered"]
@@ -956,3 +965,4 @@ character = NodePath("../..")
 [connection signal="area_entered" from="SlideHurtbox" to="." method="_on_slide_hurtbox_area_entered"]
 [connection signal="finished" from="Death/AudioStreamPlayer" to="CharacterStateMachine/DeadState" method="_on_audio_stream_player_finished"]
 [connection signal="animation_finished" from="Death/ExplotanoSprite" to="CharacterStateMachine/DeadState" method="_on_explotano_sprite_animation_finished"]
+[connection signal="finished" from="Weapons/Burly/Sound" to="Weapons/Burly" method="_on_sound_finished"]

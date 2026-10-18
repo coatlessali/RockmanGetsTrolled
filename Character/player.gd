@@ -57,12 +57,14 @@ var respawn : bool = false
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
 @onready var weapon_rushcoil : Weapon = $Weapons/RushCoil
-@onready var weapons : Array[Weapon] = [weapon_buster, weapon_rushcoil]
+@onready var weapon_burly : Weapon = $Weapons/Burly
+@onready var weapons : Array[Weapon] = [weapon_buster, weapon_rushcoil, weapon_burly]
 var weapon_max = 0
 var weapon_num = 0
 var color_buster = PackedColorArray([Color(0.29, 0.80, 0.84, 1.00), Color(0.03, 0.15, 0.34, 1.00), Color(0.09, 0.38, 0.84, 1.00)])
 var color_rush = PackedColorArray([Color.WHITE, Color(0.50, 0.12, 0.10, 1.00), Color(0.86, 0.19, 0.18, 1.00)])
-var palettes : Array[PackedColorArray] = [color_buster, color_rush]
+var color_burly = PackedColorArray([Color.GHOST_WHITE, Color.MIDNIGHT_BLUE, Color.PERU])
+var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_burly]
 # weapons = buster, resin, shard, sledge, slip, burly, rushcoil
 #var weapon = "buster"
 
@@ -87,7 +89,7 @@ func cycle_weapon(cycle : bool):
 	weapon_current = weapons[weapon_num]
 	change_palette(palettes[weapon_num])
 	print(weapon_current.name)
-	charge.stop()
+	#charge.stop()
 	camera.ammobar.value = weapon_current.ammo
 
 func change_palette(palette : PackedColorArray):
@@ -155,12 +157,12 @@ func _physics_process(_delta):
 	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
 		last_faced = x_direction
 	
-	if Input.is_action_just_pressed("fire") && weapon_current == weapon_buster:
+	if Input.is_action_just_pressed("fire"):# && weapon_current == weapon_buster:
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		charge.stop()
 	
-	if Input.is_action_pressed("fire") && weapon_current == weapon_buster:
+	if Input.is_action_pressed("fire"):# && weapon_current == weapon_buster:
 		# charge shot shader
 		camera.chargebar.value = shader_intensity
 		if shader_intensity < 0.75:
@@ -221,6 +223,7 @@ func apply_damage(area: Area2D) -> void:
 			return
 		hp -= area.damage
 		hurt = true
+		iframes = 90
 		if area.is_in_group("volatile"):
 			area.queue_free()
 	if area.is_in_group("HealthPickup"):
@@ -330,8 +333,16 @@ func _on_ladder_detection_down_area_exited(area: Area2D) -> void:
 		ladderdown = false
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
+	if iframes > 0:
+		return
+	if owie:
+		return
 	apply_damage(area)
 func _on_slide_hurtbox_area_entered(area: Area2D) -> void:
+	if iframes > 0:
+		return
+	if owie:
+		return
 	apply_damage(area)
 
 
