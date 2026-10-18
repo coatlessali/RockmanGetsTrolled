@@ -1,5 +1,5 @@
 extends CharacterBody2D
-var health = 50
+var health = 28
 
 func _ready() -> void:
 	visible = true
