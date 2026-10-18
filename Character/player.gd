@@ -53,6 +53,7 @@ var camera_offset : Vector2 = Vector2(0,0)
 var going_down : bool = false
 var going_right : bool = false
 var respawn : bool = false
+var refill_timer : int = 0
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
@@ -113,11 +114,40 @@ func _physics_process(_delta):
 			print("RTX On")
 		else:
 			print("RTX Off")
+	
+	
+	# update ammobar and healthbar
+	if hp > camera.healthbar.value:
+		if refill_timer == 0:
+			camera.healthbar.value += 1
+		if refill_timer == 3:
+			refill_timer = 0
+		else:
+			refill_timer += 1
+		Global.transition = true
+		return
+	else:
+		refill_timer = 0
+		camera.healthbar.value = hp
+		Global.transition = false
+	if weapon_current.ammo > camera.ammobar.value:
+		if refill_timer == 0:
+			camera.ammobar.value += 1
+		if refill_timer == 3:
+			refill_timer = 0
+		else:
+			refill_timer += 1
+		Global.transition = true
+		return
+	else:
+		refill_timer = 0
+		camera.healthbar.value = hp
+		Global.transition = false
+	
 	if Input.is_action_just_pressed("weapon_next"):
 		cycle_weapon(true)
 	if Input.is_action_just_pressed("weapon_prev"):
 		cycle_weapon(false)
-	
 	
 	if iframes > 0:
 		iframes -= 1
@@ -230,10 +260,10 @@ func apply_damage(area: Area2D) -> void:
 		var pickup = area.get_parent()
 		if hp + pickup.value >= 28:
 			hp = 28
-			camera.healthbar.value = 28
+			#camera.healthbar.value = 28
 		else:
 			hp += pickup.value
-			camera.healthbar.value = hp
+			#camera.healthbar.value = hp
 		pickup.queue_free()
 	if area.is_in_group("AmmoPickups"):
 		var pickup = area.get_parent()
@@ -249,10 +279,10 @@ func apply_damage(area: Area2D) -> void:
 		else:
 			if weapon_current.ammo + pickup.value >= 28:
 				weapon_current.ammo = 28
-				camera.ammobar.value = weapon_current.ammo
+				#camera.ammobar.value = weapon_current.ammo
 			else:
 				weapon_current.ammo += pickup.value
-				camera.ammobar.value = weapon_current.ammo
+				#camera.ammobar.value = weapon_current.ammo
 		pickup.queue_free()
 	if area.is_in_group("1UP"):
 		pass # put 1UP logic here
