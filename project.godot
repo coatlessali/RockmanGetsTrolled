@@ -50,6 +50,8 @@ CameraFollowX=""
 CameraFollowY=""
 Checkpoint=""
 TextPopups=""
+HealthPickups=""
+AmmoPickups=""
 
 [input]
 

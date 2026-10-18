@@ -226,12 +226,34 @@ func apply_damage(area: Area2D) -> void:
 		iframes = 90
 		if area.is_in_group("volatile"):
 			area.queue_free()
-	if area.is_in_group("HealthPickup"):
-		if weapon_current == weapon_buster:
-			hp += area.health
+	if area.is_in_group("HealthPickups"):
+		var pickup = area.get_parent()
+		if hp + pickup.value >= 28:
+			hp = 28
+			camera.healthbar.value = 28
 		else:
-			pass
-		area.queue_free()
+			hp += pickup.value
+			camera.healthbar.value = hp
+		pickup.queue_free()
+	if area.is_in_group("AmmoPickups"):
+		var pickup = area.get_parent()
+		var def_weapon : Weapon = weapon_buster
+		if weapon_current == weapon_buster:
+			for weapon in weapons:
+				if weapon.ammo < def_weapon.ammo:
+					def_weapon = weapon
+			if def_weapon.ammo + pickup.value >= 28:
+				def_weapon.ammo = 28
+			else:
+				def_weapon.ammo += pickup.value
+		else:
+			if weapon_current.ammo + pickup.value >= 28:
+				weapon_current.ammo = 28
+				camera.ammobar.value = weapon_current.ammo
+			else:
+				weapon_current.ammo += pickup.value
+				camera.ammobar.value = weapon_current.ammo
+		pickup.queue_free()
 	if area.is_in_group("1UP"):
 		pass # put 1UP logic here
 

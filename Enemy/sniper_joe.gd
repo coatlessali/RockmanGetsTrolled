@@ -80,6 +80,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 			print(hp)
 			print(area.damage)
 			if hp <= 0:
+				spawn_pickup()
 				var explotano = load("res://explotano.tscn").instantiate()
 				explotano.position = position
 				get_parent().add_child(explotano)
@@ -112,3 +113,27 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 		else:
 			sprite.flip_h = true
 			direction = 1
+
+func spawn_pickup() -> void:
+	var rng = randi_range(1, 128)
+	if rng < 78:
+		return
+	elif rng < 103:
+		# replace with small health
+		var pickup = load("res://Pickups/HealthSmall.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 118:
+		var pickup = load("res://Pickups/AmmoSmall.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 123:
+		var pickup = load("res://Pickups/HealthBig.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 127:
+		var pickup = load("res://Pickups/AmmoBig.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	else:
+		print("1UP")

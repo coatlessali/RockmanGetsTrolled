@@ -145,7 +145,8 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 			sprite.visible = false
 			onscreen = false
 			hurtbox.set_deferred("monitoring", false) 
-			hurtbox.set_deferred("monitorable", false) 
+			hurtbox.set_deferred("monitorable", false)
+			spawn_pickup()
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	hurtbox.set_deferred("monitoring", true) 
@@ -160,3 +161,27 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	walk_timer = 60
 	first_anim_timer = 0
 	sprite.visible = true
+
+func spawn_pickup() -> void:
+	var rng = randi_range(1, 128)
+	if rng < 78:
+		return
+	elif rng < 103:
+		# replace with small health
+		var pickup = load("res://Pickups/HealthSmall.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 118:
+		var pickup = load("res://Pickups/AmmoSmall.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 123:
+		var pickup = load("res://Pickups/HealthBig.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	elif rng < 127:
+		var pickup = load("res://Pickups/AmmoBig.tscn").instantiate()
+		pickup.position = position
+		get_parent().add_child(pickup)
+	else:
+		print("1UP")

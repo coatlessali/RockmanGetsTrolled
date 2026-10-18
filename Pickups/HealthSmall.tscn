@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bu1qsri0hfc17"]
+
+[ext_resource type="Script" uid="uid://72kus6tu5wvp" path="res://Pickups/Pickup.gd" id="1_ggeyb"]
+[ext_resource type="Texture2D" uid="uid://d050k2gor4nn7" path="res://Art/small_health_pickup.png" id="2_ggeyb"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iau2b"]
+a = Vector2(3, 3)
+b = Vector2(-3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3udfw"]
+atlas = ExtResource("2_ggeyb")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn7lq"]
+atlas = ExtResource("2_ggeyb")
+region = Rect2(0, 10, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rn7lq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3udfw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn7lq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lutl"]
+size = Vector2(10, 10)
+
+[node name="HealthSmall" type="CharacterBody2D" unique_id=1205733943]
+script = ExtResource("1_ggeyb")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1176218868]
+visible = false
+shape = SubResource("SegmentShape2D_iau2b")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1399399486]
+sprite_frames = SubResource("SpriteFrames_rn7lq")
+frame_progress = 0.6390938
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=491294178 groups=["HealthPickups"]]
+
+[node name="Shape" type="CollisionShape2D" parent="PickupArea" unique_id=1426679714]
+visible = false
+shape = SubResource("RectangleShape2D_3lutl")

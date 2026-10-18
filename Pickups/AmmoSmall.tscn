@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://bl0pa5jugcvep"]
+
+[ext_resource type="Script" uid="uid://72kus6tu5wvp" path="res://Pickups/Pickup.gd" id="1_ni638"]
+[ext_resource type="Texture2D" uid="uid://dl53tyhjs0ijw" path="res://Art/small_weapon_pickup.png" id="2_ni638"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_iau2b"]
+a = Vector2(3, 3)
+b = Vector2(-3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rnakd"]
+atlas = ExtResource("2_ni638")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmalg"]
+atlas = ExtResource("2_ni638")
+region = Rect2(0, 8, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_44c3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rnakd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmalg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 60.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lutl"]
+size = Vector2(10, 10)
+
+[node name="AmmoSmall" type="CharacterBody2D" unique_id=1205733943]
+script = ExtResource("1_ni638")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1176218868]
+visible = false
+shape = SubResource("SegmentShape2D_iau2b")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1399399486]
+sprite_frames = SubResource("SpriteFrames_44c3d")
+frame_progress = 0.35490608
+
+[node name="PickupArea" type="Area2D" parent="." unique_id=491294178 groups=["AmmoPickups"]]
+
+[node name="Shape" type="CollisionShape2D" parent="PickupArea" unique_id=1426679714]
+visible = false
+shape = SubResource("RectangleShape2D_3lutl")
