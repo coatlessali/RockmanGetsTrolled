@@ -6,6 +6,9 @@ extends CharacterBody2D
 
 var despawn_timer : int = 600
 
+func _ready() -> void:
+	sprite.play()
+
 func _physics_process(delta: float) -> void:
 	if despawn:
 		despawn_timer -= 1
