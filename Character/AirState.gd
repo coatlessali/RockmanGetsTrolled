@@ -35,34 +35,26 @@ func state_process(delta, direction):
 		if character.ladder && character.climb_buffer == 0:
 			playback.travel("climbing")
 			next_state = climb_state
-			print("climb")
 	if Input.is_action_pressed("down") && character.climb_buffer == 0:
 		if character.ladderdown:
 			character.position.y += 4
 			playback.travel("climbing")
 			next_state = climb_state
-			print("climb")
 		elif character.ladder && !character.is_on_floor():
 			playback.travel("climbing")
 			next_state = climb_state
-			print("climb")
-	if(character.is_on_floor()):
+	if character.is_on_floor():
 		land_sound.play()
 		character.local_velocity.y = 0
+		next_state = ground_state
 		if direction.x != DDirection.NONE:
 			next_state = running_state
-		else:
-			next_state = ground_state
 		playback.travel("idle")
-		#if Input.is_action_pressed("slide"):
-			#next_state = sliding_state
 	else:
+		character.local_velocity.x = air_velocity*sign(direction.x)
 		if character.local_velocity.y < character.gravity:
 			character.local_velocity.y += character.gravity * delta
-		else:
-			pass
-		character.local_velocity.x = air_velocity*sign(direction.x)
-		
+	
 	shoot_anim_timer("jump") # State.gd
 	if character.climb_buffer > 0:
 		character.climb_buffer -= 1
@@ -84,38 +76,32 @@ func state_input(event : InputEvent):
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
-		fire()
-		
 		shoot_anim("jump_shoot") # State.gd
+		fire()
 	if event.is_action_released("fire"):
+		shoot_anim("jump_shoot") # State.gd
 		if character.shader_intensity > 0.25:
 			charge_shot()
-
-		shoot_anim("jump_shoot") # State.gd
 
 func on_enter():
 	has_double_jumped = false
 	after_image = 1
 	coyote_frames = 6
-	#climb_buffer = 6
 	if !Input.is_action_pressed("jump"):
 		character.local_velocity.y = 0
 	sprite.offset.y = 5
-	# Determines whether to jump with sliding speed
 	playback.travel("jump")
-	if(character.last_state == sliding_state):
-	#if Input.is_action_pressed("slide"):
+	if character.last_state == sliding_state:
 		air_velocity = character.slide_velocity
 		after_image_toggle = true
-	else:
-		after_image_toggle = false
-		air_velocity = character.speed
+		return
+	air_velocity = character.speed
+	after_image_toggle = false
 
 func on_exit():
 	sprite.offset.y = 1
 	air_velocity = character.speed
-	if(next_state == ground_state):
-		#has_double_jumped = false
+	if next_state == ground_state:
 		playback.travel("idle")
 
 func fire():

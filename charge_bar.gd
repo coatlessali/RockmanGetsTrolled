@@ -1,18 +1,10 @@
 extends ProgressBar
-var timer = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
+var timer = true
 
 func _physics_process(_delta: float) -> void:
+	timer = !timer
 	if timer:
 		get_theme_stylebox("fill").bg_color = Color(0.09, 0.09, 0.09)
-	else:
-		get_theme_stylebox("fill").bg_color = Color(1.0, 0.3, 0.5)
-	timer = !timer
+		return
+	get_theme_stylebox("fill").bg_color = Color(1.0, 0.3, 0.5)
+	

@@ -4,10 +4,10 @@ extends State
 @export var animplayer : AnimationPlayer
 @export var tree : AnimationTree
 var xdir = 1
+
 func on_enter():
 	playback.travel("climbing")
 	character.local_velocity.y = 0
-	# tree.set("parameters/TimeScale/scale", 0)
 	can_move = false
 	character.global_position.x = character.ladderpos
 	
@@ -16,19 +16,14 @@ func on_exit():
 
 func state_input(event: InputEvent):
 	if event.is_action_released("fire"):
-		print(character.shader_intensity)
-		if character.shader_intensity > 0.25:
-			var fire_funne = 69
-			if xdir == 1:
-				fire_funne = 0
-			elif xdir == -1:
-				fire_funne = deg_to_rad(180)
-			charge_shot(fire_funne)
-
 		shoot_anim("climb_shoot") # State.gd
+		if character.shader_intensity > 0.25:
+			charge_shot()
+		
 	if event.is_action_pressed("left"):
 		character.last_faced = -1
 		character.sprite.flip_h = false
+	
 	if event.is_action_pressed("right"):
 		character.last_faced = 1
 		character.sprite.flip_h = true
@@ -49,11 +44,6 @@ func state_process(_delta, direction):
 		xdir = 1
 	else:
 		xdir = -1	
-	
-	#if Input.is_action_pressed("left"):
-		#xdir = -1
-	#if Input.is_action_pressed("right"):
-		#xdir = 1
 	
 	if Input.is_action_just_pressed("jump"):
 		playback.travel("jump")
@@ -79,12 +69,11 @@ func state_process(_delta, direction):
 	if character.hurt:
 		character.hurt = false
 		ladder_owie()
-	#shoot_anim_timer("climbing_pause") # State.gd
 	
 func fire():
 	character.weapon_current.fire_weapon(Vector2(17, 5), 0)
 
-func charge_shot(_angle):
+func charge_shot():
 	if character.shader_intensity <= 0.25:
 		return
 	elif character.shader_intensity < 0.7:

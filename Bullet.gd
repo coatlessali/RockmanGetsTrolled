@@ -22,13 +22,13 @@ func _ready():
 		sound.play()	
 
 func _physics_process(delta: float) -> void:
+	position += speed * direction * delta
 	expire -= 1
 	if expire <= 0:
 		if sprite.self_modulate.a > 0:
 			sprite.self_modulate.a -= fade_speed
 		else:
 			queue_free()
-	position += speed * direction * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

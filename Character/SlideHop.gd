@@ -10,7 +10,6 @@ var has_double_jumped = false
 
 func state_process(delta, direction):
 	if(character.is_on_floor()):
-		#print_debug("floor")
 		character.local_velocity.y = 0
 		if direction.x != 0:
 			next_state = running_state
@@ -23,17 +22,8 @@ func state_process(delta, direction):
 		else:
 			pass
 		character.local_velocity.x = character.speed*sign(direction.x)
-		#if (direction.x * character.local_velocity.x < 0) or (direction.x == 0):
-		## air friction yippee!!! time to add the boost
-			#character.local_velocity.x = move_toward(character.local_velocity.x, 0, character.friction*1)
-		#else:
-			#character.local_velocity.x = move_toward(character.local_velocity.x, character.local_velocity_cap*sign(direction.x), character.speed)
 
 func state_input(event : InputEvent):
-	#if (event.is_action_pressed("jump") && !has_double_jumped):
-		#double_jump()
-	#elif (event.is_action_pressed("boost")) and character.boost_guage >= 3:
-		#boost()
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
 	if event.is_action_pressed("fire"):
@@ -46,7 +36,6 @@ func state_input(event : InputEvent):
 
 func on_exit():
 	if(next_state == ground_state):
-		#has_double_jumped = false
 		playback.travel("idle")
 
 func fire(angle):

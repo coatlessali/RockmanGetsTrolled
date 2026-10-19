@@ -5,8 +5,6 @@ extends State
 
 func on_enter():
 	pass
-	
-	#character.sprite.visible = false
 
 func on_exit():
 	actual_hurtbox.monitoring = true

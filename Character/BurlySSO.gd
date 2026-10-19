@@ -8,7 +8,6 @@ func fire_weapon(fire_pos : Vector2, angle):
 		reloading = true
 		return
 	ammo -= 14
-	#character.camera.ammobar.value = ammo
 	sound.play()
 	var loop_count = 14
 	while loop_count > 0:
@@ -18,7 +17,6 @@ func fire_weapon(fire_pos : Vector2, angle):
 func spawn_bullet(fire_pos : Vector2, angle):
 	var bullet = load("Bullet.tscn").instantiate()
 	var rand_angle = randf_range(-45.0, 45.0)
-	#bullet.sprite.rotation_degrees = rand_angle
 	bullet.expire = 0
 	bullet.limit = false
 	bullet.autoplay = false
@@ -36,7 +34,6 @@ func fire_charged_weapon(fire_pos : Vector2, angle):
 		return
 	reloading = true
 	ammo -= 28
-	#character.camera.ammobar.value = ammo
 	sound.play()
 	var loop_count = 28
 	while loop_count > 0:

@@ -7,8 +7,6 @@ var direction = Vector2(1.0,0.0)
 var speed = 300.0
 var expire = 120
 var damage = 4
-	
-#some collision detection stuff here
 
 func _ready() -> void:
 	sprite.play()

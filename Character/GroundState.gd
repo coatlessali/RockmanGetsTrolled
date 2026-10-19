@@ -43,8 +43,6 @@ func state_process(_delta, direction):
 		owie()
 
 func state_input(event : InputEvent):
-	#if event.is_action_pressed("debug_owie"):
-		#owie() # test hurting for the time being, comment out this line and the one above it to turn it off
 	if event.is_action_pressed("jump"):
 		jump()
 	if event.is_action_pressed("slide"):

@@ -380,11 +380,6 @@ func _on_slide_hurtbox_area_entered(area: Area2D) -> void:
 	if owie:
 		return
 	apply_damage(area)
-
-
-
-
-
 func _on_graze_area_area_exited(area: Area2D) -> void:
 	graze(area)
 func _on_slide_graze_area_area_exited(area: Area2D) -> void:
