@@ -170,18 +170,18 @@ func spawn_pickup() -> void:
 		# replace with small health
 		var pickup = load("res://Pickups/HealthSmall.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	elif rng < 118:
 		var pickup = load("res://Pickups/AmmoSmall.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	elif rng < 123:
 		var pickup = load("res://Pickups/HealthBig.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	elif rng < 127:
 		var pickup = load("res://Pickups/AmmoBig.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	else:
 		print("1UP")

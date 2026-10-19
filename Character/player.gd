@@ -304,31 +304,21 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 		ladder = true
 		ladderpos = area.global_position.x
 	if area.is_in_group("CameraTriggers"):
-		#cam_pos = area.get_meta("camera_position")
-		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_x = false
 		cam_follow_y = false
 		camera_trans = true
 		Global.transition = true
 		if area.is_in_group("Checkpoint"):
-			print(area.get_node("Anchor").name)
-			print(area.get_meta("spawn_offset"))
-			print(area.get_node("Anchor").global_position)
 			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 	if area.is_in_group("CameraFollowX"):
-		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_x = true
 		camera_trans = true
 		Global.transition = true
 		if area.is_in_group("Checkpoint"):
-			print(area.get_node("Anchor").name)
-			print(area.get_meta("spawn_offset"))
-			print(area.get_node("Anchor").global_position)
 			home_pos = area.get_node("Anchor").global_position + area.get_meta("spawn_offset")
 	if area.is_in_group("CameraFollowY"):
-		#cam_pos = area.position
 		get_cam_pos(area)
 		cam_follow_y = true
 		camera_trans = true

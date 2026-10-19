@@ -20,7 +20,7 @@ func _ready():
 	readytext.play()
 	textpopup.hide()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if text_timer > 0:
 		text_timer -= 1
 	else:
