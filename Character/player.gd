@@ -74,23 +74,20 @@ func change_weapon():
 
 func cycle_weapon(cycle : bool):
 	if cycle:
-		if weapon_num == weapon_max:
+		weapon_num += 1
+		if weapon_num > weapon_max:
 			weapon_num = 0
-		else:
-			weapon_num += 1
 	else:
-		if weapon_num == 0:
+		weapon_num -=1
+		if weapon_num < 0:
 			weapon_num = weapon_max
-		else:
-			weapon_num -=1
+	# show ammo bar
+	camera.ammoframe.show()
 	if weapon_num == 0:
 		camera.ammoframe.hide()
-	else:
-		camera.ammoframe.show()
+		
 	weapon_current = weapons[weapon_num]
 	change_palette(palettes[weapon_num])
-	print(weapon_current.name)
-	#charge.stop()
 	camera.ammobar.value = weapon_current.ammo
 
 func change_palette(palette : PackedColorArray):
@@ -100,23 +97,26 @@ func _ready():
 	weapon_max = weapons.size() - 1
 	change_palette(color_buster)
 	animation_tree.active = true
+	
+	sprite.flip_h = false
 	if facing_direction == 1:
-		sprite.flip_h = true # the sprite sheet is cursed and flipped
-	else:
-		sprite.flip_h = false
+		# sprite sheet is cursed and flipped
+		sprite.flip_h = true 
+
 	sprite.material.set("shader_parameter/intensity", 0.0)
 	sprite.material.set("shader_parameter/speed", 0.0)
 
-func _physics_process(_delta):
+func check_fps_toggle() -> void:
 	if Input.is_action_just_pressed("debug_phys_interpol"):
 		get_tree().physics_interpolation = !get_tree().physics_interpolation
 		if get_tree().physics_interpolation == true:
 			print("RTX On")
 		else:
 			print("RTX Off")
-	
-	
-	# update ammobar and healthbar
+
+func update_values() -> bool:
+	if hp > 28:
+		hp = 28
 	if hp > camera.healthbar.value:
 		if refill_timer == 0:
 			camera.healthbar.value += 1
@@ -125,7 +125,7 @@ func _physics_process(_delta):
 		else:
 			refill_timer += 1
 		Global.transition = true
-		return
+		return true
 	else:
 		refill_timer = 0
 		camera.healthbar.value = hp
@@ -138,17 +138,14 @@ func _physics_process(_delta):
 		else:
 			refill_timer += 1
 		Global.transition = true
-		return
+		return true
 	else:
 		refill_timer = 0
 		camera.ammobar.value = weapon_current.ammo
 		Global.transition = false
-	
-	if Input.is_action_just_pressed("weapon_next"):
-		cycle_weapon(true)
-	if Input.is_action_just_pressed("weapon_prev"):
-		cycle_weapon(false)
-	
+		return false
+
+func iframe_check() -> void:
 	if iframes > 0:
 		iframes -= 1
 		if state_machine.current_state != dead_state:
@@ -158,14 +155,13 @@ func _physics_process(_delta):
 				sprite.visible = true
 	else:
 		sprite.visible = true
-	if hp > 28:
-		hp = 28
-	
+
+func camera_check() -> bool:
 	if camera_trans:
 		if respawn:
 			camera.position = cam_pos
 			respawn = false
-			return
+			return true
 		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
 		camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
 		if camera.position.is_equal_approx(cam_pos):
@@ -176,23 +172,21 @@ func _physics_process(_delta):
 			position.y -= sign(camera.position.y - cam_pos.y)*0.5
 		if camera.position.x != cam_pos.x:
 			position.x -= sign(camera.position.x - cam_pos.x)*0.25
-		return
-		
-			
-	if hp <= 0:
-		dead = true
-	camera.healthbar.value = hp
-	input_direction = Input.get_vector("left", "right", "up", "down")
-	var x_direction = sign(input_direction.x)
-	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
-		last_faced = x_direction
-	
-	if Input.is_action_just_pressed("fire"):# && weapon_current == weapon_buster:
+		return true
+	return false
+
+func weapon_cycle_check() -> void:
+	if Input.is_action_just_pressed("weapon_next"):
+		cycle_weapon(true)
+	if Input.is_action_just_pressed("weapon_prev"):
+		cycle_weapon(false)
+
+func handle_charge_shot() -> void:
+	if Input.is_action_just_pressed("fire"):
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		charge.stop()
-	
-	if Input.is_action_pressed("fire"):# && weapon_current == weapon_buster:
+	if Input.is_action_pressed("fire"):
 		# charge shot shader
 		camera.chargebar.value = shader_intensity
 		if shader_intensity < 0.75:
@@ -204,19 +198,7 @@ func _physics_process(_delta):
 		shader_intensity = 0.0
 		shader_speed = 0.0
 
-	#if is_on_floor():
-		#pass
-
-	# environmental velocity is controlled by objects in the environment, such as speed boosters, and naturally slows down
-	environmental_velocity.x = move_toward(environmental_velocity.x, 0, friction)
-
-	velocity = local_velocity + environmental_velocity
-	move_and_slide()
-	update_animation(input_direction)
-	update_facing_direction(x_direction)
-	sprite.material.set("shader_parameter/intensity", shader_intensity)
-	sprite.material.set("shader_parameter/speed", shader_speed)
-	
+func handle_cam_follow() -> void:
 	if cam_follow_x:
 		if position.x < cam_pos.x && !going_right:
 			if position.x >= cam2_pos.x:
@@ -232,8 +214,32 @@ func _physics_process(_delta):
 			if position.y <= cam2_pos.y:
 				camera.position.y = position.y
 
-func update_animation(direction):
-	animation_tree.set("parameters/Move/blend_position", direction.x)
+func _physics_process(_delta):
+	check_fps_toggle()
+	if update_values():
+		return
+	iframe_check()
+	weapon_cycle_check()
+	if camera_check():
+		return
+	handle_charge_shot()
+	
+	if hp <= 0:
+		dead = true
+	input_direction = Input.get_vector("left", "right", "up", "down")
+	var x_direction = sign(input_direction.x)
+	if x_direction != DDirection.NONE && state_machine.check_if_can_move() && !owie:
+		last_faced = x_direction
+
+	# environmental velocity is controlled by objects in the environment, such as speed boosters, and naturally slows down
+	environmental_velocity.x = move_toward(environmental_velocity.x, 0, friction)
+	velocity = local_velocity + environmental_velocity
+	move_and_slide()
+	update_facing_direction(x_direction)
+	sprite.material.set("shader_parameter/intensity", shader_intensity)
+	sprite.material.set("shader_parameter/speed", shader_speed)
+	
+	handle_cam_follow()
 
 func update_facing_direction(x_direction):
 	if owie:
@@ -244,9 +250,7 @@ func update_facing_direction(x_direction):
 		sprite.flip_h = false
 
 func apply_damage(area: Area2D) -> void:
-	if iframes > 0:
-		return
-	if owie:
+	if iframes > 0 or owie:
 		return
 	if area.is_in_group("EnemyBullet"):
 		if sliding && area.is_in_group("Dodge"):
@@ -260,10 +264,8 @@ func apply_damage(area: Area2D) -> void:
 		var pickup = area.get_parent()
 		if hp + pickup.value >= 28:
 			hp = 28
-			#camera.healthbar.value = 28
 		else:
 			hp += pickup.value
-			#camera.healthbar.value = hp
 		pickup.queue_free()
 	if area.is_in_group("AmmoPickups"):
 		var pickup = area.get_parent()
@@ -272,17 +274,9 @@ func apply_damage(area: Area2D) -> void:
 			for weapon in weapons:
 				if weapon.ammo < def_weapon.ammo:
 					def_weapon = weapon
-			if def_weapon.ammo + pickup.value >= 28:
-				def_weapon.ammo = 28
-			else:
-				def_weapon.ammo += pickup.value
+			def_weapon.ammo = min(def_weapon.ammo + pickup.value, 28)
 		else:
-			if weapon_current.ammo + pickup.value >= 28:
-				weapon_current.ammo = 28
-				#camera.ammobar.value = weapon_current.ammo
-			else:
-				weapon_current.ammo += pickup.value
-				#camera.ammobar.value = weapon_current.ammo
+			weapon_current.ammo = min(weapon_current.ammo + pickup.value, 28)
 		pickup.queue_free()
 	if area.is_in_group("1UP"):
 		pass # put 1UP logic here
