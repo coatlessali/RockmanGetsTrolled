@@ -141,7 +141,7 @@ func _physics_process(_delta):
 		return
 	else:
 		refill_timer = 0
-		camera.ammobar.value = hp
+		camera.ammobar.value = weapon_current.ammo
 		Global.transition = false
 	
 	if Input.is_action_just_pressed("weapon_next"):
