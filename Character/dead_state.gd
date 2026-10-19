@@ -27,6 +27,7 @@ func _on_audio_stream_player_finished() -> void:
 	next_state = idle
 	character.position = character.home_pos
 	character.hp = 28
+	character.camera.healthbar.value = 28
 	character.music.play()
 	character.camera.global_position = character.cam_pos
 	character.respawn = true
