@@ -70,8 +70,8 @@ var color_buster = PackedColorArray([Color(0.29, 0.80, 0.84, 1.00), Color(0.03, 
 var color_rush = PackedColorArray([Color.WHITE, Color(0.50, 0.12, 0.10, 1.00), Color(0.86, 0.19, 0.18, 1.00)])
 var color_burly = PackedColorArray([Color.GHOST_WHITE, Color.MIDNIGHT_BLUE, Color.PERU])
 var color_slip = PackedColorArray([Color(0.57, 0.63, 0.63), Color(0.00, 0.16, 0.21), Color(0.16, 0.63, 0.69)])
-var color_slipping = PackedColorArray([Color(0.57, 0.63, 0.63), Color(0.00, 0.16, 0.21), Color(0.16, 0.63, 0.69)])
-var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_burly, color_slip]
+var color_resin = PackedColorArray([Color(0.79, 0.39, 0.14), Color(0.03, 0.28, 0.13), Color(0.38, 0.64, 0.26)])
+var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_burly, color_slip, color_resin]
 # weapons = buster, resin, shard, sledge, slip, burly, rushcoil
 #var weapon = "buster"
 

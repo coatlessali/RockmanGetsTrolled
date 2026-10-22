@@ -572,7 +572,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kk4v"]
 shader = ExtResource("3_m6p0u")
 shader_parameter/target_colors = PackedColorArray(0.2901961, 0.80784315, 0.87058824, 1, 0, 0.16078432, 0.54901963, 1, 0.09803922, 0.3882353, 0.8392157, 1)
-shader_parameter/replace_colors = PackedColorArray(0.5764706, 0.6313726, 0.6313726, 1, 0, 0.16862746, 0.21176471, 1, 0.16470589, 0.6313726, 0.59607846, 1)
+shader_parameter/replace_colors = PackedColorArray(0.75686276, 0.39215687, 0.14901961, 1, 0.03137255, 0.28627452, 0.13333334, 1, 0.38039216, 0.64705884, 0.2627451, 1)
 shader_parameter/color_count = 3
 shader_parameter/tolerance = 0.10000000475
 shader_parameter/shader_active = true
@@ -663,6 +663,7 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_5xm0m")
 
 [node name="SlideGrazeArea" type="Area2D" parent="." unique_id=1109837582]
+visible = false
 position = Vector2(0, 15)
 monitoring = false
 monitorable = false
@@ -932,6 +933,7 @@ position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_gxle8")
 
 [node name="SlideHurtbox" type="Area2D" parent="." unique_id=1757705720]
+visible = false
 monitoring = false
 monitorable = false
 
