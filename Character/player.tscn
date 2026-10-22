@@ -42,6 +42,11 @@
 [ext_resource type="Script" uid="uid://css47omiuvdlt" path="res://Character/rush_coil.gd" id="40_5xm0m"]
 [ext_resource type="Script" uid="uid://cug5bu6dqvxfd" path="res://Character/BurlySSO.gd" id="41_0qjmq"]
 [ext_resource type="AudioStream" uid="uid://dfootgypnfbom" path="res://Sounds/SSO.ogg" id="42_wtchp"]
+[ext_resource type="Script" uid="uid://cgibc1ka4et53" path="res://Character/SlipWeapon.gd" id="43_2wj3k"]
+[ext_resource type="Texture2D" uid="uid://ctbf0077wq2rs" path="res://Art/rock/crosshair.png" id="44_5empq"]
+[ext_resource type="AudioStream" uid="uid://peodoq1110fl" path="res://Sounds/slipshot.ogg" id="45_p038j"]
+[ext_resource type="PackedScene" uid="uid://dn6w6ldqipsrp" path="res://Character/hitscan.tscn" id="46_trg66"]
+[ext_resource type="AudioStream" uid="uid://b1slfnndo3qxq" path="res://Sounds/slip.wav" id="47_cw8fd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xm0m"]
 size = Vector2(26, 28)
@@ -546,12 +551,13 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kk4v"]
 shader = ExtResource("3_m6p0u")
 shader_parameter/target_colors = PackedColorArray(0.29411766, 0.80784315, 0.8745098, 1, 0.03137255, 0.15686275, 0.34509805, 1, 0.09411765, 0.3882353, 0.84313726, 1)
-shader_parameter/replace_colors = PackedColorArray(1, 1, 1, 1, 0.50980395, 0.12156863, 0.101960786, 1, 0.8627451, 0.19607843, 0.18431373, 1)
+shader_parameter/replace_colors = PackedColorArray(0.5764706, 0.6313726, 0.6313726, 1, 0, 0.16862746, 0.21176471, 1, 0.16470589, 0.6313726, 0.59607846, 1)
 shader_parameter/color_count = 3
 shader_parameter/tolerance = 0.10000000475
 shader_parameter/shader_active = true
 shader_parameter/speed = 0.0
 shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_4kk4v"]
 
@@ -954,6 +960,26 @@ character = NodePath("../..")
 
 [node name="Sound" type="AudioStreamPlayer" parent="Weapons/Burly" unique_id=446031495]
 stream = ExtResource("42_wtchp")
+
+[node name="Slip" type="Node" parent="Weapons" unique_id=1202638464 node_paths=PackedStringArray("character")]
+script = ExtResource("43_2wj3k")
+character = NodePath("../..")
+
+[node name="Crosshair" type="Sprite2D" parent="Weapons/Slip" unique_id=971183015]
+visible = false
+z_index = 1
+position = Vector2(0, 10)
+texture = ExtResource("44_5empq")
+
+[node name="Hitscan" parent="Weapons/Slip/Crosshair" unique_id=1686561923 instance=ExtResource("46_trg66")]
+
+[node name="Sound" type="AudioStreamPlayer" parent="Weapons/Slip" unique_id=2135155305]
+stream = ExtResource("45_p038j")
+volume_db = -9.828
+
+[node name="SlipSound" type="AudioStreamPlayer" parent="." unique_id=867919077]
+stream = ExtResource("47_cw8fd")
+volume_db = -10.822
 
 [connection signal="area_exited" from="GrazeArea" to="." method="_on_graze_area_area_exited"]
 [connection signal="area_exited" from="SlideGrazeArea" to="." method="_on_slide_graze_area_area_exited"]

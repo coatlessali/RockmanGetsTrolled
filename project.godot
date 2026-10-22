@@ -52,6 +52,8 @@ Checkpoint=""
 TextPopups=""
 HealthPickups=""
 AmmoPickups=""
+Penetrate="Breaks through shields"
+Bullets=""
 
 [input]
 

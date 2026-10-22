@@ -9,6 +9,7 @@ extends Camera2D
 @onready var grazebar : ProgressBar = $AmmoFrame/GrazeBar
 @onready var needle : Node2D = $OtherBars/Needle
 @onready var chargebar : ProgressBar = $HealthFrame/ChargeBar
+@onready var flash : Sprite2D = $Flash
 var air_buffer : bool = true
 var buffer : bool = false
 var readyplayed : bool = false

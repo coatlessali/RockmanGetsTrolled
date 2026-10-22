@@ -112,8 +112,9 @@ func _on_player_detection_area_body_entered(body: Node2D) -> void:
 	if state != 0:
 		return
 	if body.is_in_group("Player"):
-		active = true
-		state = 1
+		if !active:
+			active = true
+			state = 1
 		if body.global_position > global_position: # if player is to the right
 			direction = 1 # turn it right
 			sprite.flip_h = true

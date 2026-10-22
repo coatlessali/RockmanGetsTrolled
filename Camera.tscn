@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://7lp08xq2n2vh" path="res://Art/ready.png" id="5_we8rk"]
 [ext_resource type="Script" uid="uid://cbfj3b2tngeoj" path="res://graze_bar.gd" id="6_07nfj"]
 [ext_resource type="FontFile" uid="uid://b28eub80ul2xw" path="res://fonts/CyberpunkWaifus.ttf" id="6_lxp0o"]
+[ext_resource type="Texture2D" uid="uid://fen85ic7ksgp" path="res://Art/rock/white.png" id="10_4656x"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuier"]
 bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
@@ -171,5 +172,10 @@ theme_override_fonts/normal_font = ExtResource("6_lxp0o")
 theme_override_font_sizes/normal_font_size = 12
 text = "This is some test text."
 horizontal_alignment = 1
+
+[node name="Flash" type="Sprite2D" parent="." unique_id=1246120734]
+position = Vector2(-128, -112)
+scale = Vector2(256, 224)
+texture = ExtResource("10_4656x")
 
 [connection signal="animation_finished" from="Ready" to="." method="_on_ready_animation_finished"]

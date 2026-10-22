@@ -20,6 +20,8 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var animation_tree : AnimationTree = $AnimationTree
 @onready var state_machine : CharacterStateMachine = $CharacterStateMachine
 @onready var dead_state : State = $CharacterStateMachine/DeadState
+@onready var hitscan : Area2D = $Weapons/Slip/Crosshair/Hitscan
+@onready var slipsound : AudioStreamPlayer = $SlipSound
 
 # vars used for character state etc, do not touch
 var home_pos = Vector2(0, 0)
@@ -54,18 +56,22 @@ var going_down : bool = false
 var going_right : bool = false
 var respawn : bool = false
 var refill_timer : int = 0
+var slip_timer : int = 0
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
 @onready var weapon_rushcoil : Weapon = $Weapons/RushCoil
 @onready var weapon_burly : Weapon = $Weapons/Burly
-@onready var weapons : Array[Weapon] = [weapon_buster, weapon_rushcoil, weapon_burly]
+@onready var weapon_slip : Weapon = $Weapons/Slip
+@onready var weapons : Array[Weapon] = [weapon_buster, weapon_rushcoil, weapon_burly, weapon_slip]
 var weapon_max = 0
 var weapon_num = 0
 var color_buster = PackedColorArray([Color(0.29, 0.80, 0.84, 1.00), Color(0.03, 0.15, 0.34, 1.00), Color(0.09, 0.38, 0.84, 1.00)])
 var color_rush = PackedColorArray([Color.WHITE, Color(0.50, 0.12, 0.10, 1.00), Color(0.86, 0.19, 0.18, 1.00)])
 var color_burly = PackedColorArray([Color.GHOST_WHITE, Color.MIDNIGHT_BLUE, Color.PERU])
-var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_burly]
+var color_slip = PackedColorArray([Color(0.57, 0.63, 0.63), Color(0.00, 0.16, 0.21), Color(0.16, 0.63, 0.69)])
+var color_slipping = PackedColorArray([Color(0.57, 0.63, 0.63), Color(0.00, 0.16, 0.21), Color(0.16, 0.63, 0.69)])
+var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_burly, color_slip]
 # weapons = buster, resin, shard, sledge, slip, burly, rushcoil
 #var weapon = "buster"
 
@@ -181,10 +187,23 @@ func weapon_cycle_check() -> void:
 	if Input.is_action_just_pressed("weapon_prev"):
 		cycle_weapon(false)
 
+func flash() -> void:
+	if !camera.flash.visible:
+		camera.flash.show()
+
+func clear_flash() -> void:
+	if camera.flash.visible:
+		camera.flash.hide()
+
 func handle_charge_shot() -> void:
 	if Input.is_action_just_pressed("fire"):
 		charge.play()
 	if Input.is_action_just_released("fire"):
+		if weapon_slip.crosshair.visible:
+			weapon_slip.crosshair.hide()
+			weapon_slip.sound.play()
+			flash()
+			hitscan.fire = false
 		charge.stop()
 	if Input.is_action_pressed("fire"):
 		# charge shot shader
@@ -193,6 +212,12 @@ func handle_charge_shot() -> void:
 			shader_intensity += 0.0085
 		if shader_speed < 7.5:
 			shader_speed += 0.085
+		if weapon_current == weapon_slip && weapon_slip.crosshair.visible:
+			if Input.is_action_pressed("up"):
+				weapon_slip.crosshair.position.y -= 1
+			if Input.is_action_pressed("down"):
+				weapon_slip.crosshair.position.y += 1
+			weapon_slip.crosshair.position.x += 1.25*last_faced
 	else:
 		camera.chargebar.value = move_toward(camera.chargebar.value, 0.0, 0.05)
 		shader_intensity = 0.0
@@ -215,14 +240,24 @@ func handle_cam_follow() -> void:
 				camera.position.y = position.y
 
 func _physics_process(_delta):
+	clear_flash()
 	check_fps_toggle()
 	if update_values():
 		return
-	iframe_check()
 	weapon_cycle_check()
 	if camera_check():
 		return
+	iframe_check()
 	handle_charge_shot()
+	if slip_timer > -15:
+		if slip_timer == 0:
+			sprite.material.set("shader_parameter/alpha", 1.0)
+		slip_timer -= 1
+	if Input.is_action_just_pressed("slide") && weapon_current == weapon_slip && weapon_slip.ex && slip_timer <= -15 && weapon_slip.ammo >= 1:
+		sprite.material.set("shader_parameter/alpha", 0.5)
+		slip_timer = 15
+		slipsound.play()
+		weapon_slip.ammo -= 1
 	
 	if hp <= 0:
 		dead = true
@@ -254,6 +289,8 @@ func apply_damage(area: Area2D) -> void:
 		return
 	if area.is_in_group("EnemyBullet"):
 		if sliding && area.is_in_group("Dodge"):
+			return
+		if slip_timer > 0:
 			return
 		hp -= area.damage
 		hurt = true

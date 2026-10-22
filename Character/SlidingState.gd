@@ -20,17 +20,13 @@ var after_image = 5
 
 func state_process(_delta, direction):
 	if dust_timer % 6 == 0:
-	#if dust_timer == 18:
 		dust()
 	dust_timer -= 1
 	if after_image > 0:
 		after_image -=1
-	else:
+	else: # if slip_timer <= 0:
 		after_image = 5
 		character.after_image()
-	# you shouldn't be in the air!
-	#if last_state != null:
-		#print_debug(last_state)
 	if Input.is_action_pressed("up"):
 		if character.ladder:
 			playback.travel("climbing")
@@ -120,11 +116,10 @@ func on_enter():
 	slide_actual_hurtbox.monitoring = true
 	hurtbox.disabled = true
 	actual_hurtbox.monitoring = false
-	#hurtbox.scale.y = 0.1
-	#hurtbox.position.y += 21
 	playback.travel("slide")
 
 func on_exit():
+	character.change_palette(character.palettes[character.weapon_num])
 	character.sliding = false
 	if !slidecast.is_colliding():
 		sprite.offset.y = 1

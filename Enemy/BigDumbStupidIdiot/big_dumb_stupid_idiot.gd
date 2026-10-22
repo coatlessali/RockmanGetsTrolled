@@ -8,7 +8,7 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Bullets"):
 		if area.is_in_group("volatile"):
 			area.queue_free() # despawn player bullet
-		health -= 1
+		health -= area.damage
 		if health <= 0:
 			var explotano = load("res://explotano.tscn").instantiate()
 			get_parent().add_child(explotano)

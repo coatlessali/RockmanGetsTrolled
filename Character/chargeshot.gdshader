@@ -9,6 +9,7 @@ uniform float tolerance : hint_range(0, 1);
 uniform bool shader_active = true; // you’ll change this from your script
 uniform float speed = 1.0;
 uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
 
 vec3 hsv2rgb(vec3 c)
 {
@@ -38,4 +39,5 @@ void fragment()
     vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
 
     COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
 }

@@ -80,6 +80,8 @@ func fire():
 	character.weapon_current.fire_weapon(Vector2(16, 11), 0)
 
 func charge_shot(_angle):
+	if character.weapon_current == character.weapon_slip:
+		return
 	if character.shader_intensity <= 0.25:
 		return
 	elif character.shader_intensity < 0.7:

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dn6w6ldqipsrp"]
+
+[ext_resource type="Script" uid="uid://bmjmg5fb3g84q" path="res://Character/hitscan.gd" id="1_h8801"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
+size = Vector2(12, 12)
+
+[node name="Hitscan" type="Area2D" unique_id=1686561923 groups=["Bullets"]]
+script = ExtResource("1_h8801")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=727017021]
+shape = SubResource("RectangleShape2D_44c3d")
