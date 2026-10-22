@@ -18,7 +18,7 @@ func state_process(_delta, _direction):
 		if !character.is_on_floor():
 			character.local_velocity.y = 400
 		else:
-			playback.travel("idle")
+			playback.travel("beam_in")
 			land.play()
 			next_state = ground_state
 	else:

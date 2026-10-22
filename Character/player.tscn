@@ -63,6 +63,9 @@ size = Vector2(14.999996, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crd0r"]
 size = Vector2(14.444445, 22)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cw8fd"]
+animation = &"beam_in"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m6p0u"]
 animation = &"climb_hurt"
 
@@ -218,17 +221,17 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5empq"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p038j"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_trg66"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eryot"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cw8fd"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2vv0w"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_l4wj4"]
 states/End/position = Vector2(1047.7734, 456.58594)
 states/Start/position = Vector2(159.5, 190.25)
+states/beam_in/node = SubResource("AnimationNodeAnimation_cw8fd")
+states/beam_in/position = Vector2(316.47266, 77.48474)
 states/climb_hurt/node = SubResource("AnimationNodeAnimation_m6p0u")
 states/climb_hurt/position = Vector2(1547.3047, 202.30734)
 states/climb_shoot/node = SubResource("AnimationNodeAnimation_bmb57")
@@ -244,7 +247,7 @@ states/idle/position = Vector2(316.47266, 190.25)
 states/idle_shoot/node = SubResource("AnimationNodeAnimation_kr43w")
 states/idle_shoot/position = Vector2(856.5, -67.3997)
 states/intro/node = SubResource("AnimationNodeAnimation_iaers")
-states/intro/position = Vector2(316.47266, 21.9089)
+states/intro/position = Vector2(91.85156, 15.404993)
 states/jump/node = SubResource("AnimationNodeAnimation_ltyc1")
 states/jump/position = Vector2(488, 21.9089)
 states/jump_shoot/node = SubResource("AnimationNodeAnimation_450od")
@@ -259,8 +262,8 @@ states/slide/node = SubResource("AnimationNodeAnimation_t3f4i")
 states/slide/position = Vector2(821.97266, 185.04297)
 states/slide_shoot/node = SubResource("AnimationNodeAnimation_o4l1u")
 states/slide_shoot/position = Vector2(821.97266, 306.44025)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km"), "run", "climbing", SubResource("AnimationNodeStateMachineTransition_4t32h"), "idle", "climbing", SubResource("AnimationNodeStateMachineTransition_4myw8"), "climbing", "jump", SubResource("AnimationNodeStateMachineTransition_cjk1a"), "jump", "climbing", SubResource("AnimationNodeStateMachineTransition_76d41"), "climbing", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_m40if"), "jump_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_q81ek"), "climbing", "run", SubResource("AnimationNodeStateMachineTransition_mwdr7"), "climb_hurt", "climbing", SubResource("AnimationNodeStateMachineTransition_4kk4v"), "climbing", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_iaers"), "climbing_pause", "climbing", SubResource("AnimationNodeStateMachineTransition_ct4ma"), "climbing", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2kngs"), "climb_shoot", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_u3msb"), "climb_hurt", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5xm0m"), "climbing", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_0qjmq"), "climb_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_wtchp"), "climb_shoot", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2wj3k"), "climbing_pause", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5empq"), "intro", "jump", SubResource("AnimationNodeStateMachineTransition_p038j"), "intro", "idle", SubResource("AnimationNodeStateMachineTransition_trg66"), "idle", "intro", SubResource("AnimationNodeStateMachineTransition_cw8fd"), "jump", "intro", SubResource("AnimationNodeStateMachineTransition_2vv0w")]
-graph_offset = Vector2(105.25781, -84.35901)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_xwo66"), "jump", "slide", SubResource("AnimationNodeStateMachineTransition_acw4l"), "slide", "jump", SubResource("AnimationNodeStateMachineTransition_h5kly"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_exrv1"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_lxv6e"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_xjexb"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_npek4"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_3xhp1"), "jump", "run", SubResource("AnimationNodeStateMachineTransition_wvsll"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_d8v40"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_4niyd"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_edhtl"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_o206e"), "jump", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_mpybc"), "jump_shoot", "jump", SubResource("AnimationNodeStateMachineTransition_ful86"), "slide", "slide_shoot", SubResource("AnimationNodeStateMachineTransition_x64yq"), "slide_shoot", "slide", SubResource("AnimationNodeStateMachineTransition_sxc8j"), "run_shoot", "run", SubResource("AnimationNodeStateMachineTransition_upcn3"), "run", "run_shoot", SubResource("AnimationNodeStateMachineTransition_if6a0"), "idle_shoot", "idle", SubResource("AnimationNodeStateMachineTransition_fjb3i"), "idle", "idle_shoot", SubResource("AnimationNodeStateMachineTransition_bchtj"), "idle", "run_start", SubResource("AnimationNodeStateMachineTransition_xaqyh"), "run_start", "run", SubResource("AnimationNodeStateMachineTransition_13163"), "run_start", "slide", SubResource("AnimationNodeStateMachineTransition_m6p0u"), "run_start", "idle", SubResource("AnimationNodeStateMachineTransition_xj0yq"), "idle_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_6y5aw"), "run_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_bmb57"), "jump_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_o003e"), "jump", "hurt", SubResource("AnimationNodeStateMachineTransition_fnfro"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_kxppi"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_m6avg"), "run_start", "hurt", SubResource("AnimationNodeStateMachineTransition_wl30t"), "slide", "hurt", SubResource("AnimationNodeStateMachineTransition_3j4vf"), "slide_shoot", "hurt", SubResource("AnimationNodeStateMachineTransition_8i4rx"), "hurt", "jump", SubResource("AnimationNodeStateMachineTransition_ls1st"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_jxqse"), "hurt", "slide", SubResource("AnimationNodeStateMachineTransition_gy7km"), "run", "climbing", SubResource("AnimationNodeStateMachineTransition_4t32h"), "idle", "climbing", SubResource("AnimationNodeStateMachineTransition_4myw8"), "climbing", "jump", SubResource("AnimationNodeStateMachineTransition_cjk1a"), "jump", "climbing", SubResource("AnimationNodeStateMachineTransition_76d41"), "climbing", "jump_shoot", SubResource("AnimationNodeStateMachineTransition_m40if"), "jump_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_q81ek"), "climbing", "run", SubResource("AnimationNodeStateMachineTransition_mwdr7"), "climb_hurt", "climbing", SubResource("AnimationNodeStateMachineTransition_4kk4v"), "climbing", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_iaers"), "climbing_pause", "climbing", SubResource("AnimationNodeStateMachineTransition_ct4ma"), "climbing", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2kngs"), "climb_shoot", "climb_hurt", SubResource("AnimationNodeStateMachineTransition_u3msb"), "climb_hurt", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5xm0m"), "climbing", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_0qjmq"), "climb_shoot", "climbing", SubResource("AnimationNodeStateMachineTransition_wtchp"), "climb_shoot", "climbing_pause", SubResource("AnimationNodeStateMachineTransition_2wj3k"), "climbing_pause", "climb_shoot", SubResource("AnimationNodeStateMachineTransition_5empq"), "beam_in", "idle", SubResource("AnimationNodeStateMachineTransition_eryot"), "intro", "beam_in", SubResource("AnimationNodeStateMachineTransition_cw8fd")]
+graph_offset = Vector2(-113.60547, -19.030884)
 
 [sub_resource type="Animation" id="Animation_hdldd"]
 length = 0.001
@@ -274,7 +277,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_cw8fd"]
+resource_name = "beam_in"
+length = 0.083333336
+step = 0.016666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [33, 34]
 }
 
 [sub_resource type="Animation" id="Animation_2kngs"]
@@ -292,7 +312,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.016666668),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 4]
+"values": [0, 6]
 }
 
 [sub_resource type="Animation" id="Animation_xj0yq"]
@@ -361,12 +381,12 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.016666668),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [7, 4]
+"values": [9, 6]
 }
 
 [sub_resource type="Animation" id="Animation_vbvgc"]
 resource_name = "idle"
-length = 2.65
+length = 2.85
 loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
@@ -379,7 +399,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2.55, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [5, 6, 5]
+"values": [7, 8, 7]
 }
 
 [sub_resource type="Animation" id="Animation_tpvpa"]
@@ -395,7 +415,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [8]
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_iaers"]
@@ -410,7 +430,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [22]
+"values": [32]
 }
 
 [sub_resource type="Animation" id="Animation_17kp6"]
@@ -426,7 +446,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9]
+"values": [13]
 }
 
 [sub_resource type="Animation" id="Animation_vsl18"]
@@ -441,7 +461,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [10]
+"values": [14]
 }
 
 [sub_resource type="Animation" id="Animation_rjb5r"]
@@ -459,7 +479,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.11666667, 0.23333333, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [20, 18, 16, 18]
+"values": [30, 26, 24, 26]
 }
 
 [sub_resource type="Animation" id="Animation_v10w4"]
@@ -476,7 +496,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.26666668, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [19, 17, 15, 17]
+"values": [27, 25, 21, 25]
 }
 
 [sub_resource type="Animation" id="Animation_xaqyh"]
@@ -491,7 +511,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [14]
+"values": [20]
 }
 
 [sub_resource type="Animation" id="Animation_k7ea8"]
@@ -509,7 +529,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [11, 13]
+"values": [15, 19]
 }
 
 [sub_resource type="Animation" id="Animation_pml56"]
@@ -525,12 +545,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [21]
+"values": [31]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dvj6t"]
 _data = {
 &"RESET": SubResource("Animation_hdldd"),
+&"beam_in": SubResource("Animation_cw8fd"),
 &"climb_hurt": SubResource("Animation_2kngs"),
 &"climb_shoot": SubResource("Animation_xj0yq"),
 &"climbing": SubResource("Animation_u3msb"),
@@ -550,7 +571,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4kk4v"]
 shader = ExtResource("3_m6p0u")
-shader_parameter/target_colors = PackedColorArray(0.29411766, 0.80784315, 0.8745098, 1, 0.03137255, 0.15686275, 0.34509805, 1, 0.09411765, 0.3882353, 0.84313726, 1)
+shader_parameter/target_colors = PackedColorArray(0.2901961, 0.80784315, 0.87058824, 1, 0, 0.16078432, 0.54901963, 1, 0.09803922, 0.3882353, 0.8392157, 1)
 shader_parameter/replace_colors = PackedColorArray(0.5764706, 0.6313726, 0.6313726, 1, 0, 0.16862746, 0.21176471, 1, 0.16470589, 0.6313726, 0.59607846, 1)
 shader_parameter/color_count = 3
 shader_parameter/tolerance = 0.10000000475
@@ -686,9 +707,9 @@ position = Vector2(-21, -9)
 texture = ExtResource("4_xj0yq")
 centered = false
 offset = Vector2(5, 1)
-hframes = 4
-vframes = 6
-frame = 5
+hframes = 6
+vframes = 7
+frame = 7
 
 [node name="CharacterStateMachine" type="Node" parent="." unique_id=1564572479 node_paths=PackedStringArray("character", "hurtbox", "hurtbox_sprite", "slidecast", "current_state", "animation_tree")]
 script = ExtResource("4_i4vv3")
