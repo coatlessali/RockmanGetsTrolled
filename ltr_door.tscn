@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bmn3ikte2k3jh"]
+
+[ext_resource type="Script" uid="uid://ck2cojmlpv6pa" path="res://ltr_door.gd" id="1_dcqfc"]
+[ext_resource type="Texture2D" uid="uid://8lfriyuayauy" path="res://Art/DOOR2_1.png" id="1_st1w0"]
+[ext_resource type="AudioStream" uid="uid://c0kqmg0i1eb06" path="res://Sounds/door_open.ogg" id="3_kn5te"]
+[ext_resource type="AudioStream" uid="uid://ch5qon436xteo" path="res://Sounds/door_close.ogg" id="4_dvhie"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
+size = Vector2(16, 32)
+
+[node name="LTRDoor" type="Node2D" unique_id=1704361508]
+script = ExtResource("1_dcqfc")
+
+[node name="DoorBody" type="StaticBody2D" parent="." unique_id=795135018]
+
+[node name="DoorSprite" type="Sprite2D" parent="DoorBody" unique_id=122059452]
+texture = ExtResource("1_st1w0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorBody" unique_id=437445584]
+shape = SubResource("RectangleShape2D_44c3d")
+
+[node name="DoorOpen" type="Area2D" parent="." unique_id=480505956]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorOpen" unique_id=1336045657]
+position = Vector2(-24, 0)
+shape = SubResource("RectangleShape2D_yuier")
+
+[node name="DoorClose" type="Area2D" parent="." unique_id=1370559674]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DoorClose" unique_id=347171822]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_yuier")
+
+[node name="Open" type="AudioStreamPlayer" parent="." unique_id=997198814]
+stream = ExtResource("3_kn5te")
+volume_db = -10.514
+
+[node name="Close" type="AudioStreamPlayer" parent="." unique_id=39225827]
+stream = ExtResource("4_dvhie")
+volume_db = -10.505
+
+[connection signal="body_entered" from="DoorOpen" to="." method="_on_door_open_body_entered"]
+[connection signal="body_entered" from="DoorClose" to="." method="_on_door_close_body_entered"]
