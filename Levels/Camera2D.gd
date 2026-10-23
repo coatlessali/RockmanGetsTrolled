@@ -10,6 +10,7 @@ extends Camera2D
 @onready var needle : Node2D = $OtherBars/Needle
 @onready var chargebar : ProgressBar = $HealthFrame/ChargeBar
 @onready var flash : Sprite2D = $Flash
+var local_position = Vector2(0, 0)
 var air_buffer : bool = true
 var buffer : bool = false
 var readyplayed : bool = false

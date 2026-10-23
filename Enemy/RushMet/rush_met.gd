@@ -91,6 +91,7 @@ func _physics_process(delta: float) -> void:
 					sprite.rotation_degrees = 0
 					sprite.self_modulate.b = 1
 					sprite.self_modulate.g = 1
+					Global.camera_shake = 15
 			velocity.x = SPEED * direction
 		_:
 			pass
@@ -162,6 +163,7 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	walk_timer = 60
 	first_anim_timer = 0
 	sprite.visible = true
+	sprite.rotation_degrees = 0
 
 func spawn_pickup() -> void:
 	var rng = randi_range(1, 128)

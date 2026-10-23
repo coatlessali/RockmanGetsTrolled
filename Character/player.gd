@@ -57,6 +57,7 @@ var going_right : bool = false
 var respawn : bool = false
 var refill_timer : int = 0
 var slip_timer : int = 0
+#var camera_shake : bool = false
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
@@ -165,19 +166,19 @@ func iframe_check() -> void:
 func camera_check() -> bool:
 	if camera_trans:
 		if respawn:
-			camera.position = cam_pos
+			camera.local_position = cam_pos
 			respawn = false
 			return true
-		camera.position.x = move_toward(camera.position.x, cam_pos.x, 4)
-		camera.position.y = move_toward(camera.position.y, cam_pos.y, 4)
-		if camera.position.is_equal_approx(cam_pos):
-			camera.position = cam_pos
+		camera.local_position.x = move_toward(camera.local_position.x, cam_pos.x, 4)
+		camera.local_position.y = move_toward(camera.local_position.y, cam_pos.y, 4)
+		if camera.local_position.is_equal_approx(cam_pos):
+			camera.local_position = cam_pos
 			camera_trans = false
 			Global.transition = false
-		if camera.position.y != cam_pos.y:
-			position.y -= sign(camera.position.y - cam_pos.y)*0.5
-		if camera.position.x != cam_pos.x:
-			position.x -= sign(camera.position.x - cam_pos.x)*0.25
+		if camera.local_position.y != cam_pos.y:
+			position.y -= sign(camera.local_position.y - cam_pos.y)*0.5
+		if camera.local_position.x != cam_pos.x:
+			position.x -= sign(camera.local_position.x - cam_pos.x)*0.25
 		return true
 	return false
 
@@ -227,17 +228,28 @@ func handle_cam_follow() -> void:
 	if cam_follow_x:
 		if position.x < cam_pos.x && !going_right:
 			if position.x >= cam2_pos.x:
-				camera.position.x = position.x
+				camera.local_position.x = position.x
 		if position.x > cam_pos.x && going_right:
 			if position.x <= cam2_pos.x:
-				camera.position.x = position.x
+				camera.local_position.x = position.x
 	if cam_follow_y:
 		if position.y < cam_pos.y && !going_down:
 			if position.y >= cam2_pos.y:
-				camera.position.y = position.y
+				camera.local_position.y = position.y
 		if position.y > cam_pos.y && going_down:
 			if position.y <= cam2_pos.y:
-				camera.position.y = position.y
+				camera.local_position.y = position.y
+
+func update_camera():
+	if Global.camera_shake > 0:
+		Global.camera_shake -= 1
+		if camera_offset.y == 1:
+			camera_offset.y = -1
+		else:
+			camera_offset.y = 1
+	else:
+		camera_offset = Vector2(0, 0)
+	camera.position = camera.local_position + camera_offset
 
 func _physics_process(_delta):
 	clear_flash()
@@ -245,6 +257,7 @@ func _physics_process(_delta):
 	if update_values():
 		return
 	weapon_cycle_check()
+	update_camera()
 	if camera_check():
 		return
 	iframe_check()
