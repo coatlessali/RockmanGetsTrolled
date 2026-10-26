@@ -14,6 +14,9 @@ func state_process(_delta, _direction):
 		explotano.play()
 
 func on_enter():
+	if randi_range(1, 100) == 1:
+		var ctac = load("res://ctac.tscn").instantiate()
+		get_parent().get_parent().camera.add_child(ctac)
 	character.local_velocity = Vector2(0, 0)
 	can_move = false
 	pause = 30

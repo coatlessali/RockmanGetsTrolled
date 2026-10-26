@@ -54,6 +54,7 @@ HealthPickups=""
 AmmoPickups=""
 Penetrate="Breaks through shields"
 Bullets=""
+SplashZone=""
 
 [input]
 

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dxvriccp3iac5"]
+
+[ext_resource type="Texture2D" uid="uid://b35u8wlf7e754" path="res://Art/ctac.png" id="1_uc1po"]
+[ext_resource type="Script" uid="uid://bb3o08f5eh2g4" path="res://ctac.gd" id="2_v2v2q"]
+[ext_resource type="AudioStream" uid="uid://dfmyup08naw32" path="res://Sounds/waterphone.ogg" id="3_oxoex"]
+
+[node name="Ctac" type="Sprite2D" unique_id=896240943]
+texture = ExtResource("1_uc1po")
+script = ExtResource("2_v2v2q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1161376031]
+stream = ExtResource("3_oxoex")
+volume_db = -3.496
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

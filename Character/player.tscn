@@ -47,6 +47,7 @@
 [ext_resource type="AudioStream" uid="uid://peodoq1110fl" path="res://Sounds/slipshot.ogg" id="45_p038j"]
 [ext_resource type="PackedScene" uid="uid://dn6w6ldqipsrp" path="res://Character/hitscan.tscn" id="46_trg66"]
 [ext_resource type="AudioStream" uid="uid://b1slfnndo3qxq" path="res://Sounds/slip.wav" id="47_cw8fd"]
+[ext_resource type="AudioStream" uid="uid://bw1d7mtwkksig" path="res://Sounds/freesound_community-splash-by-blaukreuz-6261.ogg" id="48_2vv0w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xm0m"]
 size = Vector2(26, 28)
@@ -1003,6 +1004,10 @@ volume_db = -9.828
 [node name="SlipSound" type="AudioStreamPlayer" parent="." unique_id=867919077]
 stream = ExtResource("47_cw8fd")
 volume_db = -10.822
+
+[node name="Splash" type="AudioStreamPlayer" parent="." unique_id=1900362407]
+stream = ExtResource("48_2vv0w")
+volume_db = -5.533
 
 [connection signal="area_exited" from="GrazeArea" to="." method="_on_graze_area_area_exited"]
 [connection signal="area_exited" from="SlideGrazeArea" to="." method="_on_slide_graze_area_area_exited"]

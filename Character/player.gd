@@ -22,6 +22,7 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var dead_state : State = $CharacterStateMachine/DeadState
 @onready var hitscan : Area2D = $Weapons/Slip/Crosshair/Hitscan
 @onready var slipsound : AudioStreamPlayer = $SlipSound
+@onready var splash : AudioStreamPlayer = $Splash
 
 # vars used for character state etc, do not touch
 var home_pos = Vector2(0, 0)
@@ -57,7 +58,7 @@ var going_right : bool = false
 var respawn : bool = false
 var refill_timer : int = 0
 var slip_timer : int = 0
-#var camera_shake : bool = false
+var is_in_water : bool = false
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
@@ -258,7 +259,7 @@ func _physics_process(_delta):
 		return
 	weapon_cycle_check()
 	update_camera()
-	if camera_check():
+	if camera_check() == true:
 		return
 	iframe_check()
 	handle_charge_shot()
@@ -378,6 +379,10 @@ func _on_ladder_detection_area_entered(area: Area2D) -> void:
 	if area.is_in_group("TextPopups"):
 		camera.text_popup(area.get_meta("text"))
 		area.queue_free() # delete the popup trigger so the text only plays once
+	if area.is_in_group("SplashZone"):
+		is_in_water = true
+		if velocity.y != 0:
+			splash.play()
 
 func _on_ladder_detection_area_exited(area: Area2D) -> void:
 	if area.is_in_group("ladders"):
@@ -386,6 +391,10 @@ func _on_ladder_detection_area_exited(area: Area2D) -> void:
 		cam_follow_x = false
 	if area.is_in_group("CameraFollowY"):
 		cam_follow_y = false
+	if area.is_in_group("SplashZone"):
+		is_in_water = false
+		if velocity.y != 0:
+			splash.play()
 
 func get_cam_pos(trigger: Area2D) -> void:
 	cam_pos = trigger.global_position
