@@ -283,12 +283,13 @@ func _physics_process(_delta):
 	# environmental velocity is controlled by objects in the environment, such as speed boosters, and naturally slows down
 	environmental_velocity.x = move_toward(environmental_velocity.x, 0, friction)
 	velocity = local_velocity + environmental_velocity
-	move_and_slide()
+	
 	update_facing_direction(x_direction)
 	sprite.material.set("shader_parameter/intensity", shader_intensity)
 	sprite.material.set("shader_parameter/speed", shader_speed)
 	
 	handle_cam_follow()
+	move_and_slide()
 
 func update_facing_direction(x_direction):
 	if owie:
