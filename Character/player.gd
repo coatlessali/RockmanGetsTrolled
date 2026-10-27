@@ -23,6 +23,8 @@ var ceilinghit : bool = true # makes it so that when you hit a ceiling you lose 
 @onready var hitscan : Area2D = $Weapons/Slip/Crosshair/Hitscan
 @onready var slipsound : AudioStreamPlayer = $SlipSound
 @onready var splash : AudioStreamPlayer = $Splash
+@onready var refill : AudioStreamPlayer = $Refill
+@onready var grazesound : AudioStreamPlayer = $Graze
 
 # vars used for character state etc, do not touch
 var home_pos = Vector2(0, 0)
@@ -128,6 +130,7 @@ func update_values() -> bool:
 	if hp > camera.healthbar.value:
 		if refill_timer == 0:
 			camera.healthbar.value += 1
+			refill.play()
 		if refill_timer == 3:
 			refill_timer = 0
 		else:
@@ -141,6 +144,7 @@ func update_values() -> bool:
 	if weapon_current.ammo > camera.ammobar.value:
 		if refill_timer == 0:
 			camera.ammobar.value += 1
+			refill.play()
 		if refill_timer == 3:
 			refill_timer = 0
 		else:
@@ -454,6 +458,7 @@ func graze(area: Area2D) -> void:
 	if area.is_in_group("EnemyBullet"):
 		if area.grazed:
 			return
+		grazesound.play()
 		if camera.grazebar.value < 2:
 			camera.grazebar.value += 1
 			area.grazed = true
@@ -463,6 +468,9 @@ func graze(area: Area2D) -> void:
 			camera.grazebar.value = 0
 			area.grazed = true
 			if weapon_current.ammo < 28:
-				weapon_current.ammo += 1
-				camera.ammobar.value = weapon_current.ammo
+				if weapon_current.ammo + 3 <= 28:
+					weapon_current.ammo += 3
+				else:
+					weapon_current.ammo = 28
+				#camera.ammobar.value = weapon_current.ammo
 			
