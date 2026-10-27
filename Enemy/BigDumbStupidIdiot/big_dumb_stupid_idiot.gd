@@ -11,7 +11,7 @@ func _ready() -> void:
 	visible = true
 	player = get_tree().current_scene.find_child("Player", true, false)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if player.camera_trans:
 		return
 	if !enabled:
