@@ -8,6 +8,7 @@ func _ready() -> void:
 
 func fire_weapon(_fire_pos : Vector2, _angle):
 	if ammo <= 0:
+		buster.fire_weapon(_fire_pos, _angle)
 		return
 	if get_tree().current_scene.find_child("Rush", true, false):
 		return
@@ -21,7 +22,10 @@ func fire_weapon(_fire_pos : Vector2, _angle):
 	get_parent().add_child(bullet)
 
 func fire_charged_weapon(_fire_pos : Vector2, _angle):
-	if ammo <= 0 or get_tree().current_scene.find_child("Rush", true, false):
+	if ammo > 0 && get_tree().current_scene.find_child("Rush", true, false):
+		return
+	if ammo <= 0:
+		buster.fire_charged_weapon(_fire_pos, _angle)
 		return
 	ammo -= 1
 	var bullet = load("res://Character/rush_coil.tscn").instantiate()

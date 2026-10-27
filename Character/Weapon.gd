@@ -2,6 +2,7 @@ extends Node
 
 class_name Weapon
 @export var character : CharacterBody2D
+@export var buster : Weapon
 var ammo = 28
 var ex : bool = false
 

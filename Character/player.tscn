@@ -976,20 +976,23 @@ volume_db = -8.0
 script = ExtResource("39_u3msb")
 character = NodePath("../..")
 
-[node name="RushCoil" type="Node" parent="Weapons" unique_id=2088094968 node_paths=PackedStringArray("character")]
+[node name="RushCoil" type="Node" parent="Weapons" unique_id=2088094968 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("40_5xm0m")
 character = NodePath("../..")
+buster = NodePath("../Buster")
 
-[node name="Burly" type="Node" parent="Weapons" unique_id=665001668 node_paths=PackedStringArray("character")]
+[node name="Burly" type="Node" parent="Weapons" unique_id=665001668 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("41_0qjmq")
 character = NodePath("../..")
+buster = NodePath("../Buster")
 
 [node name="Sound" type="AudioStreamPlayer" parent="Weapons/Burly" unique_id=446031495]
 stream = ExtResource("42_wtchp")
 
-[node name="Slip" type="Node" parent="Weapons" unique_id=1202638464 node_paths=PackedStringArray("character")]
+[node name="Slip" type="Node" parent="Weapons" unique_id=1202638464 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("43_2wj3k")
 character = NodePath("../..")
+buster = NodePath("../Buster")
 
 [node name="Crosshair" type="Sprite2D" parent="Weapons/Slip" unique_id=971183015]
 visible = false

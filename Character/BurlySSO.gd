@@ -6,6 +6,7 @@ var reloading : bool = false
 func fire_weapon(fire_pos : Vector2, angle):
 	if ammo <= 13:
 		reloading = true
+		buster.fire_weapon(fire_pos, angle)
 		return
 	ammo -= 14
 	sound.play()
@@ -29,6 +30,9 @@ func spawn_bullet(fire_pos : Vector2, angle):
 	bullet.sprite.texture = load("res://Art/rock/mega_shell.png")
 
 func fire_charged_weapon(fire_pos : Vector2, angle):
+	if ammo < 14:
+		buster.fire_charged_weapon(fire_pos, angle)
+		return
 	if ammo < 28:
 		fire_weapon(fire_pos, angle)
 		return
