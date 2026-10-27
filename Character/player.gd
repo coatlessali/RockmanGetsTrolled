@@ -265,6 +265,8 @@ func _physics_process(_delta):
 	update_camera()
 	if camera_check() == true:
 		return
+	if Global.boss_trans:
+		return
 	iframe_check()
 	handle_charge_shot()
 	if slip_timer > -15:

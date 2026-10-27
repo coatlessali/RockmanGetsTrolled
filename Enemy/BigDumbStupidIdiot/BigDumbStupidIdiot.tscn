@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://k8inc3yenfpb" path="res://Enemy/BigDumbStupidIdiot/big_dumb_stupid_idiot.gd" id="1_1iama"]
 [ext_resource type="Texture2D" uid="uid://sal6sxrml4bf" path="res://Enemy/BigDumbStupidIdiot/met.png" id="2_2boj5"]
 [ext_resource type="Script" uid="uid://b53s6f35sgxr4" path="res://Enemy/BigDumbStupidIdiot/hurt_box.gd" id="3_2boj5"]
+[ext_resource type="AudioStream" uid="uid://cf5jji5q1t3gw" path="res://Sounds/refill.ogg" id="4_6ui1u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_44c3d"]
 size = Vector2(64, 76)
@@ -28,4 +29,11 @@ script = ExtResource("3_2boj5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1043553911]
 shape = SubResource("RectangleShape2D_6ui1u")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1278750723]
+rect = Rect2(-44, -36, 88, 76)
+
+[node name="Refill" type="AudioStreamPlayer" parent="." unique_id=1412827943]
+stream = ExtResource("4_6ui1u")
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

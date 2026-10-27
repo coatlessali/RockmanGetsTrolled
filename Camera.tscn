@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cbfj3b2tngeoj" path="res://graze_bar.gd" id="6_07nfj"]
 [ext_resource type="FontFile" uid="uid://b28eub80ul2xw" path="res://fonts/CyberpunkWaifus.ttf" id="6_lxp0o"]
 [ext_resource type="Texture2D" uid="uid://fen85ic7ksgp" path="res://Art/rock/white.png" id="10_4656x"]
+[ext_resource type="Script" uid="uid://crje7d0hs4q25" path="res://bosshealthbar.gd" id="11_gmjel"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuier"]
 bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
@@ -93,7 +94,7 @@ texture = ExtResource("3_07nfj")
 
 [node name="HealthFrame" type="Sprite2D" parent="." unique_id=207979243]
 z_index = 10
-position = Vector2(-98, -71)
+position = Vector2(-106, -71)
 texture = ExtResource("2_lxp0o")
 
 [node name="ChargeBar" type="ProgressBar" parent="HealthFrame" unique_id=1558671738]
@@ -122,7 +123,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AmmoFrame" type="Sprite2D" parent="." unique_id=1704981607]
 z_index = 10
-position = Vector2(-88, -71)
+position = Vector2(-96, -71)
 texture = ExtResource("2_lxp0o")
 
 [node name="GrazeBar" type="ProgressBar" parent="AmmoFrame" unique_id=1007710017]
@@ -179,5 +180,36 @@ modulate = Color(1, 1, 1, 0.24705882)
 position = Vector2(-128, -112)
 scale = Vector2(256, 224)
 texture = ExtResource("10_4656x")
+
+[node name="Boss" type="Sprite2D" parent="." unique_id=1133165319]
+position = Vector2(118, -71)
+texture = ExtResource("2_lxp0o")
+script = ExtResource("11_gmjel")
+
+[node name="BossGrazeBar" type="ProgressBar" parent="Boss" unique_id=133379965]
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_j25qr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_updsb")
+max_value = 2.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("6_07nfj")
+color2 = Color(0, 0.6117797, 0.37400192, 1)
+
+[node name="BossHealthBar" type="TextureProgressBar" parent="Boss" unique_id=1962475271]
+z_index = 10
+offset_left = -9.0
+offset_top = -28.0
+offset_right = -1.0
+offset_bottom = 28.0
+max_value = 28.0
+value = 28.0
+fill_mode = 3
+texture_progress = ExtResource("4_07nfj")
 
 [connection signal="animation_finished" from="Ready" to="." method="_on_ready_animation_finished"]

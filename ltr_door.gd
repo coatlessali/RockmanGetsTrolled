@@ -9,9 +9,11 @@ extends Node2D
 var open : bool = false
 var closed_pos = Vector2.ZERO
 var open_pos = Vector2(0, -32)
+var player : CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	player = get_tree().current_scene.find_child("Player", true, false)
 	closed_pos = door_body.position
 	open_pos = door_body.position + Vector2(0, -32)
 
@@ -19,6 +21,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
 	if Global.transition:
+		return
+	if player.camera_trans:
 		return
 	if open:
 		if door_body.position.y == closed_pos.y:

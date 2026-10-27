@@ -10,6 +10,9 @@ extends Camera2D
 @onready var needle : Node2D = $OtherBars/Needle
 @onready var chargebar : ProgressBar = $HealthFrame/ChargeBar
 @onready var flash : Sprite2D = $Flash
+@onready var bosshealthbar : TextureProgressBar = $Boss/BossHealthBar
+@onready var bossgrazebar : ProgressBar = $Boss/BossGrazeBar
+@onready var bossframe : Sprite2D = $Boss
 var local_position = Vector2(0, 0)
 var air_buffer : bool = true
 var buffer : bool = false
@@ -21,6 +24,8 @@ func _ready():
 	ammoframe.hide()
 	readytext.play()
 	textpopup.hide()
+	bossgrazebar.value = 0
+	bosshealthbar.value = 0
 
 func _physics_process(_delta: float) -> void:
 	if text_timer > 0:

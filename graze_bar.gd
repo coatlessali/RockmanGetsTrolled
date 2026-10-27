@@ -1,5 +1,8 @@
 extends ProgressBar
 var timer = false
+@export var color1 : Color = Color(0.09, 0.09, 0.09)
+@export var color2 : Color = Color(0.38, 0.49, 0.84)
+
 
 func _physics_process(_delta: float) -> void:
 	if timer:

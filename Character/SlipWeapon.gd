@@ -20,6 +20,3 @@ func fire_weapon(_fire_pos : Vector2, _angle):
 
 func fire_charged_weapon(_fire_pos : Vector2, _angle):
 	buster.fire_charged_weapon(_fire_pos, _angle)
-
-func railshot() -> void:
-	pass

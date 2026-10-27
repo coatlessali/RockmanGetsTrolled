@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://txwm4m810fo5" path="res://Enemy/BigDumbStupidIdiot/BigDumbStupidIdiot.tscn" id="5_oebdc"]
 [ext_resource type="PackedScene" uid="uid://qk63vpyxxiad" path="res://Enemy/RushMet/rush_met.tscn" id="6_fj1ql"]
 [ext_resource type="Texture2D" uid="uid://xu34btougmnm" path="res://Art/Levels/3d-pipes-1.webp" id="7_127sf"]
+[ext_resource type="PackedScene" uid="uid://bmn3ikte2k3jh" path="res://ltr_door.tscn" id="8_432fl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yuier"]
 size = Vector2(10.011536, 31.76213)
@@ -174,8 +175,7 @@ debug_color = Color(0, 0.6189147, 0.5769363, 0.41960785)
 [node name="LadderAnchor" type="Node2D" parent="Ladders" index="5" unique_id=660816386]
 
 [node name="BigDumbStupidIdiot" parent="Ladders/LadderAnchor" index="0" unique_id=1891871520 instance=ExtResource("5_oebdc")]
-visible = false
-position = Vector2(577, -197)
+position = Vector2(579, -201)
 
 [node name="CameraTriggers" type="Node" parent="." index="9" unique_id=466370820]
 
@@ -283,3 +283,11 @@ metadata/_edit_group_ = true
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D" index="0" unique_id=1655922936]
 position = Vector2(322, 201)
 texture = ExtResource("7_127sf")
+
+[node name="LTRDoor" parent="." index="24" unique_id=1704361508 instance=ExtResource("8_432fl")]
+z_index = -2
+position = Vector2(384, -176)
+
+[node name="LTRDoor2" parent="." index="25" unique_id=46234095 instance=ExtResource("8_432fl")]
+z_index = -2
+position = Vector2(640, 64)
