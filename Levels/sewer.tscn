@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://28mk65coh04p"]
 
 [ext_resource type="PackedScene" uid="uid://cupol3kk3d8kd" path="res://level.tscn" id="1_dy6wb"]
-[ext_resource type="AudioStream" uid="uid://cl7u2wtil6nok" path="res://Music/magician.ogg" id="2_h4exn"]
+[ext_resource type="AudioStream" uid="uid://dvuftp0wqw8ch" path="res://Music/resin.ogg" id="2_h4exn"]
 [ext_resource type="Script" uid="uid://bvfmi7ai44le8" path="res://Levels/death_trap.gd" id="4_lmn0t"]
 [ext_resource type="PackedScene" uid="uid://txwm4m810fo5" path="res://Enemy/BigDumbStupidIdiot/BigDumbStupidIdiot.tscn" id="5_b70a2"]
 [ext_resource type="PackedScene" uid="uid://bmn3ikte2k3jh" path="res://ltr_door.tscn" id="6_khpio"]
@@ -105,7 +105,6 @@ z_index = 1
 
 [node name="Music" parent="." index="8" unique_id=392293257]
 stream = ExtResource("2_h4exn")
-autoplay = false
 
 [node name="Player" parent="." index="9" unique_id=1414423542]
 position = Vector2(-96, -134)

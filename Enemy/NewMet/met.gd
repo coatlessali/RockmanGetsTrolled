@@ -164,23 +164,23 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	sprite.visible = true
 
 func spawn_pickup() -> void:
-	var rng = randi_range(1, 128)
-	if rng < 78:
+	var rng = Syscall.get_rng()
+	if rng < 77:
 		return
-	elif rng < 103:
+	elif rng < 102:
 		# replace with small health
 		var pickup = load("res://Pickups/HealthSmall.tscn").instantiate()
 		pickup.position = position
 		get_parent().call_deferred("add_child", pickup)
-	elif rng < 118:
+	elif rng < 117:
 		var pickup = load("res://Pickups/AmmoSmall.tscn").instantiate()
 		pickup.position = position
 		get_parent().call_deferred("add_child", pickup)
-	elif rng < 123:
+	elif rng < 122:
 		var pickup = load("res://Pickups/HealthBig.tscn").instantiate()
 		pickup.position = position
 		get_parent().call_deferred("add_child", pickup)
-	elif rng < 127:
+	elif rng < 126:
 		var pickup = load("res://Pickups/AmmoBig.tscn").instantiate()
 		pickup.position = position
 		get_parent().call_deferred("add_child", pickup)

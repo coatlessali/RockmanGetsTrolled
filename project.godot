@@ -26,6 +26,7 @@ DGroups="*res://Global_Const/Darkest_Groups.gd"
 DDebug="*res://Global_Const/Darkest_Debug.gd"
 DDirection="*res://Global_Const/Darkest_Direction.gd"
 Global="*uid://brwmit7pp1e2x"
+Syscall="*uid://5whlpgn8jgt6"
 
 [display]
 

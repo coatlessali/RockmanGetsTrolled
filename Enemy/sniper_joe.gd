@@ -115,25 +115,25 @@ func _on_player_detection_body_exited(body: Node2D) -> void:
 			direction = 1
 
 func spawn_pickup() -> void:
-	var rng = randi_range(1, 128)
-	if rng < 78:
+	var rng = Syscall.get_rng()
+	if rng < 77:
 		return
-	elif rng < 103:
+	elif rng < 102:
 		# replace with small health
 		var pickup = load("res://Pickups/HealthSmall.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
-	elif rng < 118:
+		get_parent().call_deferred("add_child", pickup)
+	elif rng < 117:
 		var pickup = load("res://Pickups/AmmoSmall.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
-	elif rng < 123:
+		get_parent().call_deferred("add_child", pickup)
+	elif rng < 122:
 		var pickup = load("res://Pickups/HealthBig.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
-	elif rng < 127:
+		get_parent().call_deferred("add_child", pickup)
+	elif rng < 126:
 		var pickup = load("res://Pickups/AmmoBig.tscn").instantiate()
 		pickup.position = position
-		get_parent().add_child(pickup)
+		get_parent().call_deferred("add_child", pickup)
 	else:
 		print("1UP")
