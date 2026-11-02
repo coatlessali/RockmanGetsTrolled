@@ -8,6 +8,7 @@ var rng_index : int = 0
 
 func _ready() -> void:
 	generate_table()
+	rng_index = rng_lookup_table.size() # account for increment
 	
 func generate_table() -> void:
 	print("generating rng table...")
@@ -25,6 +26,5 @@ func update_index() -> void:
 	rng_index = (rng_index + 1) % rng_lookup_table.size()
 
 func get_rng() -> int:
-	var value = rng_lookup_table[rng_index]
 	update_index()
-	return value
+	return rng_lookup_table[rng_index]

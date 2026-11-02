@@ -87,14 +87,11 @@ func change_weapon():
 	pass # this is where the weapon wheel will go
 
 func cycle_weapon(cycle : bool):
+	var dir = -1
 	if cycle:
-		weapon_num += 1
-		if weapon_num > weapon_max:
-			weapon_num = 0
-	else:
-		weapon_num -=1
-		if weapon_num < 0:
-			weapon_num = weapon_max
+		dir = 1
+	weapon_num = (weapon_num + dir + weapon_max) % weapon_max
+	
 	# show ammo bar
 	camera.ammoframe.show()
 	if weapon_num == 0:
@@ -108,7 +105,7 @@ func change_palette(palette : PackedColorArray):
 	sprite.material.set("shader_parameter/replace_colors", palette)
 
 func _ready():
-	weapon_max = weapons.size() - 1
+	weapon_max = weapons.size() # - 1
 	change_palette(color_buster)
 	animation_tree.active = true
 	
@@ -132,13 +129,10 @@ func update_values() -> bool:
 	if hp > 28:
 		hp = 28
 	if hp > camera.healthbar.value:
-		if refill_timer == 0:
+		if refill_timer % 3 == 0:
 			camera.healthbar.value += 1
 			refill.play()
-		if refill_timer == 3:
-			refill_timer = 0
-		else:
-			refill_timer += 1
+		refill_timer += 1
 		Global.transition = true
 		return true
 	else:
@@ -146,13 +140,10 @@ func update_values() -> bool:
 		camera.healthbar.value = hp
 		Global.transition = false
 	if weapon_current.ammo > camera.ammobar.value:
-		if refill_timer == 0:
+		if refill_timer % 3 == 0:
 			camera.ammobar.value += 1
 			refill.play()
-		if refill_timer == 3:
-			refill_timer = 0
-		else:
-			refill_timer += 1
+		refill_timer += 1
 		Global.transition = true
 		return true
 	else:
@@ -169,7 +160,7 @@ func iframe_check() -> void:
 				sprite.visible = false
 			else:
 				sprite.visible = true
-	else:
+	elif state_machine.current_state != dead_state:
 		sprite.visible = true
 
 func camera_check() -> bool:
