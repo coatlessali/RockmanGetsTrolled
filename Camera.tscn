@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fen85ic7ksgp" path="res://Art/rock/white.png" id="10_4656x"]
 [ext_resource type="Script" uid="uid://crje7d0hs4q25" path="res://bosshealthbar.gd" id="11_gmjel"]
 [ext_resource type="Texture2D" uid="uid://5hdyl6icwmxy" path="res://Art/water.png.png" id="12_8pq3l"]
+[ext_resource type="Script" uid="uid://10nhwbvydb35" path="res://menu.gd" id="12_vjk6h"]
 [ext_resource type="Texture2D" uid="uid://c4osqh1vtrauf" path="res://Art/rock/horizontalbar_frame.png" id="13_6usox"]
 [ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="13_vjk6h"]
 [ext_resource type="Texture2D" uid="uid://c0ai7cvgtkqdw" path="res://Art/rock/horizontalbar_fill.png" id="14_vjk6h"]
@@ -563,14 +564,18 @@ value = 28.0
 fill_mode = 3
 texture_progress = ExtResource("4_07nfj")
 
-[node name="Menu" type="Node2D" parent="." unique_id=753008739]
-process_mode = 2
-visible = false
+[node name="PauseHandler" type="Node2D" parent="." unique_id=753008739]
+process_mode = 3
+z_index = 10
+script = ExtResource("12_vjk6h")
 
-[node name="Background" type="Sprite2D" parent="Menu" unique_id=1975219509]
+[node name="Menu" type="Node2D" parent="PauseHandler" unique_id=2019820791]
+process_mode = 2
+
+[node name="Background" type="Sprite2D" parent="PauseHandler/Menu" unique_id=1975219509]
 texture = ExtResource("12_8pq3l")
 
-[node name="BusterBar" type="TextureProgressBar" parent="Menu" unique_id=2005368807]
+[node name="BusterBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=2005368807]
 material = SubResource("ShaderMaterial_c3fr5")
 offset_left = -58.0
 offset_bottom = 20.0
@@ -579,7 +584,7 @@ value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/BusterBar" unique_id=1398734803]
+[node name="Label" type="Label" parent="PauseHandler/Menu/BusterBar" unique_id=1398734803]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -589,17 +594,17 @@ theme_override_font_sizes/font_size = 8
 text = "Rock Buster
 "
 
-[node name="BurlyBar" type="TextureProgressBar" parent="Menu" unique_id=2042147899]
+[node name="BurlyBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=2042147899]
 material = SubResource("ShaderMaterial_vjk6h")
 offset_left = -58.0
-offset_top = 36.0
-offset_bottom = 56.0
+offset_top = 72.0
+offset_bottom = 92.0
 max_value = 28.0
 value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/BurlyBar" unique_id=296567615]
+[node name="Label" type="Label" parent="PauseHandler/Menu/BurlyBar" unique_id=296567615]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -609,17 +614,17 @@ theme_override_font_sizes/font_size = 8
 text = "S. Sawed-Off
 "
 
-[node name="SlipShotBar" type="TextureProgressBar" parent="Menu" unique_id=183345064]
+[node name="SlipBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=183345064]
 material = SubResource("ShaderMaterial_8t6hx")
 offset_left = -58.0
-offset_top = 12.0
-offset_bottom = 32.0
+offset_top = 60.0
+offset_bottom = 80.0
 max_value = 28.0
 value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/SlipShotBar" unique_id=1937407426]
+[node name="Label" type="Label" parent="PauseHandler/Menu/SlipBar" unique_id=1937407426]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -629,7 +634,7 @@ theme_override_font_sizes/font_size = 8
 text = "Slip Shot
 "
 
-[node name="ResinBar" type="TextureProgressBar" parent="Menu" unique_id=1920183244]
+[node name="ResinBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=1920183244]
 material = SubResource("ShaderMaterial_l7vkd")
 offset_left = -58.0
 offset_top = 24.0
@@ -639,7 +644,7 @@ value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/ResinBar" unique_id=1401619553]
+[node name="Label" type="Label" parent="PauseHandler/Menu/ResinBar" unique_id=1401619553]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -649,17 +654,17 @@ theme_override_font_sizes/font_size = 8
 text = "Resin Weapon
 "
 
-[node name="RushCoilBar" type="TextureProgressBar" parent="Menu" unique_id=1205304706]
+[node name="RushBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=1205304706]
 material = SubResource("ShaderMaterial_ibjqg")
-offset_left = 70.0
-offset_right = 128.0
-offset_bottom = 20.0
+offset_left = -58.0
+offset_top = 12.0
+offset_bottom = 32.0
 max_value = 28.0
 value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/RushCoilBar" unique_id=1469434485]
+[node name="Label" type="Label" parent="PauseHandler/Menu/RushBar" unique_id=1469434485]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -669,18 +674,17 @@ theme_override_font_sizes/font_size = 8
 text = "Rush Coil
 "
 
-[node name="SledgeBar" type="TextureProgressBar" parent="Menu" unique_id=111962451]
+[node name="SledgeBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=111962451]
 material = SubResource("ShaderMaterial_p12dv")
-offset_left = 70.0
-offset_top = 12.0
-offset_right = 128.0
-offset_bottom = 32.0
+offset_left = -58.0
+offset_top = 36.0
+offset_bottom = 56.0
 max_value = 28.0
 value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/SledgeBar" unique_id=445042747]
+[node name="Label" type="Label" parent="PauseHandler/Menu/SledgeBar" unique_id=445042747]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0
@@ -688,18 +692,17 @@ offset_bottom = 11.0
 theme_override_font_sizes/font_size = 8
 text = "Sledge Hammer"
 
-[node name="RustBar" type="TextureProgressBar" parent="Menu" unique_id=1552625790]
+[node name="RustBar" type="TextureProgressBar" parent="PauseHandler/Menu" unique_id=1552625790]
 material = SubResource("ShaderMaterial_d5bi7")
-offset_left = 70.0
-offset_top = 24.0
-offset_right = 128.0
-offset_bottom = 44.0
+offset_left = -58.0
+offset_top = 48.0
+offset_bottom = 68.0
 max_value = 28.0
 value = 28.0
 texture_under = ExtResource("13_6usox")
 texture_progress = ExtResource("14_vjk6h")
 
-[node name="Label" type="Label" parent="Menu/RustBar" unique_id=744388899]
+[node name="Label" type="Label" parent="PauseHandler/Menu/RustBar" unique_id=744388899]
 layout_mode = 0
 offset_left = -62.0
 offset_top = -1.0

@@ -14,6 +14,7 @@ size = Vector2(256, 240)
 character = NodePath("../Player")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=392293257]
+process_mode = 3
 stream = ExtResource("1_1ainy")
 volume_db = -10.0
 autoplay = true
