@@ -11,6 +11,10 @@
 [ext_resource type="FontFile" uid="uid://b28eub80ul2xw" path="res://fonts/CyberpunkWaifus.ttf" id="6_lxp0o"]
 [ext_resource type="Texture2D" uid="uid://fen85ic7ksgp" path="res://Art/rock/white.png" id="10_4656x"]
 [ext_resource type="Script" uid="uid://crje7d0hs4q25" path="res://bosshealthbar.gd" id="11_gmjel"]
+[ext_resource type="Texture2D" uid="uid://5hdyl6icwmxy" path="res://Art/water.png.png" id="12_8pq3l"]
+[ext_resource type="Texture2D" uid="uid://c4osqh1vtrauf" path="res://Art/rock/horizontalbar_frame.png" id="13_6usox"]
+[ext_resource type="Shader" uid="uid://b2ch378s1n803" path="res://Character/chargeshot.gdshader" id="13_vjk6h"]
+[ext_resource type="Texture2D" uid="uid://c0ai7cvgtkqdw" path="res://Art/rock/horizontalbar_fill.png" id="14_vjk6h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuier"]
 bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
@@ -74,6 +78,353 @@ animations = [{
 "name": &"default",
 "speed": 8.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3fr5"]
+shader = ExtResource("13_vjk6h")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_6usox"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vjk6h"]
+shader = SubResource("Shader_6usox")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.6, 0.6, 0.6, 1, 0.8, 0.8, 0.8, 1, 1, 1, 1, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_c3fr5"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t6hx"]
+shader = SubResource("Shader_c3fr5")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0, 0.16862746, 0.21176471, 1, 0.02745098, 0.21176471, 0.25882354, 1, 0.34509805, 0.43137255, 0.45882353, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_rq4tw"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7vkd"]
+shader = SubResource("Shader_rq4tw")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.52156866, 0.6, 0, 1, 0.64142025, 0.7337025, 0, 1, 0.7747163, 0.88191116, 0, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_r54rh"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ibjqg"]
+shader = SubResource("Shader_r54rh")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.5019608, 0.12156863, 0.101960786, 1, 0.6357156, 0.16754028, 0.13783395, 1, 0.85882354, 0.1882353, 0.18039216, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_j253g"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p12dv"]
+shader = SubResource("Shader_j253g")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.70980394, 0.5372549, 0, 1, 0.9666988, 0.73619175, 1.540184e-06, 1, 0.9999998, 0.78416073, 0.24134779, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
+[sub_resource type="Shader" id="Shader_d3gkn"]
+code = "shader_type canvas_item;
+
+render_mode unshaded;
+
+uniform vec4 target_colors[3] : source_color;
+uniform vec4 replace_colors[3] : source_color;
+uniform int color_count : hint_range(0, 3); // number of active color swaps
+uniform float tolerance : hint_range(0, 1);
+uniform bool shader_active = true; // you’ll change this from your script
+uniform float speed = 1.0;
+uniform float intensity : hint_range(0.0, 1.0) = 1.0;
+uniform float alpha : hint_range(0.0, 1.0) = 1.0;
+
+vec3 hsv2rgb(vec3 c)
+{
+    vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+    vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+    return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+}
+
+void fragment()
+{
+	// palette swap
+	vec4 tex_color = texture(TEXTURE, UV);
+
+	if (shader_active) {
+		for (int i = 0; i < color_count; i++) {
+			if (distance(tex_color.rgb, target_colors[i].rgb) < tolerance) {
+				tex_color.rgb = replace_colors[i].rgb;
+				break;
+			}
+		}
+	}
+	COLOR = tex_color;
+	// charge shot
+    //COLOR = texture(TEXTURE, UV);
+
+    float hue = UV.y * 0.25 + mod(TIME * speed, 1.0);
+    vec3 rainbow = hsv2rgb(vec3(hue, 0.6, 1.0));
+
+    COLOR.rgb = mix(COLOR.rgb, COLOR.rgb * rainbow, intensity);
+	COLOR.a *= alpha;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5bi7"]
+shader = SubResource("Shader_d3gkn")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.4509804, 0.21568628, 0.13725491, 1, 0.62352943, 0.30980393, 0.2, 1, 0.6862745, 0.3882353, 0.18431373, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
 
 [node name="Camera2D" type="Camera2D" unique_id=1937260346]
 process_callback = 0
@@ -211,5 +562,149 @@ max_value = 28.0
 value = 28.0
 fill_mode = 3
 texture_progress = ExtResource("4_07nfj")
+
+[node name="Menu" type="Node2D" parent="." unique_id=753008739]
+process_mode = 2
+visible = false
+
+[node name="Background" type="Sprite2D" parent="Menu" unique_id=1975219509]
+texture = ExtResource("12_8pq3l")
+
+[node name="BusterBar" type="TextureProgressBar" parent="Menu" unique_id=2005368807]
+material = SubResource("ShaderMaterial_c3fr5")
+offset_left = -58.0
+offset_bottom = 20.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/BusterBar" unique_id=1398734803]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+text = "Rock Buster
+"
+
+[node name="BurlyBar" type="TextureProgressBar" parent="Menu" unique_id=2042147899]
+material = SubResource("ShaderMaterial_vjk6h")
+offset_left = -58.0
+offset_top = 36.0
+offset_bottom = 56.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/BurlyBar" unique_id=296567615]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+text = "S. Sawed-Off
+"
+
+[node name="SlipShotBar" type="TextureProgressBar" parent="Menu" unique_id=183345064]
+material = SubResource("ShaderMaterial_8t6hx")
+offset_left = -58.0
+offset_top = 12.0
+offset_bottom = 32.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/SlipShotBar" unique_id=1937407426]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+text = "Slip Shot
+"
+
+[node name="ResinBar" type="TextureProgressBar" parent="Menu" unique_id=1920183244]
+material = SubResource("ShaderMaterial_l7vkd")
+offset_left = -58.0
+offset_top = 24.0
+offset_bottom = 44.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/ResinBar" unique_id=1401619553]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+text = "Resin Weapon
+"
+
+[node name="RushCoilBar" type="TextureProgressBar" parent="Menu" unique_id=1205304706]
+material = SubResource("ShaderMaterial_ibjqg")
+offset_left = 70.0
+offset_right = 128.0
+offset_bottom = 20.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/RushCoilBar" unique_id=1469434485]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = 26.0
+theme_override_font_sizes/font_size = 8
+text = "Rush Coil
+"
+
+[node name="SledgeBar" type="TextureProgressBar" parent="Menu" unique_id=111962451]
+material = SubResource("ShaderMaterial_p12dv")
+offset_left = 70.0
+offset_top = 12.0
+offset_right = 128.0
+offset_bottom = 32.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/SledgeBar" unique_id=445042747]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 8
+text = "Sledge Hammer"
+
+[node name="RustBar" type="TextureProgressBar" parent="Menu" unique_id=1552625790]
+material = SubResource("ShaderMaterial_d5bi7")
+offset_left = 70.0
+offset_top = 24.0
+offset_right = 128.0
+offset_bottom = 44.0
+max_value = 28.0
+value = 28.0
+texture_under = ExtResource("13_6usox")
+texture_progress = ExtResource("14_vjk6h")
+
+[node name="Label" type="Label" parent="Menu/RustBar" unique_id=744388899]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -1.0
+offset_bottom = 11.0
+theme_override_font_sizes/font_size = 8
+text = "Nail Gun"
 
 [connection signal="animation_finished" from="Ready" to="." method="_on_ready_animation_finished"]

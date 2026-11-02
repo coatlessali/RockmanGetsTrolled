@@ -46,6 +46,7 @@
 [ext_resource type="Texture2D" uid="uid://ctbf0077wq2rs" path="res://Art/rock/crosshair.png" id="44_5empq"]
 [ext_resource type="AudioStream" uid="uid://peodoq1110fl" path="res://Sounds/slipshot.ogg" id="45_p038j"]
 [ext_resource type="PackedScene" uid="uid://dn6w6ldqipsrp" path="res://Character/hitscan.tscn" id="46_trg66"]
+[ext_resource type="Script" uid="uid://ce7k01rdlmuxv" path="res://Character/rust_weapon.gd" id="47_1rnnf"]
 [ext_resource type="AudioStream" uid="uid://b1slfnndo3qxq" path="res://Sounds/slip.wav" id="47_cw8fd"]
 [ext_resource type="AudioStream" uid="uid://bw1d7mtwkksig" path="res://Sounds/freesound_community-splash-by-blaukreuz-6261.ogg" id="48_2vv0w"]
 [ext_resource type="AudioStream" uid="uid://clxj34jvhgpve" path="res://Sounds/graze.ogg" id="49_a7fe0"]
@@ -975,16 +976,19 @@ volume_db = -8.0
 [node name="Buster" type="Node" parent="Weapons" unique_id=482680614 node_paths=PackedStringArray("character")]
 script = ExtResource("39_u3msb")
 character = NodePath("../..")
+weapon_name = "Rock Buster"
 
 [node name="RushCoil" type="Node" parent="Weapons" unique_id=2088094968 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("40_5xm0m")
 character = NodePath("../..")
 buster = NodePath("../Buster")
+weapon_name = "Rush Coil"
 
 [node name="Burly" type="Node" parent="Weapons" unique_id=665001668 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("41_0qjmq")
 character = NodePath("../..")
 buster = NodePath("../Buster")
+weapon_name = "Super Sawed-Off"
 
 [node name="Sound" type="AudioStreamPlayer" parent="Weapons/Burly" unique_id=446031495]
 stream = ExtResource("42_wtchp")
@@ -993,6 +997,7 @@ stream = ExtResource("42_wtchp")
 script = ExtResource("43_2wj3k")
 character = NodePath("../..")
 buster = NodePath("../Buster")
+weapon_name = "Slip Shot"
 
 [node name="Crosshair" type="Sprite2D" parent="Weapons/Slip" unique_id=971183015]
 visible = false
@@ -1005,6 +1010,9 @@ texture = ExtResource("44_5empq")
 [node name="Sound" type="AudioStreamPlayer" parent="Weapons/Slip" unique_id=2135155305]
 stream = ExtResource("45_p038j")
 volume_db = -9.828
+
+[node name="Rust" type="Node" parent="Weapons" unique_id=1224484520]
+script = ExtResource("47_1rnnf")
 
 [node name="SlipSound" type="AudioStreamPlayer" parent="." unique_id=867919077]
 stream = ExtResource("47_cw8fd")

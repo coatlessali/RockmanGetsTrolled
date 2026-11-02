@@ -25,4 +25,5 @@ func update_index() -> void:
 
 func get_rng() -> int:
 	update_index()
+	print(rng_lookup_table[rng_index])
 	return rng_lookup_table[rng_index]
