@@ -88,7 +88,7 @@ func state_input(event : InputEvent):
 			return
 		else:
 			jump()
-	if event.is_action_pressed("fire"):
+	if event.is_action_pressed("fire") && character.weapon_current != character.weapon_rust:
 		fire()
 		
 		shoot_anim("slide_shoot")

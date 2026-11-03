@@ -72,3 +72,6 @@ func shoot_anim(anim):
 	# stupid dumb shoot animation
 	shoot_timer = 20
 	playback.travel(anim)
+
+func fire():
+	return

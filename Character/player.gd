@@ -61,6 +61,7 @@ var respawn : bool = false
 var refill_timer : int = 0
 var slip_timer : int = 0
 var is_in_water : bool = false
+var refire_timer : int = 0
 
 @onready var weapon_current : Weapon = $Weapons/Buster
 @onready var weapon_buster : Weapon = $Weapons/Buster
@@ -197,7 +198,7 @@ func clear_flash() -> void:
 		camera.flash.hide()
 
 func handle_charge_shot() -> void:
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire") && weapon_current != weapon_rust && weapon_current != weapon_slip:
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		if weapon_slip.crosshair.visible:
@@ -207,19 +208,25 @@ func handle_charge_shot() -> void:
 			hitscan.fire = false
 		charge.stop()
 	if Input.is_action_pressed("fire"):
+		if weapon_current == weapon_rust:
+			if refire_timer % 8 == 0:
+				state_machine.current_state.fire()
+			refire_timer += 1
 		# charge shot shader
-		camera.chargebar.value = shader_intensity
-		if shader_intensity < 0.75:
-			shader_intensity += 0.0085
-		if shader_speed < 7.5:
-			shader_speed += 0.085
-		if weapon_current == weapon_slip && weapon_slip.crosshair.visible:
-			if Input.is_action_pressed("up"):
-				weapon_slip.crosshair.position.y -= 1
-			if Input.is_action_pressed("down"):
-				weapon_slip.crosshair.position.y += 1
-			weapon_slip.crosshair.position.x += 1.25*last_faced
+		else:
+			camera.chargebar.value = shader_intensity
+			if shader_intensity < 0.75:
+				shader_intensity += 0.0085
+			if shader_speed < 7.5:
+				shader_speed += 0.085
+			if weapon_current == weapon_slip && weapon_slip.crosshair.visible:
+				if Input.is_action_pressed("up"):
+					weapon_slip.crosshair.position.y -= 1
+				if Input.is_action_pressed("down"):
+					weapon_slip.crosshair.position.y += 1
+				weapon_slip.crosshair.position.x += 1.25*last_faced
 	else:
+		refire_timer = 0
 		camera.chargebar.value = move_toward(camera.chargebar.value, 0.0, 0.05)
 		shader_intensity = 0.0
 		shader_speed = 0.0

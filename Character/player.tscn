@@ -973,9 +973,10 @@ volume_db = -8.0
 
 [node name="Weapons" type="Node" parent="." unique_id=2115021690]
 
-[node name="Buster" type="Node" parent="Weapons" unique_id=482680614 node_paths=PackedStringArray("character")]
+[node name="Buster" type="Node" parent="Weapons" unique_id=482680614 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("39_u3msb")
 character = NodePath("../..")
+buster = NodePath(".")
 weapon_name = "Rock Buster"
 
 [node name="RushCoil" type="Node" parent="Weapons" unique_id=2088094968 node_paths=PackedStringArray("character", "buster")]
@@ -1011,8 +1012,10 @@ texture = ExtResource("44_5empq")
 stream = ExtResource("45_p038j")
 volume_db = -9.828
 
-[node name="Rust" type="Node" parent="Weapons" unique_id=1224484520]
+[node name="Rust" type="Node" parent="Weapons" unique_id=1224484520 node_paths=PackedStringArray("character", "buster")]
 script = ExtResource("47_1rnnf")
+character = NodePath("../..")
+buster = NodePath("../Buster")
 
 [node name="SlipSound" type="AudioStreamPlayer" parent="." unique_id=867919077]
 stream = ExtResource("47_cw8fd")

@@ -8,7 +8,7 @@ var rng_index : int = 0
 
 func _ready() -> void:
 	generate_table()
-	rng_index = rng_lookup_table.size() # account for increment
+	rng_index = rng_lookup_table.size() - 1 # account for increment
 	
 func generate_table() -> void:
 	print("generating rng table...")

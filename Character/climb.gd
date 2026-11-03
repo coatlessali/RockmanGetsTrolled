@@ -61,7 +61,7 @@ func state_process(_delta, direction):
 	if !character.ladder:
 		playback.travel("jump")
 		next_state = air_state
-	if Input.is_action_just_pressed("fire"):
+	if Input.is_action_just_pressed("fire") && character.weapon_current != character.weapon_rust:
 		fire()
 
 		shoot_anim("climb_shoot") # State.gd

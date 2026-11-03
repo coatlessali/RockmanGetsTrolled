@@ -75,7 +75,7 @@ func state_input(event : InputEvent):
 			jump()
 	if event.is_action_released("jump") && character.local_velocity.y  < 0:
 		character.local_velocity.y = 0
-	if event.is_action_pressed("fire"):
+	if event.is_action_pressed("fire") && character.weapon_current != character.weapon_rust:
 		shoot_anim("jump_shoot") # State.gd
 		fire()
 	if event.is_action_released("fire"):

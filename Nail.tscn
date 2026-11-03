@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://duhajupktxtkn"]
+
+[ext_resource type="Script" uid="uid://dfq3r7cts01h4" path="res://nail.gd" id="1_bmbk4"]
+[ext_resource type="Texture2D" uid="uid://ftp722ip0rqo" path="res://Art/nail.png" id="2_bmbk4"]
+[ext_resource type="AudioStream" uid="uid://c8j4k57vbm30u" path="res://Sounds/nail.ogg" id="3_rv154"]
+[ext_resource type="Script" uid="uid://cbtjpq83361re" path="res://audio_stream_player_despawn.gd" id="4_rv154"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cksh"]
+size = Vector2(6, 2)
+
+[node name="Area2D" type="Area2D" unique_id=45240080 groups=["Bullets", "volatile"]]
+z_index = 1
+script = ExtResource("1_bmbk4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1016723445]
+texture = ExtResource("2_bmbk4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=41878596]
+shape = SubResource("RectangleShape2D_7cksh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2023474356]
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(1.6, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1930311012]
+stream = ExtResource("3_rv154")
+volume_db = -8.359
+script = ExtResource("4_rv154")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
