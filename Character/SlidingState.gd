@@ -14,6 +14,7 @@ class_name SlideState
 @export var slide_dir : int = 1
 @export var sprite : Sprite2D
 @export var climb_state : State
+@export var swing_state : State
 var slide_buffer : int = 2
 var dust_timer = 18
 var after_image = 5
@@ -119,7 +120,7 @@ func on_enter():
 	playback.travel("slide")
 
 func on_exit():
-	character.change_palette(character.palettes[character.weapon_num])
+	character.change_palette(character.palettes[character.weapon_num], character.ammo_palettes[character.weapon_num])
 	character.sliding = false
 	if !slidecast.is_colliding():
 		sprite.offset.y = 1
@@ -139,6 +140,10 @@ func slide(): # Do we wanna remove this???
 	next_state = slide_state
 
 func fire():
+	if character.weapon_current == character.weapon_sledge && character.weapon_sledge.ammo >= 4:
+		character.weapon_sledge.ammo -= 4
+		next_state = swing_state
+		return
 	character.weapon_current.fire_weapon(Vector2(10, 14), 0)
 
 func dust():

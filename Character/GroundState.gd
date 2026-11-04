@@ -10,6 +10,7 @@ class_name GroundState
 @export var runstart_state : State
 @export var sprite : Sprite2D
 @export var climb_state : State
+@export var swing_state : State
 
 func state_process(_delta, direction):
 	if Input.is_action_pressed("up"):
@@ -77,6 +78,10 @@ func slide():
 	next_state = slide_state
 
 func fire():
+	if character.weapon_current == character.weapon_sledge && character.weapon_sledge.ammo >= 4:
+		character.weapon_sledge.ammo -= 4
+		next_state = swing_state
+		return
 	character.weapon_current.fire_weapon(Vector2(16, 11), 0)
 
 func charge_shot(_angle):

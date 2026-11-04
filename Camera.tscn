@@ -28,6 +28,17 @@ bg_color = Color(0.09411765, 0.09411765, 0.09411765, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_updsb"]
 bg_color = Color(0.18900003, 0.3996, 0.54, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lseus"]
+shader = ExtResource("13_vjk6h")
+shader_parameter/target_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/replace_colors = PackedColorArray(0.84705883, 0.47058824, 0, 1, 0.972549, 0.65882355, 0, 1, 0.972549, 0.9098039, 0.15686275, 1)
+shader_parameter/color_count = 3
+shader_parameter/tolerance = 0.10000000475
+shader_parameter/shader_active = true
+shader_parameter/speed = 0.0
+shader_parameter/intensity = 0.0
+shader_parameter/alpha = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouwm7"]
 atlas = ExtResource("5_we8rk")
 region = Rect2(0, 32, 32, 32)
@@ -494,6 +505,7 @@ script = ExtResource("6_07nfj")
 
 [node name="AmmoBar" type="TextureProgressBar" parent="AmmoFrame" unique_id=1193495511]
 z_index = 10
+material = SubResource("ShaderMaterial_lseus")
 offset_left = -9.0
 offset_top = -28.0
 offset_right = -1.0

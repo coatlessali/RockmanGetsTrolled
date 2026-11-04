@@ -10,6 +10,7 @@ class_name RunStart
 @export var default_pause_frames : int = 3
 @export var sprite : Sprite2D
 @export var climb_state : State
+@export var swing_state : State
 var pause_frames : int = 30
 
 func on_enter():
@@ -84,6 +85,10 @@ func slide():
 	next_state = slide_state
 
 func fire():
+	if character.weapon_current == character.weapon_sledge && character.weapon_sledge.ammo >= 4:
+		character.weapon_sledge.ammo -= 4
+		next_state = swing_state
+		return
 	character.weapon_current.fire_weapon(Vector2(16, 10), 0)
 
 func charge_shot(_angle):

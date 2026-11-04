@@ -67,7 +67,7 @@ var refire_timer : int = 0
 @onready var weapon_buster : Weapon = $Weapons/Buster
 @onready var weapon_rushcoil : Weapon = $Weapons/RushCoil
 @onready var weapon_resin : Weapon = $Weapons/Buster
-@onready var weapon_sledge : Weapon = $Weapons/Buster
+@onready var weapon_sledge : Weapon = $Weapons/Sledge
 @onready var weapon_rust : Weapon = $Weapons/Rust
 @onready var weapon_slip : Weapon = $Weapons/Slip
 @onready var weapon_burly : Weapon = $Weapons/Burly
@@ -75,12 +75,21 @@ var refire_timer : int = 0
 var weapon_max = 0
 var weapon_num = 0
 var color_buster = PackedColorArray([Color(0x4accd6ff), Color(0x082657ff), Color(0x1761d6ff)])
+var color_sledge = PackedColorArray([Color(0x4a4a4aff), Color(0x082657ff), Color(0x1761d6ff)])
 var color_rush = PackedColorArray([Color.WHITE, Color(0x801f1aff), Color(0xdb302eff)])
 var color_burly = PackedColorArray([Color.GHOST_WHITE, Color.MIDNIGHT_BLUE, Color.PERU])
 var color_slip = PackedColorArray([Color(0x91a1a1ff), Color(0x002936ff), Color(0x29a1b0ff)])
 var color_resin = PackedColorArray([Color(0xc96324ff), Color(0x084721ff), Color(0x61a342ff)])
 var color_rust = PackedColorArray([Color(0xaf632fff), Color(0x733723ff), Color(0x9f4f33ff)])
-var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_resin, color_buster, color_rust, color_slip, color_burly]
+var palettes : Array[PackedColorArray] = [color_buster, color_rush, color_resin, color_sledge, color_rust, color_slip, color_burly]
+var ammo_buster = PackedColorArray([Color(0xd87800ff), Color(0xf8a800ff), Color(0xf8e828ff)])
+var ammo_sledge = PackedColorArray([Color(0xb58900ff), Color(0xf7bc00ff), Color(0xffc83eff)])
+var ammo_rush = PackedColorArray([Color(0x801f1aff), Color(0xa22b23ff), Color(0xdb302eff)])
+var ammo_burly = PackedColorArray([Color(0x999999ff), Color(0xccccccff), Color(0xffffffff)])
+var ammo_slip = PackedColorArray([Color(0x002b36ff), Color(0x073642ff), Color(0x586e75ff)])
+var ammo_resin = PackedColorArray([Color(0x859900ff), Color(0xa4bb00ff), Color(0xc6e100ff)])
+var ammo_rust = PackedColorArray([Color(0x733723ff), Color(0x9f4f33ff), Color(0xaf632fff)])
+var ammo_palettes : Array[PackedColorArray] = [ammo_buster, ammo_rush, ammo_resin, ammo_sledge, ammo_rust, ammo_slip, ammo_burly]
 # weapons = buster, resin, shard, sledge, slip, burly, rushcoil
 #var weapon = "buster"
 
@@ -99,15 +108,21 @@ func cycle_weapon(cycle : bool):
 		camera.ammoframe.hide()
 		
 	weapon_current = weapons[weapon_num]
-	change_palette(palettes[weapon_num])
+	change_palette(palettes[weapon_num], ammo_palettes[weapon_num])
 	camera.ammobar.value = weapon_current.ammo
+	refire_timer = 0
+	if !(weapon_current == weapon_burly || weapon_current == weapon_rushcoil || weapon_current == weapon_buster):
+		charge.stop()
+		shader_intensity = 0.0
+		shader_speed = 0.0
 
-func change_palette(palette : PackedColorArray):
+func change_palette(palette : PackedColorArray, ammopalette : PackedColorArray):
 	sprite.material.set("shader_parameter/replace_colors", palette)
+	camera.ammobar.material.set("shader_parameter/replace_colors", ammopalette)
 
 func _ready():
 	weapon_max = weapons.size() # - 1
-	change_palette(color_buster)
+	change_palette(color_buster, ammo_palettes[weapon_num])
 	animation_tree.active = true
 	
 	sprite.flip_h = false
@@ -198,7 +213,7 @@ func clear_flash() -> void:
 		camera.flash.hide()
 
 func handle_charge_shot() -> void:
-	if Input.is_action_just_pressed("fire") && weapon_current != weapon_rust && weapon_current != weapon_slip:
+	if Input.is_action_just_pressed("fire") && (weapon_current == weapon_burly || weapon_current == weapon_rushcoil || weapon_current == weapon_buster):
 		charge.play()
 	if Input.is_action_just_released("fire"):
 		if weapon_slip.crosshair.visible:
@@ -213,18 +228,19 @@ func handle_charge_shot() -> void:
 				state_machine.current_state.fire()
 			refire_timer += 1
 		# charge shot shader
-		else:
+		elif (weapon_current == weapon_burly || weapon_current == weapon_rushcoil || weapon_current == weapon_buster || weapon_current == weapon_slip):
 			camera.chargebar.value = shader_intensity
-			if shader_intensity < 0.75:
-				shader_intensity += 0.0085
-			if shader_speed < 7.5:
-				shader_speed += 0.085
 			if weapon_current == weapon_slip && weapon_slip.crosshair.visible:
 				if Input.is_action_pressed("up"):
 					weapon_slip.crosshair.position.y -= 1
 				if Input.is_action_pressed("down"):
 					weapon_slip.crosshair.position.y += 1
 				weapon_slip.crosshair.position.x += 1.25*last_faced
+			else:
+				if shader_intensity < 0.75:
+					shader_intensity += 0.0085
+				if shader_speed < 7.5:
+					shader_speed += 0.085
 	else:
 		refire_timer = 0
 		camera.chargebar.value = move_toward(camera.chargebar.value, 0.0, 0.05)
